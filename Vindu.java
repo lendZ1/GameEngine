@@ -1,6 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
 
+
+//Vindu som åpnes i fullscreen
+
 public class Vindu {
 
     int høyde;
