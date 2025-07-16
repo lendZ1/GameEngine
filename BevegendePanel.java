@@ -19,10 +19,10 @@ public class BevegendePanel extends JPanel implements Runnable {
         this.ypos = ypos;
     } 
 
-    public void run(){
+    public void run(){  //må legge til en barrier latch her
         while (true){
             xpos += xfart;
             ypos += yfart;
-        }
+        } 
     }
 }
