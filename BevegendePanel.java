@@ -9,6 +9,10 @@ import javax.swing.*;
 public class BevegendePanel extends JPanel implemnts Runnable {
     private int xpos;
     private int ypos;
+    private int xfart=0;
+    private int yfart=0;
+
+
     public BevegendePanel(int xpos, int ypos) {
         this.xpos = xpos;
         this.ypos = ypos;
@@ -16,7 +20,15 @@ public class BevegendePanel extends JPanel implemnts Runnable {
     } 
 
     public void run(){
-        
+        while (true){
+            xpos += xfart;
+            ypos += yfart;
+            
+            try {
+                barriere.await();
+            } catch (InterruptedException ex) {
+                return;
+            }
+        }
     }
-
 }
