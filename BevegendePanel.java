@@ -12,6 +12,7 @@ public class BevegendePanel extends JPanel {
     public BevegendePanel(int xpos, int ypos) {
         this.xpos = xpos;
         this.ypos = ypos;
+        super();
     } 
 
 }
