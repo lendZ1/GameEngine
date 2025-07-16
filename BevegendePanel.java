@@ -6,7 +6,7 @@ import javax.swing.*;
 // This class extends JPanel and can be used to create a panel that can be moved around the screen.
       
 
-public class BevegendePanel extends JPanel {
+public class BevegendePanel extends JPanel implemnts Runnable {
     private int xpos;
     private int ypos;
     public BevegendePanel(int xpos, int ypos) {
@@ -14,5 +14,9 @@ public class BevegendePanel extends JPanel {
         this.ypos = ypos;
         super();
     } 
+
+    public void run(){
+        
+    }
 
 }
