@@ -3,18 +3,16 @@ import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
 
 
-// Panel that can be moved around
-// This class extends JPanel and can be used to create a panel that can be moved around the screen.
+
       
-public class BevegendePanel extends JPanel implements Runnable {
+public class GameObject implements Runnable {
     private int xpos;
     private int ypos;
     private int xfart=0;
     private int yfart=0;
 
 
-    public BevegendePanel(int xpos, int ypos) {
-        super();
+    public GameObject(int xpos, int ypos) {
         this.xpos = xpos;
         this.ypos = ypos;
     } 

@@ -4,13 +4,14 @@ import javax.swing.*;
 
 public class Vindu extends JFrame {
     public Vindu() {
-        setTitle("Bevegende Panel Example");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null); // Use null layout for absolute positioning
         
+        setTitle("Bevegende Panel Example");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
+        GamePanel gamePanel = new GamePanel();
+        add(gamePanel);
+        pack(); // Adjusts the frame size to fit the preferred size of the panel
     }
 }
 
