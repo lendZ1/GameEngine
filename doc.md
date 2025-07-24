@@ -9,6 +9,7 @@ oppdater Game med tickrate
 
 GameObject:
 tråder som skal representere figurer i spillet. Har posisjon og størrelse for å kunne beregne kollisjoner.
+alle objekter er foreløpig firkanter med høyde, bredde og farge
 
 GamePanel:
 spillet skal ha ett panel i vinduet som skal tegne GameObject
