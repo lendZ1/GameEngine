@@ -3,10 +3,10 @@ import java.util.TreeMap;
 
 public class Game {
     public Vindu vindu;
-    public TreeMap<Integer, GameObject> gameObjects;    //Holder GameObjects og hvilket lagsnivå de er på
+    public GamePanel panel;
 
     public Game(){
         vindu = new Vindu();
-        gameObjects = new TreeMap<>();
+        panel = new GamePanel(); 
     }
 }
