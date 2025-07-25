@@ -2,7 +2,7 @@ Main:
 oppretter et Game og et GameLoop objekt.
 
 Game:
-initialiserer spiller og alle objektene
+oppretter en instanser av vindu og GamePanel
 
 GameLoop
 oppdater Game med tickrate. kaller GamePanel.update() for hver tick.
