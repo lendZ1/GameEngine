@@ -15,4 +15,12 @@ public class GamePanel extends JPanel {
             obj.oppdaterPosisjon(); // Update position of each GameObject
         }
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (GameObject obj : gameObjects.values()) {
+            obj.tegn(g); // Draw each GameObject
+        }
+    }
 }

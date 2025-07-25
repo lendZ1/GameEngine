@@ -29,7 +29,7 @@ public class GameObject{
     }
 
 
-    private void tegn(Graphics g) { // Metode for å tegne GameObject på vinduet
+    public void tegn(Graphics g) { // Metode for å tegne GameObject på vinduet
         g.setColor(farge);
         g.fillRect(xpos, ypos, bredde, høyde);
     }
