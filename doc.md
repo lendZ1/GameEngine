@@ -14,5 +14,8 @@ alle objekter er foreløpig firkanter med høyde, bredde og farge
 GamePanel:
 spillet skal ha ett panel i vinduet som skal tegne GameObject
 
-Vindu
+Vindu:
 initialiserer og styrer selve vinduet
+
+Map:
+Skal styre området objektene er på inkludert områdene som er utenfor vinduet
