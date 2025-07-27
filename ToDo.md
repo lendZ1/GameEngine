@@ -1,4 +1,4 @@
-starte GameLoop
+rydde beholder for gameObject i GamePanel
 
 teste GameLoop
 

@@ -11,7 +11,9 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         super();
         setPreferredSize(new Dimension(800, 600));
-        gameObjects = new ArrayList<>();
+        GO1 = new ArrayList<>();
+        GO2 = new ArrayList<>();
+        GO3 = new ArrayList<>();
     }
     public void update() {
         for (GameObject obj : GO1) {   //Oppdaterer posisjonen til alle GameObjects
