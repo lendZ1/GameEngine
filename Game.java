@@ -8,8 +8,5 @@ public class Game {
     public Game(){
         panel = new GamePanel(); 
         vindu = new Vindu(panel);
-        GameObject obj1 = new GameObject(100, 100, 50, 50, Color.RED);
-        obj1.settFart(2, 3); // Set speed for the object
-        panel.addGameObject(obj1, 1); // Add to layer 1
     }
 }
