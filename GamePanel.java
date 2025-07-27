@@ -40,4 +40,21 @@ public class GamePanel extends JPanel {
             obj.tegn(g);
         }
     }
+
+    public void addGameObject(GameObject obj, int layer) {
+        switch (layer) {
+            case 1:
+                GO1.add(obj);
+                break;
+            case 2:
+                GO2.add(obj);
+                break;
+            case 3:
+                GO3.add(obj);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid layer: " + layer);
+        }
+    }
+
 }

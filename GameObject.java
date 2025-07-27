@@ -33,4 +33,6 @@ public class GameObject{
         g.setColor(farge);
         g.fillRect(xpos, ypos, bredde, høyde);
     }
+
+    
 }
