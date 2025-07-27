@@ -23,6 +23,11 @@ public class GameObject{
         this.farge = farge;
     } 
 
+    public void settFart(int xfart, int yfart) {
+        this.xfart = xfart;
+        this.yfart = yfart;
+    }
+
     public void oppdaterPosisjon(){
             xpos += xfart;
             ypos += yfart;
@@ -34,5 +39,5 @@ public class GameObject{
         g.fillRect(xpos, ypos, bredde, høyde);
     }
 
-    
+
 }
