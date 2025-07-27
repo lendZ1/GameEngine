@@ -8,7 +8,7 @@ public class GameLoop implements Runnable {
 
     public GameLoop(Game game) {
         this.game = game;
-
+        this.panel = new GamePanel(game); // Initialize the game panel with the game instance
     }
 
     @Override
