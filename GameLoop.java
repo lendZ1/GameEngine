@@ -5,10 +5,12 @@ public class GameLoop implements Runnable {
     private static final double TICK_INTERVAL = 1000000000 / TICK_RATE; // Nanoseconds per tick
     private Game game;
     private GamePanel panel;
+    private GameMap gamemap;
 
     public GameLoop(Game game) {
         this.game = game;
         this.panel = game.panel; // Initialize the game panel with the game instance
+        this.gamemap = game.gamemap;     // Initialize the map with the game instance
     }
 
     @Override
@@ -23,7 +25,7 @@ public class GameLoop implements Runnable {
             lastTime = now;
 
             while (delta >= 1) {
-                panel.update();     // update game logic
+                gamemap.update();     // update game logic
                 panel.repaint();    // request a redraw
                 delta--;
             }

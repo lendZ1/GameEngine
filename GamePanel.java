@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 
 public class GamePanel extends JPanel {
-    private Map map;
+    private GameMap gamemap;
     
-    public GamePanel(Map map) {
-        this.map = map;
+    public GamePanel(GameMap gamemap) {
         super();
+        this.gamemap = gamemap;
         setPreferredSize(new Dimension(800, 600));
 
     }
@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {    // Tegner alle GameObjects på skjermen
-        map.tegn(g);
+        gamemap.tegn(g);
         super.paintComponent(g);
     }
 }

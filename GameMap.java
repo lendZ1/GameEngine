@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.TreeMap;
+import java.awt.Graphics;
 
-public class Map{
+public class GameMap{
     private int bredde;
     private int hoyde;
     private TreeMap<Integer, ArrayList<GameObject>> lag;    // TreeMap to hold GameObjects by layer
         //1 er det nederste laget
 
-    public Map(int bredde, int hoyde) {
+    public GameMap(int bredde, int hoyde) {
         this.bredde = bredde;
         this.hoyde = hoyde;
         lag = new TreeMap<>();
