@@ -6,12 +6,11 @@ import java.util.concurrent.BrokenBarrierException;
 
       
 public class GameObject{
-    private int xpos;
-    private int ypos;
+    private int xpos, ypos;
     private int xfart=0;
     private int yfart=0;
     private Color farge;
-
+    private boolean bounce = false; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     private int høyde, bredde;
 
 
