@@ -3,7 +3,7 @@ import java.util.TreeMap;
 import java.awt.Graphics;
 
 public class GameMap{
-    private int bredde, høyde;
+    public int bredde, høyde;
     private TreeMap<Integer, ArrayList<GameObject>> lag;    // TreeMap to hold GameObjects by layer
         //1 er det nederste laget
 
