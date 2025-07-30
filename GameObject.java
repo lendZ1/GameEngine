@@ -6,6 +6,7 @@ import java.util.concurrent.BrokenBarrierException;
 
       
 public class GameObject{
+    private int layer;
     private int xpos, ypos;
     private int xfart=0;
     private int yfart=0;

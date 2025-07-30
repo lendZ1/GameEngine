@@ -34,7 +34,7 @@ public class GameMap{
         lag.get(layer).add(obj);
     }
 
-
-
-
+    public ArrayList<GameObject> getGameObjects(int layer) { 
+        return lag.get(layer);  
+    }
 }
