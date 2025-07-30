@@ -1,13 +1,15 @@
 import java.awt.*;
 import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
+import java.util.ArrayList;
 
 
 
       
 public class GameObject{
+    private ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
     private int layer;
-    private int xpos, ypos;
+    public int xpos, ypos;
     private int xfart=0;
     private int yfart=0;
     private Color farge;
@@ -23,6 +25,7 @@ public class GameObject{
         this.høyde = høyde;
         this.bredde = bredde;
         this.farge = farge;
+
     } 
 
     public void settFart(int xfart, int yfart) {
@@ -48,6 +51,17 @@ public class GameObject{
         } else if (xpos + bredde >= gamemap.bredde) {
             return true;
         }
+
+        for (GameObject obj : layerObjects) {
+            if (this != obj) { // Sjekker at det ikke er samme GameObject
+                if (this.xpos < obj.xpos + obj.bredde &&
+                    this.xpos + this.bredde > obj.xpos &&
+                    this.ypos < obj.ypos + obj.høyde &&
+                    this.ypos + this.høyde > obj.ypos) {
+                    return true; // Kollisjon oppdaget
+                }
+            }
+        }
         return false;
     }
 
@@ -56,6 +70,16 @@ public class GameObject{
             return true;
         } else if (ypos + høyde >= gamemap.høyde) {
             return true;
+        }
+        for (GameObject obj : layerObjects) {
+            if (this != obj) { // Sjekker at det ikke er samme GameObject
+                if (this.ypos < obj.ypos + obj.høyde &&
+                    this.ypos + this.høyde > obj.ypos &&
+                    this.xpos < obj.xpos + obj.bredde &&
+                    this.xpos + this.bredde > obj.xpos) {
+                    return true; // Kollisjon oppdaget
+                }
+            }
         }
         return false;
     }
