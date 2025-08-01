@@ -13,21 +13,28 @@ public class GameMap{
         lag = new TreeMap<>();
     }
 
-    public void update() {
+    public void update() {  //oppdaterer alle GameObject og så sjekker etter kollisjoner
         for (ArrayList<GameObject> objects : lag.values()) {
             for (GameObject obj : objects) {
                 obj.oppdaterPosisjon();
             }
         }
+
+        for (ArrayList<GameObject> objects : lag.values()) {
+            for (GameObject obj : objects) {
+                obj.sjekkKollisjon();
+            }
+        }
     }
 
-    public void tegn(Graphics g) {
+    public void tegn(Graphics g) {  //tegner det nedeste laget først
         for (ArrayList<GameObject> objects : lag.values()) {
             for (GameObject obj : objects) {
                 obj.tegn(g);
             }
         }
     }
+
 
     public void addGameObject(GameObject obj, int layer) {  //legger til GameObject i riktig lag og lager ny ArrayList hvis det ikke allerde finnes
         lag.putIfAbsent(layer, new ArrayList<>());

@@ -38,6 +38,23 @@ public class GameObject{
             ypos += yfart;
     }
 
+    public void sjekkKollisjon() {
+        if (KollisjonHorisontal()) {
+            if (bounce) {
+                xfart = -xfart; // Spretter tilbake
+            } else {
+                xfart = 0; // Stopper horisontal bevegelse
+        }
+
+        }
+        if (KollisjonVertikal()) {
+            if (bounce) {
+                yfart = -yfart; // Spretter tilbake
+            } else {
+                yfart = 0; // Stopper vertikal bevegelse
+            }
+        }
+    }
 
     public void tegn(Graphics g) { // Metode for å tegne GameObject på vinduet
         g.setColor(farge);
