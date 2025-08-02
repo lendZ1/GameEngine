@@ -18,5 +18,9 @@ update() kaller OppdaterPosisjon for alle GameObjects
 Vindu:
 initialiserer og styrer selve vinduet
 
+
 Map:
-Skal styre området objektene er på inkludert områdene som er utenfor vinduet
+Skal styre området objektene er på inkludert områdene som er utenfor vinduet. 
+
+Holder også et TreeMap<Integer, ArrayList<GameObject>> som holder alle GameObjects.
+integer er hvilket nivå de er på der 1 er nederst. og verdien er en Arraylist med alle GameObjects på det nivået.
