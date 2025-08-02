@@ -2,5 +2,7 @@ fikse kollisjon i Gameobject til å ikke kun invertere farten i tilfelle to obje
 
 lage en builder til GameObject for å bedre håndtere konstruktøren
 
+legge til kontrollerbar bevegelse for GameObject
+
 
 
