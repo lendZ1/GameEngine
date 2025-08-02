@@ -39,6 +39,7 @@ public class GameMap{
     public void addGameObject(GameObject obj, int layer) {  //legger til GameObject i riktig lag og lager ny ArrayList hvis det ikke allerde finnes
         lag.putIfAbsent(layer, new ArrayList<>());
         lag.get(layer).add(obj);
+        obj.setLayerObjects(lag.get(layer));  // Setter layerObjects for GameObject
     }
 
     public ArrayList<GameObject> getGameObjects(int layer) { 

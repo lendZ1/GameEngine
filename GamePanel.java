@@ -16,7 +16,7 @@ public class GamePanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {    // Tegner alle GameObjects på skjermen
-        gamemap.tegn(g);
         super.paintComponent(g);
+        gamemap.tegn(g);
     }
 }
