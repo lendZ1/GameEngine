@@ -18,15 +18,19 @@ public class GameObject{
     private GameMap gamemap; 
 
 
-    public GameObject(GameMap gamemap, int xpos, int ypos, int høyde, int bredde, Color farge) {
+    public GameObject(GameMap gamemap, int xpos, int ypos, int høyde, int bredde, Color farge, int layer) {
         this.gamemap=gamemap;
         this.xpos = xpos;
         this.ypos = ypos;
         this.høyde = høyde;
         this.bredde = bredde;
         this.farge = farge;
+        this.layer = layer;
+    }
 
-    } 
+    public void setLayerObjects(ArrayList<GameObject> layerObjects) {
+        this.layerObjects = layerObjects;
+    }
 
     public void settFart(int xfart, int yfart) {
         this.xfart = xfart;
