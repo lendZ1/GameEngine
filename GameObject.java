@@ -16,7 +16,6 @@ public class GameObject{
     private boolean bounce = false; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     private int høyde, bredde;
     private GameMap gamemap; 
-    private boolean kontrollerbar=false;
 
 
     public GameObject(GameMap gamemap, int xpos, int ypos, int høyde, int bredde, Color farge, int layer) {
@@ -104,10 +103,6 @@ public class GameObject{
             }
         }
         return false;
-    }
-
-    public void erKontrollerbar(boolean kontrollerbar) {
-        this.kontrollerbar = kontrollerbar;
     }
 
     public void setBounce(boolean bounce) {
