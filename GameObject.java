@@ -32,10 +32,17 @@ public class GameObject{
         this.layerObjects = layerObjects;
     }
 
+    public void økXfart(int xfart) {
+        this.xfart += xfart;
+    }
+
+    public void økYfart(int yfart) {
+        this.yfart += yfart;
+    }
     public void settFart(int xfart, int yfart) {
         this.xfart = xfart;
         this.yfart = yfart;
-    }
+    }   
 
     public void oppdaterPosisjon(){
             xpos += xfart;
@@ -105,5 +112,8 @@ public class GameObject{
         return false;
     }
 
+    public void setBounce(boolean bounce) {
+        this.bounce = bounce;
+    }  
 
 }

@@ -12,7 +12,7 @@ public class Game {
         panel = new GamePanel(gamemap); 
         vindu = new Vindu(panel);
 
-        gameObject = new GameObject(gamemap, 100, 100, 50, 50, Color.RED, 1);
+        gameObject = new GameObject(gamemap, 300, 200, 50, 50, Color.RED, 1);
         gameObject.settFart(2, 3); // Setter fart for GameObject
         gamemap.addGameObject(gameObject, 1);
 
