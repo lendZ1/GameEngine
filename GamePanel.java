@@ -13,8 +13,8 @@ public class GamePanel extends JPanel implements KeyListener {
     public GamePanel(GameMap gamemap) {
         super();
         setFocusable(true);
-        addKeyListener(this); // Make sure the panel listens to keys
         requestFocusInWindow(); // Important for key events to work
+        addKeyListener(this); // Make sure the panel listens to keys
         setPreferredSize(new Dimension(800, 600));
         
         this.gamemap = gamemap;
@@ -33,30 +33,30 @@ public class GamePanel extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.opp();
+            player.opp(true);
             System.out.println("Player moving up");
         }
         else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.ned();
+            player.ned(true);
         }   
         else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.bakover();
+            player.bakover(true);
         }
         else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.fremover();
+            player.fremover(true);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.ned();
+            player.opp(false);
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.opp();
+            player.ned(false);
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.fremover();
+            player.bakover(false);
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.bakover();
+            player.fremover(false);
         }
     }
 
