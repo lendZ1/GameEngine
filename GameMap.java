@@ -16,13 +16,13 @@ public class GameMap{
     public void update() {  //oppdaterer alle GameObject og så sjekker etter kollisjoner
         for (ArrayList<GameObject> objects : lag.values()) {
             for (GameObject obj : objects) {
-                obj.oppdaterPosisjon();
+                obj.sjekkKollisjon();
             }
         }
-
+        
         for (ArrayList<GameObject> objects : lag.values()) {
             for (GameObject obj : objects) {
-                obj.sjekkKollisjon();
+                obj.oppdaterPosisjon();
             }
         }
     }
