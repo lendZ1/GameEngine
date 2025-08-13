@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
       
 public class GameObject{
-    private ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
+    public ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
     private int layer;
     public int xpos, ypos;
     private int xfart=0;
     private int yfart=0;
     private Color farge;
     private boolean bounce = false; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
-    private int høyde, bredde;
+    public int høyde, bredde;
     public GameMap gamemap; 
 
 
