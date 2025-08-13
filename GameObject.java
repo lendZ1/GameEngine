@@ -15,7 +15,7 @@ public class GameObject{
     private Color farge;
     private boolean bounce = false; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     private int høyde, bredde;
-    private GameMap gamemap; 
+    public GameMap gamemap; 
 
 
     public GameObject(GameMap gamemap, int xpos, int ypos, int høyde, int bredde, Color farge, int layer) {

@@ -9,6 +9,7 @@ public class Player extends GameObject {
     private boolean bakover = false;
     private boolean opp = false;
     private boolean ned = false;
+    
 
 
     public Player(GameMap gamemap, int xpos, int ypos) {
@@ -45,4 +46,10 @@ public class Player extends GameObject {
             ypos += hastighet;
         }
     }
+
+    @Override
+    public void sjekkKollisjon() {}
+        if (xpos-hastighet<0)
+    
+
 }
