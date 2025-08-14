@@ -9,6 +9,8 @@ public class Player extends GameObject {
     private boolean bakover = false;
     private boolean opp = false;
     private boolean ned = false;
+    private int kollisjonAvstand; //dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
+   
 
     public Player(GameMap gamemap, int xpos, int ypos) {
         super(gamemap, xpos, ypos, 50, 50, Color.BLUE, 1);
@@ -21,7 +23,8 @@ public class Player extends GameObject {
     public void ned(boolean ned)           { this.ned = ned; }
 
     @Override
-    public void oppdaterPosisjon() {
+    public void oppdaterPosisjon() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
+
         int nextX = xpos;
         int nextY = ypos;
 
@@ -32,12 +35,16 @@ public class Player extends GameObject {
 
         // Separate axis movement for smooth sliding along walls
         if (!kollisjonVed(nextX, ypos)) xpos = nextX;
+        else xpos += kollisjonAvstand;
+        
         if (!kollisjonVed(xpos, nextY)) ypos = nextY;
+        else ypos += kollisjonAvstand;
     }
 
 
     // Checks whether moving to (testX, testY) would cause a collision
     private boolean kollisjonVed(int testX, int testY) {
+        kollisjonAvstand=0;
         // Map bounds
         if (testX < 0 || testX + bredde > gamemap.bredde ||
             testY < 0 || testY + høyde > gamemap.høyde) {
