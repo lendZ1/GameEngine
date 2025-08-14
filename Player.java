@@ -36,7 +36,7 @@ public class Player extends GameObject {
         // Separate axis movement for smooth sliding along walls
         if (!kollisjonVed(nextX, ypos)) xpos = nextX;
         else xpos += kollisjonAvstand;
-        
+
         if (!kollisjonVed(xpos, nextY)) ypos = nextY;
         else ypos += kollisjonAvstand;
     }
@@ -46,10 +46,20 @@ public class Player extends GameObject {
     private boolean kollisjonVed(int testX, int testY) {
         kollisjonAvstand=0;
         // Map bounds
-        if (testX < 0 || testX + bredde > gamemap.bredde ||
-            testY < 0 || testY + høyde > gamemap.høyde) {
+        if (testX < 0) {
+            kollisjonAvstand = -xpos; // Move to edge
+            return true;
+        }else if(testX + bredde > gamemap.bredde) {
+            kollisjonAvstand = gamemap.bredde - (xpos + bredde);
+            return true;
+        } else if (testY < 0) {
+            kollisjonAvstand = -ypos; // Move to edge
+            return true;
+        } else if (testY + høyde > gamemap.høyde) {
+            kollisjonAvstand = gamemap.høyde - (ypos + høyde);
             return true;
         }
+
 
         // Other objects in same layer
         for (GameObject obj : layerObjects) {
