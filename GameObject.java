@@ -7,15 +7,15 @@ import java.util.ArrayList;
 
       
 public class GameObject{
-    private ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
+    public ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
     private int layer;
     public int xpos, ypos;
     private int xfart=0;
     private int yfart=0;
     private Color farge;
     private boolean bounce = false; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
-    private int høyde, bredde;
-    private GameMap gamemap; 
+    public int høyde, bredde;
+    public GameMap gamemap; 
 
 
     public GameObject(GameMap gamemap, int xpos, int ypos, int høyde, int bredde, Color farge, int layer) {
@@ -32,10 +32,17 @@ public class GameObject{
         this.layerObjects = layerObjects;
     }
 
+    public void økXfart(int xfart) {
+        this.xfart += xfart;
+    }
+
+    public void økYfart(int yfart) {
+        this.yfart += yfart;
+    }
     public void settFart(int xfart, int yfart) {
         this.xfart = xfart;
         this.yfart = yfart;
-    }
+    }   
 
     public void oppdaterPosisjon(){
             xpos += xfart;
@@ -105,5 +112,8 @@ public class GameObject{
         return false;
     }
 
+    public void setBounce(boolean bounce) {
+        this.bounce = bounce;
+    }  
 
 }
