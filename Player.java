@@ -39,8 +39,8 @@ public class Player extends GameObject {
     // Checks whether moving to (testX, testY) would cause a collision
     private boolean kollisjonVed(int testX, int testY) {
         // Map bounds
-        if (testX <= 0 || testX + bredde >= gamemap.bredde ||
-            testY <= 0 || testY + høyde >= gamemap.høyde) {
+        if (testX < 0 || testX + bredde > gamemap.bredde ||
+            testY < 0 || testY + høyde > gamemap.høyde) {
             return true;
         }
 
