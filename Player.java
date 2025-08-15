@@ -64,10 +64,17 @@ public class Player extends GameObject {
         // Other objects in same layer
         for (GameObject obj : layerObjects) {
             if (obj != this) {
-                if (testX < obj.xpos + obj.bredde &&
-                    testX + bredde > obj.xpos &&
-                    testY < obj.ypos + obj.høyde &&
-                    testY + høyde > obj.ypos) {
+                if (testX < obj.xpos + obj.bredde) {
+                    kollisjonAvstand = xpos-(obj.xpos + obj.bredde);
+                    return true;
+                }else if(testX + bredde > obj.xpos) {
+                    kollisjonAvstand = obj.xpos - (xpos + bredde);
+                    return true;
+                } else if (testY < obj.ypos + obj.høyde) {
+                    kollisjonAvstand = ypos - (obj.ypos + obj.høyde); 
+                    return true;
+                } else if (testY + høyde > obj.ypos) {
+                    kollisjonAvstand = obj.ypos - (ypos + høyde);
                     return true;
                 }
             }
