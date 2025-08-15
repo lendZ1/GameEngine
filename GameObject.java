@@ -13,7 +13,7 @@ public class GameObject{
     private int xfart=0;
     private int yfart=0;
     private Color farge;
-    private boolean bounce = false; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
+    private boolean bounce = true; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     public int høyde, bredde;
     public GameMap gamemap; 
 
