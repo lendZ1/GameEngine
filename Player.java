@@ -61,17 +61,36 @@ public class Player extends GameObject {
         }
 
 
-        // Other objects in same layer
         for (GameObject obj : layerObjects) {
             if (obj != this) {
-                if (testX < obj.xpos + obj.bredde &&
-                    testX + bredde > obj.xpos &&
-                    testY < obj.ypos + obj.høyde &&
-                    testY + høyde > obj.ypos) {
-                    return true;
+                    // Check overlap in both axes
+                    boolean overlapX = testX < obj.xpos + obj.bredde && testX + bredde > obj.xpos;
+                    boolean overlapY = testY < obj.ypos + obj.høyde && testY + høyde > obj.ypos;
+
+                    if (overlapX && overlapY) {
+                        // Determine if it's a horizontal or vertical collision
+                        int distLeft   = Math.abs(testX + bredde - obj.xpos);           // hitting from left
+                        int distRight  = Math.abs(testX - (obj.xpos + obj.bredde));     // hitting from right
+                        int distTop    = Math.abs(testY + høyde - obj.ypos);            // hitting from top
+                        int distBottom = Math.abs(testY - (obj.ypos + obj.høyde));      // hitting from bottom
+
+                        // Pick the smallest distance — that's the collision side
+                        int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
+
+                        if (minDist == distLeft) {
+                            kollisjonAvstand = obj.xpos - (xpos + bredde);
+                        } else if (minDist == distRight) {
+                            kollisjonAvstand = (obj.xpos + obj.bredde) - xpos;
+                        } else if (minDist == distTop) {
+                            kollisjonAvstand = obj.ypos - (ypos + høyde);
+                        } else {
+                            kollisjonAvstand = (obj.ypos + obj.høyde) - ypos;
+                        }
+
+                        return true;
+                    }
                 }
             }
-        }
         return false;
     }
 }
