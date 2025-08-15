@@ -78,13 +78,13 @@ public class Player extends GameObject {
                         int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
 
                         if (minDist == distLeft) {
-                            kollisjonAvstand = obj.xpos - (testX + bredde);
+                            kollisjonAvstand = obj.xpos - (xpos + bredde);
                         } else if (minDist == distRight) {
-                            kollisjonAvstand = (obj.xpos + obj.bredde) - testX;
+                            kollisjonAvstand = (obj.xpos + obj.bredde) - xpos;
                         } else if (minDist == distTop) {
-                            kollisjonAvstand = obj.ypos - (testY + høyde);
+                            kollisjonAvstand = obj.ypos - (ypos + høyde);
                         } else {
-                            kollisjonAvstand = (obj.ypos + obj.høyde) - testY;
+                            kollisjonAvstand = (obj.ypos + obj.høyde) - ypos;
                         }
 
                         return true;
