@@ -6,5 +6,7 @@ legge til kontrollerbar bevegelse for GameObject.
 foreløpig blir en instans av player oprettet i GamePanel. endre dette senere
 for å sentralisere alt i Game
 
+sjekkkollisjon()kalles fortsatt for player selv om den ikke gjør noe.
+
 
 
