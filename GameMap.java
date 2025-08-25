@@ -11,6 +11,7 @@ public class GameMap{
         this.bredde = bredde;
         this.høyde = høyde;
         lag = new TreeMap<>();
+        GameObject.gamemap=this; //lager en referanse til GameMap i GameObject
     }
 
     public void update() {  //oppdaterer alle GameObject og så sjekker etter kollisjoner
