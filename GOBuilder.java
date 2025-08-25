@@ -13,33 +13,36 @@ public class GOBuilder {
     private boolean bounce; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     public int høyde, bredde;
 
-    public GOBuilder() {
-    }
 
-    public void layer(){
+    public GOBuilder layer(int layer){
         this.layer = layer;
+        return this;
     }
 
-    public void fart(int xfart, int yfart){
+    public GOBuilder fart(int xfart, int yfart){
         this.xfart = xfart;
         this.yfart = yfart;
+        return this;
     }
 
-    public void position(int xpos, int ypos){
+    public GOBuilder position(int xpos, int ypos){
         this.xpos = xpos;
         this.ypos = ypos;
+        return this;
     }
 
-    public void størrelse(int høyde, int bredde){
+    public GOBuilder størrelse(int høyde, int bredde){
         this.høyde = høyde;
         this.bredde = bredde;
+        return this;
     }
 
-    public void color(Color farge){
+    public GOBuilder color(Color farge){
         this.farge = farge;
+        return this;        
     }
 
     public GameObject build(){
-        return new GameObject(xpos, ypos, høyde, bredde, farge, layer);
+        return new GameObject(xpos, ypos, høyde, bredde, xfart, yfart, farge, layer);
     }
 }

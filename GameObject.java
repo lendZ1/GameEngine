@@ -18,13 +18,15 @@ public class GameObject{
     public static GameMap gamemap; 
 
 
-    public GameObject(int xpos, int ypos, int høyde, int bredde, Color farge, int layer) {
+    public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer) {
         this.xpos = xpos;
         this.ypos = ypos;
         this.høyde = høyde;
         this.bredde = bredde;
         this.farge = farge;
         this.layer = layer;
+        this.xfart = xfart;
+        this.yfart = yfart;
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
