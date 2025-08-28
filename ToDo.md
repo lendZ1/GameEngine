@@ -11,5 +11,7 @@ for å sentralisere alt i Game
 
 sjekkkollisjon()kalles fortsatt for player selv om den ikke gjør noe.
 
+Tillate for å kunne dytte objekter
+
 
 
