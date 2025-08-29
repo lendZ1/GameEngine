@@ -45,4 +45,8 @@ public class GOBuilder {
     public GameObject build(){
         return new GameObject(xpos, ypos, høyde, bredde, xfart, yfart, farge, layer);
     }
+
+    public PLayer bildPlayer(){
+        return new PLayer()
+    }
 }
