@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 public class GamePanel extends JPanel implements KeyListener {
 
     private GameMap gamemap;
-    public Player player; // Instans av Player
+    private Player player;
     
 
     public GamePanel(GameMap gamemap) {
@@ -18,10 +18,12 @@ public class GamePanel extends JPanel implements KeyListener {
         setPreferredSize(new Dimension(800, 600));
         
         this.gamemap = gamemap;
-        player= new Player(gamemap, 100, 100); // Instans av Player
-        gamemap.addGameObject(player, 1); // Legger til Player i GameMap
     }
 
+
+    public void setPlayer(Player player, int layer) {
+        this.player = player;
+    }
 
     @Override
     public void paintComponent(Graphics g) {    // Tegner alle GameObjects på skjermen

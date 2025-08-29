@@ -15,17 +15,18 @@ public class GameObject{
     private Color farge;
     private boolean bounce = true; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     public int høyde, bredde;
-    public GameMap gamemap; 
+    public static GameMap gamemap; 
 
 
-    public GameObject(GameMap gamemap, int xpos, int ypos, int høyde, int bredde, Color farge, int layer) {
-        this.gamemap=gamemap;
+    public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer) {
         this.xpos = xpos;
         this.ypos = ypos;
         this.høyde = høyde;
         this.bredde = bredde;
         this.farge = farge;
         this.layer = layer;
+        this.xfart = xfart;
+        this.yfart = yfart;
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {

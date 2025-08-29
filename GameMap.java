@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 public class GameMap{
     public int bredde, høyde;
+    public GamePanel gamepanel;
     private TreeMap<Integer, ArrayList<GameObject>> lag;    // TreeMap to hold GameObjects by layer
         //1 er det nederste laget
 
@@ -11,6 +12,12 @@ public class GameMap{
         this.bredde = bredde;
         this.høyde = høyde;
         lag = new TreeMap<>();
+        GameObject.gamemap=this; //lager en referanse til GameMap i GameObject
+    }
+
+
+    public void setGamePanel(GamePanel gamepanel) {
+        this.gamepanel = gamepanel;
     }
 
     public void update() {  //oppdaterer alle GameObject og så sjekker etter kollisjoner
@@ -40,6 +47,13 @@ public class GameMap{
         lag.putIfAbsent(layer, new ArrayList<>());
         lag.get(layer).add(obj);
         obj.setLayerObjects(lag.get(layer));  // Setter layerObjects for GameObject
+    }
+
+    public void addPlayer(Player player, int layer) {
+        lag.putIfAbsent(layer, new ArrayList<>());
+        lag.get(layer).add(player);
+        player.setLayerObjects(lag.get(layer));  // Setter layerObjects for Player
+        gamepanel.setPlayer(player, layer);
     }
 
     public ArrayList<GameObject> getGameObjects(int layer) { 

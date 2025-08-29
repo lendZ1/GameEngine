@@ -4,7 +4,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.ArrayList;
 
 public class Player extends GameObject {
-    private int hastighet = 6; 
+    private int hastighet; //hvor fort spilleren beveger seg når knappene blir trykket
     private boolean fremover = false;
     private boolean bakover = false;
     private boolean opp = false;
@@ -12,8 +12,9 @@ public class Player extends GameObject {
     private int kollisjonAvstand; //dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
    
 
-    public Player(GameMap gamemap, int xpos, int ypos) {
-        super(gamemap, xpos, ypos, 50, 50, Color.BLUE, 1);
+    public Player(int xpos, int ypos, int høyde, int bredde, int hastighet, Color farge, int layer) {
+        super(xpos, ypos, høyde, bredde, 0, 0, farge, 1);
+        this.hastighet = hastighet;
         setBounce(false);
     }
 
