@@ -12,7 +12,7 @@ public class Player extends GameObject {
     private int kollisjonAvstand; //dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
    
 
-    public Player(int xpos, int ypos,int hastighet, int høyde, int bredde, Color farge, int layer) {
+    public Player(int xpos, int ypos, int høyde, int bredde, int hastighet, Color farge, int layer) {
         super(xpos, ypos, høyde, bredde, 0, 0, farge, 1);
         this.hastighet = hastighet;
         setBounce(false);
