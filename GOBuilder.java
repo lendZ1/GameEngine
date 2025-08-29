@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 public class GOBuilder {
 
-    public ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
     private int layer;
-    public int xpos, ypos;
+    private int xpos, ypos;
     private int xfart, yfart;
+    private int hastighet;
     private Color farge;
     private boolean bounce; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
-    public int høyde, bredde;
+    private int høyde, bredde;
+
 
 
     public GOBuilder layer(int layer){
@@ -42,11 +43,16 @@ public class GOBuilder {
         return this;        
     }
 
+    public GOBuilder hastighet(int hastighet){
+        this.hastighet = hastighet;
+        return this;
+    }
+
     public GameObject build(){
         return new GameObject(xpos, ypos, høyde, bredde, xfart, yfart, farge, layer);
     }
 
-    public PLayer bildPlayer(){
-        return new PLayer()
+    public Player buildPlayer(){
+        return new Player(xpos, ypos, høyde, bredde, hastighet, farge, layer);
     }
 }
