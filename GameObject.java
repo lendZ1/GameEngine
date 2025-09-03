@@ -76,8 +76,10 @@ public class GameObject{
 
     public boolean KollisjonHorisontal(){
         if (xpos <=0) {
+            registrerKollisjon();
             return true;
         } else if (xpos + bredde >= gamemap.bredde) {
+            registrerKollisjon();
             return true;
         }
 
@@ -87,6 +89,7 @@ public class GameObject{
                     this.xpos + this.bredde > obj.xpos &&
                     this.ypos < obj.ypos + obj.høyde &&
                     this.ypos + this.høyde > obj.ypos) {
+                    registrerKollisjon();   // Kall registrerKollisjon ved kollisjon
                     return true; // Kollisjon oppdaget
                 }
             }
@@ -96,8 +99,10 @@ public class GameObject{
 
     public boolean KollisjonVertikal(){
         if (ypos <= 0) {
+            registrerKollisjon();
             return true;
         } else if (ypos + høyde >= gamemap.høyde) {
+            registrerKollisjon();
             return true;
         }
         for (GameObject obj : layerObjects) {
@@ -106,6 +111,7 @@ public class GameObject{
                     this.ypos + this.høyde > obj.ypos &&
                     this.xpos < obj.xpos + obj.bredde &&
                     this.xpos + this.bredde > obj.xpos) {
+                    registrerKollisjon();   //Kall registrerKollisjon ved kollisjon
                     return true; // Kollisjon oppdaget
                 }
             }
@@ -116,5 +122,9 @@ public class GameObject{
     public void setBounce(boolean bounce) {
         this.bounce = bounce;
     }  
+
+    public void registrerKollisjon(){   //metode for at kollisjoner skal ha en effekt feks poeng
+        System.out.println("Kollisjon registrert!");    //endre hva som skjer for ønsket effekt
+    }
 
 }
