@@ -2,9 +2,9 @@ fikse kollisjon i Gameobject til å ikke kun invertere farten i tilfelle to obje
 
 redusere diagonal fart
 
-fikse kollisjon etter builderen ble laget
+sjekkkollisjon()kalles fortsatt for Player selv om den ikke gjør noe.
 
-sjekkkollisjon()kalles fortsatt for player selv om den ikke gjør noe.
+Tillate for å kunne dytte objekter
 
 legge til "poeng" ved kollisjon
 
