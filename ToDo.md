@@ -7,6 +7,6 @@ sjekkkollisjon()kalles fortsatt for Player selv om den ikke gjør noe.
 Tillate for å kunne dytte objekter
 
 endre kollisjonEffekt
-
+legge til spesiell effekt for spesifikke objekter
 
 
