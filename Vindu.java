@@ -6,7 +6,7 @@ public class Vindu extends JFrame {
     GamePanel gamePanel;
     public Vindu(GamePanel gamePanel) {
         
-        setTitle("Bevegende Panel Example");
+        setTitle("Game Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
