@@ -10,6 +10,9 @@ public class Vindu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
+        ImageIcon img = new ImageIcon("synpehype.jpg");
+        setIconImage(img.getImage());
+
     }
 }
 
