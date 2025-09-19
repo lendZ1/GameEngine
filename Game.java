@@ -14,13 +14,6 @@ public class Game {
         gamemap.setGamePanel(panel);
         vindu = new Vindu(panel);
 
-        gamemap.addGameObject(new GOBuilder()
-            .position(50, 50)
-            .størrelse(50, 50)
-            .color(Color.RED)
-            .layer(1)
-            .fart(2, 3)
-            .build(), 1);
 
         gamemap.addPlayer(new GOBuilder()
             .position(100, 100)
@@ -30,6 +23,22 @@ public class Game {
             .layer(1)
             .fart(4, 5)
             .buildPlayer(), 1);
+
+        gamemap.addGameObject(new GOBuilder()
+            .position(50, 50)
+            .størrelse(50, 50)
+            .color(Color.RED)
+            .layer(1)
+            .fart(4, 4)
+            .build(), 1);
+        
+        gamemap.addGameObject(new GOBuilder()
+            .position(300, 200)
+            .størrelse(50, 50)
+            .color(Color.GREEN)
+            .layer(1)
+            .fart(1, 1)
+            .build(), 2);
     }
     
 }

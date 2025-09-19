@@ -3,6 +3,7 @@ oppretter et Game og et GameLoop objekt.
 
 Game:
 oppretter en instanser av vindu og GamePanel
+Player må bli lagt til før andre gameobject
 
 GameLoop
 oppdater Game med tickrate. kaller GamePanel.update() for hver tick.
