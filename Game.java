@@ -18,10 +18,9 @@ public class Game {
         gamemap.addPlayer(new GOBuilder()
             .position(100, 100)
             .størrelse(50, 50)
-            .hastighet(5)
+            .hastighet(6)
             .color(Color.BLUE)
             .layer(1)
-            .fart(4, 5)
             .buildPlayer(), 1);
 
         gamemap.addGameObject(new GOBuilder()

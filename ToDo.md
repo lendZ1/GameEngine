@@ -1,5 +1,4 @@
-
-redusere diagonal fart
+diagonal fart er litt for liten fordi deivisjon returnerer heltall og ikke float
 
 sjekkkollisjon()kalles fortsatt for Player selv om den ikke gjør noe.
 
