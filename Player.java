@@ -18,6 +18,7 @@ public class Player extends GameObject {
         setBounce(false);
     }
 
+    //metodene blir kalt fra GamePanel når input registreres
     public void fremover(boolean fremover) { this.fremover = fremover; }
     public void bakover(boolean bakover)   { this.bakover = bakover; }
     public void opp(boolean opp)           { this.opp = opp; }
@@ -29,10 +30,36 @@ public class Player extends GameObject {
         int nextX = xpos;
         int nextY = ypos;
 
-        if (fremover) nextX += hastighet;
-        if (bakover)  nextX -= hastighet;
-        if (opp)      nextY -= hastighet;
-        if (ned)      nextY += hastighet;
+        if (fremover){
+            if (opp || ned){
+                nextX += Math.sqrt((hastighet*hastighet)/2);
+            } else{
+                nextX += hastighet;
+            }
+        }
+
+        if (bakover){
+            if (opp || ned){
+                nextX -= Math.sqrt((hastighet*hastighet)/2);
+            } else{
+                nextX -= hastighet;
+            }
+        }
+
+        if (opp){
+            if (fremover || bakover){
+                nextY -= Math.sqrt((hastighet*hastighet)/2);
+            } else{
+                nextY -= hastighet;
+            }
+        }
+        if (ned){
+            if (fremover || bakover){
+                nextY += Math.sqrt((hastighet*hastighet)/2);
+            } else{
+                nextY += hastighet;
+            }
+        }
 
         // Separate axis movement for smooth sliding along walls
         if (!kollisjonVed(nextX, ypos)) xpos = nextX;
