@@ -77,14 +77,14 @@ public class GameObject{
     public boolean KollisjonHorisontal(){
         if (xpos <=0) {
             return true;
-        } else if (xpos + bredde >= gamemap.bredde) {
+        } else if (xpos + bredde + this.xfart >= gamemap.bredde) {
             return true;
         }
 
         for (GameObject obj : layerObjects) {
             if (this != obj) { // Sjekker at det ikke er samme GameObject
-                if (this.xpos < obj.xpos + obj.bredde &&
-                    this.xpos + this.bredde > obj.xpos &&
+                if (this.xpos + this.xfart < obj.xpos + obj.bredde &&
+                    this.xpos + this.bredde + this.xfart > obj.xpos &&
                     this.ypos < obj.ypos + obj.høyde &&
                     this.ypos + this.høyde > obj.ypos) {
                     return true; // Kollisjon oppdaget
@@ -97,13 +97,13 @@ public class GameObject{
     public boolean KollisjonVertikal(){
         if (ypos <= 0) {
             return true;
-        } else if (ypos + høyde >= gamemap.høyde) {
+        } else if (ypos + høyde + this.yfart >= gamemap.høyde) {
             return true;
         }
         for (GameObject obj : layerObjects) {
             if (this != obj) { // Sjekker at det ikke er samme GameObject
-                if (this.ypos < obj.ypos + obj.høyde &&
-                    this.ypos + this.høyde > obj.ypos &&
+                if (this.ypos + this.yfart < obj.ypos + obj.høyde &&
+                    this.ypos + this.høyde + this.yfart > obj.ypos &&
                     this.xpos < obj.xpos + obj.bredde &&
                     this.xpos + this.bredde > obj.xpos) {
                     return true; // Kollisjon oppdaget
