@@ -62,11 +62,16 @@ public class Player extends GameObject {
         }
 
         // Separate axis movement for smooth sliding along walls
-        if (!kollisjonVed(nextX, ypos)) xpos = nextX;
-        else xpos += kollisjonAvstand;
 
-        if (!kollisjonVed(xpos, nextY)) ypos = nextY;
-        else ypos += kollisjonAvstand;
+        if (fremover || bakover) {
+            if (!kollisjonVed(nextX, ypos)) xpos = nextX;
+            else xpos += kollisjonAvstand;
+        }
+
+        if (opp || ned) {
+            if (!kollisjonVed(xpos, nextY)) ypos = nextY;
+            else ypos += kollisjonAvstand;
+        }
     }
 
 
