@@ -78,15 +78,14 @@ public class GameObject{
         if (xpos <=0) {
             registrerKollisjon();
             return true;
-        } else if (xpos + bredde >= gamemap.bredde) {
-            registrerKollisjon();
+        } else if (xpos + bredde + this.xfart >= gamemap.bredde) {
             return true;
         }
 
         for (GameObject obj : layerObjects) {
             if (this != obj) { // Sjekker at det ikke er samme GameObject
-                if (this.xpos < obj.xpos + obj.bredde &&
-                    this.xpos + this.bredde > obj.xpos &&
+                if (this.xpos + this.xfart < obj.xpos + obj.bredde &&
+                    this.xpos + this.bredde + this.xfart > obj.xpos &&
                     this.ypos < obj.ypos + obj.høyde &&
                     this.ypos + this.høyde > obj.ypos) {
                     registrerKollisjon();   // Kall registrerKollisjon ved kollisjon
@@ -101,14 +100,13 @@ public class GameObject{
         if (ypos <= 0) {
             registrerKollisjon();
             return true;
-        } else if (ypos + høyde >= gamemap.høyde) {
-            registrerKollisjon();
+        } else if (ypos + høyde + this.yfart >= gamemap.høyde) {
             return true;
         }
         for (GameObject obj : layerObjects) {
             if (this != obj) { // Sjekker at det ikke er samme GameObject
-                if (this.ypos < obj.ypos + obj.høyde &&
-                    this.ypos + this.høyde > obj.ypos &&
+                if (this.ypos + this.yfart < obj.ypos + obj.høyde &&
+                    this.ypos + this.høyde + this.yfart > obj.ypos &&
                     this.xpos < obj.xpos + obj.bredde &&
                     this.xpos + this.bredde > obj.xpos) {
                     registrerKollisjon();   //Kall registrerKollisjon ved kollisjon
