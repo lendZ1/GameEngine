@@ -64,4 +64,10 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {}
+
+    @Override
+    public void addNotify() {
+        super.addNotify();
+        requestFocusInWindow();
+    }
 }

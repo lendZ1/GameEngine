@@ -122,7 +122,7 @@ public class GameObject{
     }  
 
     public void registrerKollisjon(){   //metode for at kollisjoner skal ha en effekt feks poeng
-        System.out.println("Kollisjon registrert!");    //endre hva som skjer for ønsket effekt
+        //endre hva som skjer for ønsket effekt
     }
 
 }
