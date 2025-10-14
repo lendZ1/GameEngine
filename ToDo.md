@@ -15,4 +15,6 @@ Tillate for å kunne dytte objekter
 endre kollisjonEffekt
 legge til spesiell effekt for spesifikke objekter
 
+legge til fps counter
+
 
