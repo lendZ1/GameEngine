@@ -14,9 +14,10 @@ public class GameObject{
     private int yfart=0;
     private Color farge;
     private boolean bounce = true; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
+    private boolean movable;    //if the GO can be moved or not
+    //bounce can be true while movable is false in case the object hits another immovable object
     public int høyde, bredde;
     public static GameMap gamemap; 
-    private boolean movable;    //if the GO can be moved or not
 
 
     public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
@@ -91,7 +92,9 @@ public class GameObject{
                     this.ypos < obj.ypos + obj.høyde &&
                     this.ypos + this.høyde > obj.ypos) {
                     registrerKollisjon();   // Kall registrerKollisjon ved kollisjon
-                    return true; // Kollisjon oppdaget
+                    if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
+                        return true;                        //then collision will be registered
+                    }                                       //Otherwise the function works as usual
                 }
             }
         }
@@ -112,7 +115,9 @@ public class GameObject{
                     this.xpos < obj.xpos + obj.bredde &&
                     this.xpos + this.bredde > obj.xpos) {
                     registrerKollisjon();   //Kall registrerKollisjon ved kollisjon
-                    return true; // Kollisjon oppdaget
+                    if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
+                        return true;                        //then collision will be registered
+                    }                                       //Otherwise the function works as usual
                 }
             }
         }
