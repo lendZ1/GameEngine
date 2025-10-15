@@ -127,4 +127,8 @@ public class GameObject{
         //endre hva som skjer for ønsket effekt
     }
 
+    public boolean isMovable(){
+        return movable;
+    }
+
 }
