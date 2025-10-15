@@ -6,8 +6,6 @@ er fortsatt et lite gap mellom GO'er ved kollisjon:
     kan nok fikses på samme måte som i Player, ved å finne avstanden til neste kollisjon.
 
 
-legge til mulighet for "snake"-bevegelse. konstant fart kun endre reting
-
 impplementere sprite
 
 Tillate for å kunne dytte objekter

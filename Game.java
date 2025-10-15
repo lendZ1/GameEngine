@@ -29,6 +29,7 @@ public class Game {
             .color(Color.RED)
             .layer(1)
             .fart(4, 4)
+            .movable(true)
             .build(), 1);
         
         gamemap.addGameObject(new GOBuilder()
@@ -37,6 +38,7 @@ public class Game {
             .color(Color.GREEN)
             .layer(1)
             .fart(1, 1)
+            .movable(true)
             .build(), 2);
     }
     

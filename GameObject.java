@@ -16,9 +16,10 @@ public class GameObject{
     private boolean bounce = true; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     public int høyde, bredde;
     public static GameMap gamemap; 
+    private boolean movable;    //if the GO can be moved or not
 
 
-    public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer) {
+    public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
         this.xpos = xpos;
         this.ypos = ypos;
         this.høyde = høyde;
@@ -27,6 +28,7 @@ public class GameObject{
         this.layer = layer;
         this.xfart = xfart;
         this.yfart = yfart;
+        this.movable = movable;
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
