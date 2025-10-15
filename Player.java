@@ -13,7 +13,7 @@ public class Player extends GameObject {
    
 
     public Player(int xpos, int ypos, int høyde, int bredde, int hastighet, Color farge, int layer) {
-        super(xpos, ypos, høyde, bredde, 0, 0, farge, 1);
+        super(xpos, ypos, høyde, bredde, 0, 0, farge, 1, false /*player is not movable by default*/);
         this.hastighet = hastighet;
         setBounce(false);
     }
