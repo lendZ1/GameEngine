@@ -94,7 +94,9 @@ public class GameObject{
                     registrerKollisjon();   // Kall registrerKollisjon ved kollisjon
                     if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
                         return true;                        //then collision will be registered
-                    }                                       //Otherwise the function works as usual
+                    }  else if(isMovable()){    //Otherwise if this object is movable, collision works as usual
+                        return true;        
+                    }                                     
                 }
             }
         }
@@ -117,7 +119,9 @@ public class GameObject{
                     registrerKollisjon();   //Kall registrerKollisjon ved kollisjon
                     if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
                         return true;                        //then collision will be registered
-                    }                                       //Otherwise the function works as usual
+                    } else if(isMovable()){    //Otherwise if this object is movable, collision works as usual
+                        return true;        
+                    }                                        
                 }
             }
         }
