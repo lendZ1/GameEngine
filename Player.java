@@ -2,6 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+
 
 public class Player extends GameObject {
     private int hastighet; //hvor fort spilleren beveger seg når knappene blir trykket
@@ -16,6 +18,9 @@ public class Player extends GameObject {
         super(xpos, ypos, høyde, bredde, 0, 0, farge, 1, false /*player is not movable by default*/);
         this.hastighet = hastighet;
         setBounce(false);
+
+        setImage("PlaceHolder.png");
+
     }
 
     //metodene blir kalt fra GamePanel når input registreres

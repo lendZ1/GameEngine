@@ -2,6 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 
 
 
@@ -18,6 +23,7 @@ public class GameObject{
     //bounce can be true while movable is false in case the object hits another immovable object
     public int høyde, bredde;
     public static GameMap gamemap; 
+    private BufferedImage image;
 
 
     public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
@@ -30,6 +36,17 @@ public class GameObject{
         this.xfart = xfart;
         this.yfart = yfart;
         this.movable = movable;
+
+
+    }
+
+    public void setImage(String path){  //takes the path to the image as input
+        try {
+            image=ImageIO.read(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
