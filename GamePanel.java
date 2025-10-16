@@ -69,5 +69,5 @@ public class GamePanel extends JPanel implements KeyListener {
     public void addNotify() {
         super.addNotify();
         requestFocusInWindow();
-}
+    }
 }

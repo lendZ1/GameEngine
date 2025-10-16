@@ -36,6 +36,16 @@ public class Game {
             .color(Color.RED)
             .layer(1)
             .fart(4, 4)
+            .movable(true)
+            .build(), 1);
+
+        gamemap.addGameObject(new GOBuilder()
+            .position(120, 120)
+            .størrelse(50, 50)
+            .color(Color.YELLOW)
+            .layer(1)
+            .fart(4, 4)
+            .movable(false)
             .build(), 1);
         
         gamemap.addGameObject(new GOBuilder()
@@ -44,6 +54,7 @@ public class Game {
             .color(Color.GREEN)
             .layer(1)
             .fart(1, 1)
+            .movable(true)
             .build(), 2);
     }
     

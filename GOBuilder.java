@@ -10,8 +10,9 @@ public class GOBuilder {
     private int xfart, yfart;
     private int hastighet;
     private Color farge;
-    private boolean bounce; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
+    private boolean bounce;
     private int høyde, bredde;
+    private boolean movable;
 
 
 
@@ -43,13 +44,18 @@ public class GOBuilder {
         return this;        
     }
 
+    public GOBuilder movable(boolean movable){
+        this.movable = movable;
+        return this;
+    }
+
     public GOBuilder hastighet(int hastighet){
         this.hastighet = hastighet;
         return this;
     }
 
     public GameObject build(){
-        return new GameObject(xpos, ypos, høyde, bredde, xfart, yfart, farge, layer);
+        return new GameObject(xpos, ypos, høyde, bredde, xfart, yfart, farge, layer, movable);
     }
 
     public Player buildPlayer(){
