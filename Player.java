@@ -3,6 +3,9 @@ import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 
 public class Player extends GameObject {
@@ -19,7 +22,11 @@ public class Player extends GameObject {
         this.hastighet = hastighet;
         setBounce(false);
 
-        setImage("PlaceHolder.png");
+         try {
+            image=ImageIO.read(new File("PlaceHolder.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -77,6 +84,11 @@ public class Player extends GameObject {
             if (!kollisjonVed(xpos, nextY)) ypos = nextY;
             else ypos += kollisjonAvstand;
         }
+    }
+
+    @Override
+    public void tegn(Graphics g){
+        g.drawImage(image, xpos, ypos, bredde, høyde, null);
     }
 
 

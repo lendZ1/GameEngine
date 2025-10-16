@@ -7,6 +7,7 @@ er fortsatt et lite gap mellom GO'er ved kollisjon:
 
 
 implementere sprite
+fikse størrelsen på gameobject til å altid macthe bildet
 
 Tillate for å kunne dytte objekter
 
