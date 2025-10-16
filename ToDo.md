@@ -6,11 +6,13 @@ er fortsatt et lite gap mellom GO'er ved kollisjon:
     kan nok fikses på samme måte som i Player, ved å finne avstanden til neste kollisjon.
 
 
-impplementere sprite
+implementere sprite
 
 Tillate for å kunne dytte objekter
 
 endre kollisjonEffekt
 legge til spesiell effekt for spesifikke objekter
+
+fikse movable til å håndtere når et objekt ikke kan flyttes når det er inntil en kant
 
 

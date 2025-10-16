@@ -31,6 +31,15 @@ public class Game {
             .fart(4, 4)
             .movable(true)
             .build(), 1);
+
+        gamemap.addGameObject(new GOBuilder()
+            .position(120, 120)
+            .størrelse(50, 50)
+            .color(Color.YELLOW)
+            .layer(1)
+            .fart(4, 4)
+            .movable(false)
+            .build(), 1);
         
         gamemap.addGameObject(new GOBuilder()
             .position(300, 200)
