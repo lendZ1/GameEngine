@@ -48,22 +48,28 @@ public class GameObject{
 
     }
 
-    public void addImage(String state, BufferedImage image){
+    public void addImage(String state, String filePath){
+        BufferedImage temp=null;
+        try {
+            temp=ImageIO.read(new File(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         switch (state){
             case "idle":
-                images.get("idleImages").addLast(image);
+                images.get("idleImages").addLast(temp);
                 break;
             case "up":
-                images.get("upImages").addLast(image);
+                images.get("upImages").addLast(temp);
                 break;
             case "down":
-                images.get("downImages").addLast(image);
+                images.get("downImages").addLast(temp);
                 break;
             case "left":
-                images.get("leftImages").addLast(image);
+                images.get("leftImages").addLast(temp);
                 break;
             case "right":
-                images.get("rightImages").addLast(image);
+                images.get("rightImages").addLast(temp);
                 break;
         }
     }
