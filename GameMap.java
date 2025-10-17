@@ -43,17 +43,19 @@ public class GameMap{
     }
 
 
-    public void addGameObject(GameObject obj, int layer) {  //legger til GameObject i riktig lag og lager ny ArrayList hvis det ikke allerde finnes
+    public GameObject addGameObject(GameObject obj, int layer) {  //legger til GameObject i riktig lag og lager ny ArrayList hvis det ikke allerde finnes
         lag.putIfAbsent(layer, new ArrayList<>());
         lag.get(layer).add(obj);
         obj.setLayerObjects(lag.get(layer));  // Setter layerObjects for GameObject
+        return obj;
     }
 
-    public void addPlayer(Player player, int layer) {
+    public Player addPlayer(Player player, int layer) {
         lag.putIfAbsent(layer, new ArrayList<>());
         lag.get(layer).add(player);
         player.setLayerObjects(lag.get(layer));  // Setter layerObjects for Player
         gamepanel.setPlayer(player, layer);
+        return player;
     }
 
     public ArrayList<GameObject> getGameObjects(int layer) { 

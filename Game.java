@@ -21,7 +21,7 @@ public class Game {
             .hastighet(6)
             .color(Color.BLUE)
             .layer(1)
-            .buildPlayer(), 1);
+            .buildPlayer(), 1).addImage("idle", "PlaceHolder.PNG");
 
         gamemap.addGameObject(new GOBuilder()
             .position(50, 50)

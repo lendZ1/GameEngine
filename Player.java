@@ -21,13 +21,7 @@ public class Player extends GameObject {
         super(xpos, ypos, høyde, bredde, 0, 0, farge, 1, false /*player is not movable by default*/);
         this.hastighet = hastighet;
         setBounce(false);
-
-         try {
-            image=ImageIO.read(new File("PlaceHolder.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        System.out.print(images);
     }
 
     //metodene blir kalt fra GamePanel når input registreres
@@ -86,10 +80,6 @@ public class Player extends GameObject {
         }
     }
 
-    @Override
-    public void tegn(Graphics g){
-        g.drawImage(image, xpos, ypos, bredde, høyde, null);
-    }
 
 
     // Checks whether moving to (testX, testY) would cause a collision
