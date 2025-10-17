@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 
 
@@ -23,7 +25,7 @@ public class GameObject{
     //bounce can be true while movable is false in case the object hits another immovable object
     public int høyde, bredde;
     public static GameMap gamemap; 
-    public BufferedImage image;
+    public HashMap<String, LinkedList<BufferedImage>> images;
 
 
     public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
@@ -37,7 +39,33 @@ public class GameObject{
         this.yfart = yfart;
         this.movable = movable;
 
+        
+        images.put("idleImages", new LinkedList<BufferedImage>());
+        images.put("upImages", new LinkedList<BufferedImage>());
+        images.put("downImages", new LinkedList<BufferedImage>());
+        images.put("leftImages", new LinkedList<BufferedImage>());
+        images.put("rightImages", new LinkedList<BufferedImage>());
 
+    }
+
+    public void addImage(String state, BufferedImage image){
+        switch (state){
+            case "idle":
+                images.get("idleImages").addLast(image);
+                break;
+            case "up":
+                images.get("upImages").addLast(image);
+                break;
+            case "down":
+                images.get("downImages").addLast(image);
+                break;
+            case "left":
+                images.get("leftImages").addLast(image);
+                break;
+            case "right":
+                images.get("rightImages").addLast(image);
+                break;
+        }
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
