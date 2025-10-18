@@ -18,4 +18,6 @@ fikse movable til å håndtere når et objekt ikke kan flyttes når det er innti
 
 legge til fps counter
 
+legge til logikk for å håndtere ulike animasjoner for bevegelse
+
 

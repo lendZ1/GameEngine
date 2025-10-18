@@ -28,7 +28,7 @@ public class GameObject{
     private HashMap<String, ArrayList<BufferedImage>> images =new HashMap<>(); 
     private int imageIndex=0;   //index to help cycle through the animations
     private boolean hasImage=false;
-
+    private String state="idle"; //determinesthe state of the object: idle, up, down, left, right
 
     public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
         this.xpos = xpos;
@@ -111,8 +111,14 @@ public class GameObject{
     }
 
     public void tegn(Graphics g) { // Metode for å tegne GameObject på vinduet
-        g.setColor(farge);
-        g.fillRect(xpos, ypos, bredde, høyde);
+        if (!hasImage){
+            g.setColor(farge);
+            g.fillRect(xpos, ypos, bredde, høyde);
+        } else {
+            if (state=="idle"){
+                g.drawImage(images.get("idleImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+            }
+        }
     }
 
 
