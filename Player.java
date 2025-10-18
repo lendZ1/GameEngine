@@ -21,7 +21,6 @@ public class Player extends GameObject {
         super(xpos, ypos, høyde, bredde, 0, 0, farge, 1, false /*player is not movable by default*/);
         this.hastighet = hastighet;
         setBounce(false);
-        System.out.print(images);
     }
 
     //metodene blir kalt fra GamePanel når input registreres

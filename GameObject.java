@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 
 
@@ -25,7 +25,7 @@ public class GameObject{
     //bounce can be true while movable is false in case the object hits another immovable object
     public int høyde, bredde;
     public static GameMap gamemap; 
-    public HashMap<String, LinkedList<BufferedImage>> images =new HashMap<>(); 
+    private HashMap<String, ArrayList<BufferedImage>> images =new HashMap<>(); 
     private int imageIndex=0;   //index to help cycle through the animations
     private boolean hasImage=false;
 
@@ -42,30 +42,30 @@ public class GameObject{
         this.movable = movable;
 
         
-        images.put("idleImages", new LinkedList<BufferedImage>());
-        images.put("upImages", new LinkedList<BufferedImage>());
-        images.put("downImages", new LinkedList<BufferedImage>());
-        images.put("leftImages", new LinkedList<BufferedImage>());
-        images.put("rightImages", new LinkedList<BufferedImage>());
+        images.put("idleImages", new ArrayList<BufferedImage>());
+        images.put("upImages", new ArrayList<BufferedImage>());
+        images.put("downImages", new ArrayList<BufferedImage>());
+        images.put("leftImages", new ArrayList<BufferedImage>());
+        images.put("rightImages", new ArrayList<BufferedImage>());
 
     }
 
     public void addImage(String state, String filePath){
         switch (state){
             case "idle":
-                images.get("idleImages").addLast(ImageLoader.load(filePath));
+                images.get("idleImages").add(ImageLoader.load(filePath));
                 break;
             case "up":
-                images.get("upImages").addLast(ImageLoader.load(filePath));
+                images.get("upImages").add(ImageLoader.load(filePath));
                 break;
             case "down":
-                images.get("downImages").addLast(ImageLoader.load(filePath));
+                images.get("downImages").add(ImageLoader.load(filePath));
                 break;
             case "left":
-                images.get("leftImages").addLast(ImageLoader.load(filePath));
+                images.get("leftImages").add(ImageLoader.load(filePath));
                 break;
             case "right":
-                images.get("rightImages").addLast(ImageLoader.load(filePath));
+                images.get("rightImages").add(ImageLoader.load(filePath));
                 break;
         }
         hasImage=true;
