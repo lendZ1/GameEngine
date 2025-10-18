@@ -115,8 +115,12 @@ public class GameObject{
             g.setColor(farge);
             g.fillRect(xpos, ypos, bredde, høyde);
         } else {
-            if (state=="idle"){
+            if (state.equals("idle")){
+                if (imageIndex>=images.get("idleImages").size()-1){
+                    imageIndex=0;
+                }
                 g.drawImage(images.get("idleImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                imageIndex++;
             }
         }
     }
