@@ -92,6 +92,60 @@ public class GameObject{
             ypos += yfart;
     }
 
+
+    public void tegn(Graphics g) { // Metode for å tegne GameObject på vinduet
+        if (!hasImage){
+            g.setColor(farge);
+            g.fillRect(xpos, ypos, bredde, høyde);
+            return;
+        } 
+        switch(state){
+            case "idle":
+                if (imageIndex>=images.get("idleImages").size()-1){
+                    imageIndex=0;
+                }
+                g.drawImage(images.get("idleImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                imageIndex++;
+                break;
+            
+            case "up":
+                if (imageIndex>=images.get("upImages").size()-1){
+                    imageIndex=0;
+                }
+                g.drawImage(images.get("upImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                imageIndex++;
+                break;
+
+            case "down":
+                if (imageIndex>=images.get("downImages").size()-1){
+                    imageIndex=0;
+                }
+                g.drawImage(images.get("downImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                imageIndex++;
+                break;
+
+            case "left":
+                if (imageIndex>=images.get("leftImages").size()-1){
+                    imageIndex=0;
+                }
+                g.drawImage(images.get("leftImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                imageIndex++;
+                break;
+
+            case "right":
+                if (imageIndex>=images.get("rightImages").size()-1){
+                    imageIndex=0;
+                }
+                g.drawImage(images.get("rightImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                imageIndex++;
+                break;
+
+
+
+        }
+    }
+
+
     public void sjekkKollisjon() {
         if (KollisjonHorisontal()) {
             if (bounce) {
@@ -106,21 +160,6 @@ public class GameObject{
                 yfart = -yfart; // Spretter tilbake
             } else {
                 yfart = 0; // Stopper vertikal bevegelse
-            }
-        }
-    }
-
-    public void tegn(Graphics g) { // Metode for å tegne GameObject på vinduet
-        if (!hasImage){
-            g.setColor(farge);
-            g.fillRect(xpos, ypos, bredde, høyde);
-        } else {
-            if (state.equals("idle")){
-                if (imageIndex>=images.get("idleImages").size()-1){
-                    imageIndex=0;
-                }
-                g.drawImage(images.get("idleImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
-                imageIndex++;
             }
         }
     }
