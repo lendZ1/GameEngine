@@ -33,7 +33,7 @@ public class Game {
             .build(), 1);
 
         gamemap.addGameObject(new GOBuilder()
-            .position(120, 120)
+            .position(200, 200)
             .størrelse(50, 50)
             .color(Color.YELLOW)
             .layer(1)

@@ -25,7 +25,9 @@ public class GameObject{
     //bounce can be true while movable is false in case the object hits another immovable object
     public int høyde, bredde;
     public static GameMap gamemap; 
-    public HashMap<String, LinkedList<BufferedImage>> images;
+    public HashMap<String, LinkedList<BufferedImage>> images =new HashMap<>(); 
+    private int imageIndex=0;   //index to help cycle through the animations
+    private boolean hasImage=false;
 
 
     public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
@@ -49,29 +51,24 @@ public class GameObject{
     }
 
     public void addImage(String state, String filePath){
-        BufferedImage temp=null;
-        try {
-            temp=ImageIO.read(new File(filePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         switch (state){
             case "idle":
-                images.get("idleImages").addLast(temp);
+                images.get("idleImages").addLast(ImageLoader.load(filePath));
                 break;
             case "up":
-                images.get("upImages").addLast(temp);
+                images.get("upImages").addLast(ImageLoader.load(filePath));
                 break;
             case "down":
-                images.get("downImages").addLast(temp);
+                images.get("downImages").addLast(ImageLoader.load(filePath));
                 break;
             case "left":
-                images.get("leftImages").addLast(temp);
+                images.get("leftImages").addLast(ImageLoader.load(filePath));
                 break;
             case "right":
-                images.get("rightImages").addLast(temp);
+                images.get("rightImages").addLast(ImageLoader.load(filePath));
                 break;
         }
+        hasImage=true;
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
