@@ -51,24 +51,27 @@ public class GameObject{
     }
 
     public void addImage(String state, String filePath){
+        BufferedImage image=ImageLoader.load(filePath);
+        image=ImageLoader.scale(image, bredde, høyde);
         switch (state){
             case "idle":
-                images.get("idleImages").add(ImageLoader.load(filePath));
+                images.get("idleImages").add(image);
                 break;
             case "up":
-                images.get("upImages").add(ImageLoader.load(filePath));
+                images.get("upImages").add(image);
                 break;
             case "down":
-                images.get("downImages").add(ImageLoader.load(filePath));
+                images.get("downImages").add(image);
                 break;
             case "left":
-                images.get("leftImages").add(ImageLoader.load(filePath));
+                images.get("leftImages").add(image);
                 break;
             case "right":
-                images.get("rightImages").add(ImageLoader.load(filePath));
+                images.get("rightImages").add(image);
                 break;
         }
         hasImage=true;
+
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
@@ -104,7 +107,7 @@ public class GameObject{
                 if (imageIndex>=images.get("idleImages").size()-1){
                     imageIndex=0;
                 }
-                g.drawImage(images.get("idleImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                g.drawImage(images.get("idleImages").get(imageIndex), xpos, ypos, null);
                 imageIndex++;
                 break;
             
@@ -112,7 +115,7 @@ public class GameObject{
                 if (imageIndex>=images.get("upImages").size()-1){
                     imageIndex=0;
                 }
-                g.drawImage(images.get("upImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                g.drawImage(images.get("upImages").get(imageIndex), xpos, ypos, null);
                 imageIndex++;
                 break;
 
@@ -120,7 +123,7 @@ public class GameObject{
                 if (imageIndex>=images.get("downImages").size()-1){
                     imageIndex=0;
                 }
-                g.drawImage(images.get("downImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                g.drawImage(images.get("downImages").get(imageIndex), xpos, ypos, null);
                 imageIndex++;
                 break;
 
@@ -128,7 +131,7 @@ public class GameObject{
                 if (imageIndex>=images.get("leftImages").size()-1){
                     imageIndex=0;
                 }
-                g.drawImage(images.get("leftImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                g.drawImage(images.get("leftImages").get(imageIndex), xpos, ypos, null);
                 imageIndex++;
                 break;
 
@@ -136,7 +139,7 @@ public class GameObject{
                 if (imageIndex>=images.get("rightImages").size()-1){
                     imageIndex=0;
                 }
-                g.drawImage(images.get("rightImages").get(imageIndex), xpos, ypos,bredde, høyde, null);
+                g.drawImage(images.get("rightImages").get(imageIndex), xpos, ypos, null);
                 imageIndex++;
                 break;
 
