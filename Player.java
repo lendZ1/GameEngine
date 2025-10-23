@@ -10,10 +10,10 @@ import javax.imageio.ImageIO;
 
 public class Player extends GameObject {
     private int hastighet; //hvor fort spilleren beveger seg når knappene blir trykket
-    private boolean fremover = false;
-    private boolean bakover = false;
-    private boolean opp = false;
-    private boolean ned = false;
+    private boolean right = false;
+    private boolean left = false;
+    private boolean up = false;
+    private boolean down = false;
     private int kollisjonAvstand; //dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
    
 
@@ -24,10 +24,10 @@ public class Player extends GameObject {
     }
 
     //metodene blir kalt fra GamePanel når input registreres
-    public void fremover(boolean fremover) { this.fremover = fremover; }
-    public void bakover(boolean bakover)   { this.bakover = bakover; }
-    public void opp(boolean opp)           { this.opp = opp; }
-    public void ned(boolean ned)           { this.ned = ned; }
+    public void fremover(boolean right) { this.right = right; }
+    public void bakover(boolean left)   { this.left = left; }
+    public void opp(boolean up)           { this.up = up; }
+    public void ned(boolean down)           { this.down = down; }
 
     @Override
     public void oppdaterPosisjon() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
@@ -35,31 +35,31 @@ public class Player extends GameObject {
         int nextX = xpos;
         int nextY = ypos;
 
-        if (fremover){
-            if (opp || ned){
+        if (right){
+            if (up || down){
                 nextX += Math.sqrt((hastighet*hastighet)/2);
             } else{
                 nextX += hastighet;
             }
         }
 
-        if (bakover){
-            if (opp || ned){
+        if (left){
+            if (up || down){
                 nextX -= Math.sqrt((hastighet*hastighet)/2);
             } else{
                 nextX -= hastighet;
             }
         }
 
-        if (opp){
-            if (fremover || bakover){
+        if (up){
+            if (right || left){
                 nextY -= Math.sqrt((hastighet*hastighet)/2);
             } else{
                 nextY -= hastighet;
             }
         }
-        if (ned){
-            if (fremover || bakover){
+        if (down){
+            if (right || left){
                 nextY += Math.sqrt((hastighet*hastighet)/2);
             } else{
                 nextY += hastighet;
@@ -68,12 +68,12 @@ public class Player extends GameObject {
 
         // Separate axis movement for smooth sliding along walls
 
-        if (fremover || bakover) {
+        if (right || left) {
             if (!kollisjonVed(nextX, ypos)) xpos = nextX;
             else xpos += kollisjonAvstand;
         }
 
-        if (opp || ned) {
+        if (up || down) {
             if (!kollisjonVed(xpos, nextY)) ypos = nextY;
             else ypos += kollisjonAvstand;
         }
