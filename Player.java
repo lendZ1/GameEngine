@@ -41,6 +41,7 @@ public class Player extends GameObject {
             } else{
                 nextX += hastighet;
             }
+            state="right";
         }
 
         if (left){
@@ -49,6 +50,7 @@ public class Player extends GameObject {
             } else{
                 nextX -= hastighet;
             }
+            state="left";
         }
 
         if (up){
@@ -57,13 +59,16 @@ public class Player extends GameObject {
             } else{
                 nextY -= hastighet;
             }
+            state="up";
         }
+
         if (down){
             if (right || left){
                 nextY += Math.sqrt((hastighet*hastighet)/2);
             } else{
                 nextY += hastighet;
             }
+            state="down";
         }
 
         // Separate axis movement for smooth sliding along walls
