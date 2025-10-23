@@ -33,3 +33,7 @@ Controls the area the objects are on, including areas outside the window.
 
 Also holds a TreeMap<Integer, ArrayList<GameObject>> that contains all GameObjects.
 The integer is the layer, where 1 is the bottom layer, and the value is an ArrayList of all GameObjects on that layer.
+
+
+ImageLoader:
+class with static methods to handle images, contains the methods to load and scale the image.

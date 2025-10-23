@@ -71,7 +71,6 @@ public class GameObject{
                 break;
         }
         hasImage=true;
-
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
@@ -102,6 +101,7 @@ public class GameObject{
             g.fillRect(xpos, ypos, bredde, høyde);
             return;
         } 
+
         switch(state){
             case "idle":
                 if (imageIndex>=images.get("idleImages").size()-1){
@@ -142,9 +142,6 @@ public class GameObject{
                 g.drawImage(images.get("rightImages").get(imageIndex), xpos, ypos, null);
                 imageIndex++;
                 break;
-
-
-
         }
     }
 

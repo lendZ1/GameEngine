@@ -15,13 +15,16 @@ public class Game {
         vindu = new Vindu(panel);
 
 
-        gamemap.addPlayer(new GOBuilder()
+        Player p=new GOBuilder()
             .position(100, 100)
             .størrelse(50, 50)
             .hastighet(6)
             .color(Color.BLUE)
             .layer(1)
-            .buildPlayer(), 1).addImage("idle", "PlaceHolder.PNG");
+            .buildPlayer();
+            p.addImage("idle","Walking sprites/boy_down_1.png");
+            p.addImage("idle","Walking sprites/boy_down_2.png");
+            gamemap.addPlayer(p,1);
 
         gamemap.addGameObject(new GOBuilder()
             .position(50, 50)
