@@ -79,14 +79,41 @@ public class GameObject{
 
     public void økXfart(int xfart) {
         this.xfart += xfart;
+
+        if (this.xfart>0){
+            state="right";
+        }
+        else if (this.xfart<0){
+            state="left";
+        }
     }
 
     public void økYfart(int yfart) {
         this.yfart += yfart;
+
+        if (this.yfart>0){
+            state="down";
+        }
+        else if (this.yfart<0){
+            state="up";
+        }
     }
     public void settFart(int xfart, int yfart) {
         this.xfart = xfart;
         this.yfart = yfart;
+
+        if (this.yfart>0){
+            state="down";
+        }
+        else if (this.yfart<0){
+            state="up";
+        }
+        else if (this.xfart>0){
+            state="right";
+        }
+        else if (this.xfart<0){
+            state="left";
+        }
     }   
 
     public void oppdaterPosisjon(){

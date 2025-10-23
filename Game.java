@@ -24,6 +24,7 @@ public class Game {
             .buildPlayer();
             p.addImage("idle","Walking sprites/boy_down_1.png");
             p.addImage("idle","Walking sprites/boy_down_2.png");
+            p.addImage("up","Walking sprites/boy_up_2.png");
             gamemap.addPlayer(p,1);
 
         gamemap.addGameObject(new GOBuilder()
