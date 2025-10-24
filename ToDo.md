@@ -15,6 +15,9 @@ Kollisjon:
     legge til spesiell effekt for spesifikke objekter
     sjekkkollisjon()kalles fortsatt for Player selv om den ikke gjør noe.
 
+UI:
+    legge til pause-meny
+
 fikse movable til å håndtere når et objekt ikke kan flyttes når det er inntil en kant
 
 legge til fps counter
