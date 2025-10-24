@@ -131,45 +131,42 @@ public class GameObject{
 
         switch(state){
             case "idle":
-                if (imageIndex>=images.get("idleImages").size()-1){
-                    imageIndex=0;
-                }
-                g.drawImage(images.get("idleImages").get(imageIndex), xpos, ypos, null);
-                imageIndex++;
+                getImage(g, "idleImages");
                 break;
             
             case "up":
-                if (imageIndex>=images.get("upImages").size()-1){
-                    imageIndex=0;
-                }
-                g.drawImage(images.get("upImages").get(imageIndex), xpos, ypos, null);
-                imageIndex++;
+                getImage(g, "upImages");
                 break;
 
             case "down":
-                if (imageIndex>=images.get("downImages").size()-1){
-                    imageIndex=0;
-                }
-                g.drawImage(images.get("downImages").get(imageIndex), xpos, ypos, null);
-                imageIndex++;
+                getImage(g, "downImages");
                 break;
 
             case "left":
-                if (imageIndex>=images.get("leftImages").size()-1){
-                    imageIndex=0;
-                }
-                g.drawImage(images.get("leftImages").get(imageIndex), xpos, ypos, null);
-                imageIndex++;
+                getImage(g, "leftImages");
                 break;
 
             case "right":
-                if (imageIndex>=images.get("rightImages").size()-1){
-                    imageIndex=0;
-                }
-                g.drawImage(images.get("rightImages").get(imageIndex), xpos, ypos, null);
-                imageIndex++;
+                getImage(g, "rightImages");
                 break;
         }
+    }
+
+    private void getImage(Graphics g, String state){ //called in tegn() method to draw the correct image
+        String imageList=state;
+        if (images.get(imageList).size()==0){   //checks if there is an image for the correct animation, if not then gets another image from the list, checks idle first.
+            for (String s: images.keySet()){
+                if (images.get(s).size()!=0){
+                    imageList=s;
+                    break;
+                }
+            }
+        }
+        if (imageIndex>=images.get(imageList).size()-1){ //if the index is bigger than the array, then it is goes back to 0
+            imageIndex=0;
+        }
+            g.drawImage(images.get(imageList).get(imageIndex), xpos, ypos, null);
+            imageIndex++;
     }
 
 
