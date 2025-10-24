@@ -8,11 +8,18 @@ public class Game {
     private GameObject g1;
 
 
-    public Game(){
+
+    public Game(Vindu vindu, int width, int height) {
+        this.vindu = vindu;
         gamemap = new GameMap(800, 600);
-        panel = new GamePanel(gamemap); 
+        panel = new GamePanel(gamemap, width, height);
         gamemap.setGamePanel(panel);
-        vindu = new Vindu(panel);
+        vindu.setContentPane(panel);
+        vindu.revalidate();
+        vindu.repaint();
+        
+
+
 
 
         Player p=new GOBuilder()
