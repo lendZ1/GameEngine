@@ -5,8 +5,8 @@ sjekkkollisjon()kalles fortsatt for Player selv om den ikke gjør noe.
 
 
 sprite:
-    fikse slik at den alltid viser bilde selv om det mangler for riktig state
     legge til logikk for å håndtere ulike animasjoner for bevegelse
+    
 
 
 Kollisjon:
@@ -23,5 +23,7 @@ fikse movable til å håndtere når et objekt ikke kan flyttes når det er innti
 legge til fps counter
 
 legge til logikk for å håndtere ulike animasjoner for bevegelse
+
+vinduet tar ikke alltid input
 
 

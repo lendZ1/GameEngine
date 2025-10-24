@@ -162,11 +162,13 @@ public class GameObject{
                 }
             }
         }
-        if (imageIndex>=images.get(imageList).size()-1){ //if the index is bigger than the array, then it is goes back to 0
+        if (imageIndex>=images.get(imageList).size()){ //if the index is bigger than the array, then it is goes back to 0
             imageIndex=0;
         }
             g.drawImage(images.get(imageList).get(imageIndex), xpos, ypos, null);
             imageIndex++;
+
+            System.out.print(imageIndex);
     }
 
 
