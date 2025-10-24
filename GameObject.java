@@ -10,9 +10,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 
-
-
-      
 public class GameObject{
     public ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
     private int layer;
@@ -20,15 +17,20 @@ public class GameObject{
     private int xfart=0;
     private int yfart=0;
     private Color farge;
+    public int høyde, bredde;
+    public static GameMap gamemap;
+
     private boolean bounce = true; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
     private boolean movable;    //if the GO can be moved or not
     //bounce can be true while movable is false in case the object hits another immovable object
-    public int høyde, bredde;
-    public static GameMap gamemap; 
+
+    //variables that handles sprites and images:
     private HashMap<String, ArrayList<BufferedImage>> images =new HashMap<>(); 
     private int imageIndex=0;   //index to help cycle through the animations
+    private int ticksPerImage=10; //how quickly the sprites cycle through the images
+    private int ticksPerImageCounter=0;
     private boolean hasImage=false;
-    public String state="idle"; //determinesthe state of the object: idle, up, down, left, right
+    public String state="idle"; //determines the state of the object: idle, up, down, left, right
 
     public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
         this.xpos = xpos;
@@ -166,9 +168,12 @@ public class GameObject{
             imageIndex=0;
         }
             g.drawImage(images.get(imageList).get(imageIndex), xpos, ypos, null);
-            imageIndex++;
 
-            System.out.print(imageIndex);
+            if (ticksPerImageCounter>=ticksPerImage){
+                imageIndex++;
+                ticksPerImageCounter=0;
+            }
+            ticksPerImageCounter++;
     }
 
 
