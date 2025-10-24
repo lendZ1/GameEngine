@@ -22,9 +22,16 @@ public class Game {
             .color(Color.BLUE)
             .layer(1)
             .buildPlayer();
-            p.addImage("idle","Walking sprites/boy_down_1.png");
-            p.addImage("idle","Walking sprites/boy_down_2.png");
+            p.addImage("idle","Walking sprites/boy_up_1.png");
+            p.addImage("idle","Walking sprites/boy_up_2.png");
+            p.addImage("up","Walking sprites/boy_up_1.png");
             p.addImage("up","Walking sprites/boy_up_2.png");
+            p.addImage("right","Walking sprites/boy_right_1.png");
+            p.addImage("right","Walking sprites/boy_right_2.png");
+            p.addImage("left","Walking sprites/boy_left_1.png");
+            p.addImage("left","Walking sprites/boy_left_2.png");
+            p.addImage("down","Walking sprites/boy_down_1.png");
+            p.addImage("down","Walking sprites/boy_down_2.png");
             gamemap.addPlayer(p,1);
 
         gamemap.addGameObject(new GOBuilder()
