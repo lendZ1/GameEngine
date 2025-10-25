@@ -10,12 +10,12 @@ public class GamePanel extends JPanel implements KeyListener {
     private Player player;
     
 
-    public GamePanel(GameMap gamemap, int width, int height) {
+    public GamePanel(GameMap gamemap) {
         super();
         setFocusable(true);
         requestFocusInWindow(); // Important for key events to work
         addKeyListener(this); // Make sure the panel listens to keys
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(800, 600));
         
         this.gamemap = gamemap;
     }
