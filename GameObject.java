@@ -18,7 +18,7 @@ public class GameObject{
     private int xfart=0;
     private int yfart=0;
     private Color farge;
-    private boolean bounce = true; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
+    private boolean bounce = true; //this variable determines if the objcet should bounce back when colliding
     private boolean movable;    //if the GO can be moved or not
     //bounce can be true while movable is false in case the object hits another immovable object
     public int høyde, bredde;
@@ -26,15 +26,15 @@ public class GameObject{
     public BufferedImage image;
 
 
-    public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
+    public GameObject(int xpos, int ypos, int height, int width, int xspeed, int yspeed, Color farge, int layer, boolean movable) {
         this.xpos = xpos;
         this.ypos = ypos;
-        this.høyde = høyde;
-        this.bredde = bredde;
+        this.høyde = height;
+        this.bredde = width;
         this.farge = farge;
         this.layer = layer;
-        this.xfart = xfart;
-        this.yfart = yfart;
+        this.xfart = xspeed;
+        this.yfart = yspeed;
         this.movable = movable;
 
 
