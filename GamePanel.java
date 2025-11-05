@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements KeyListener {
     @Override
     public void paintComponent(Graphics g) {    // Tegner alle GameObjects på skjermen
         super.paintComponent(g);
-        gamemap.tegn(g);
+        gamemap.draw(g);
     }
 
 

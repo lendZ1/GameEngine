@@ -9,16 +9,16 @@ import javax.imageio.ImageIO;
 
 
 public class Player extends GameObject {
-    private int speed; // hvor fort spilleren beveger seg når knappene blir trykket
+    private int speed; //the speed the player moves when it is moved
     private boolean forward = false;
     private boolean backward = false;
     private boolean up = false;
     private boolean down = false;
-    private int collisionDistance; // dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
+    private int collisionDistance; //prevent the player from overlapping wile also not leaving a gap
    
 
-    public Player(int xpos, int ypos, int height, int width, int speed, Color farge, int layer) {
-        super(xpos, ypos, height, width, 0, 0, farge, 1, false /*player is not movable by default*/);
+    public Player(int xpos, int ypos, int height, int width, int speed, Color color, int layer) {
+        super(xpos, ypos, height, width, 0, 0, color, 1, false /*player is not movable by default*/);
         this.speed = speed;
         setBounce(false);
 
@@ -76,24 +76,24 @@ public class Player extends GameObject {
         // Separate axis movement for smooth sliding along walls
 
         if (forward || backward) {
-            if (!kollisjonVed(nextX, ypos)) xpos = nextX;
+            if (!collisionAt(nextX, ypos)) xpos = nextX;
             else xpos += collisionDistance;
         }
 
         if (up || down) {
-            if (!kollisjonVed(xpos, nextY)) ypos = nextY;
+            if (!collisionAt(xpos, nextY)) ypos = nextY;
             else ypos += collisionDistance;
         }
     }
 
     @Override
-    public void tegn(Graphics g){
+    public void draw(Graphics g){
         g.drawImage(image, xpos, ypos, width, height, null);
     }
 
 
     // Checks whether moving to (testX, testY) would cause a collision
-    private boolean kollisjonVed(int testX, int testY) {
+    private boolean collisionAt(int testX, int testY) {
         collisionDistance = 0;
         // Map bounds
         if (testX < 0) {

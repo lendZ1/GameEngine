@@ -34,10 +34,10 @@ public class GameMap{
         }
     }
 
-    public void tegn(Graphics g) {  //tegner det nedeste laget først
+    public void draw(Graphics g) {  //tegner det nedeste laget først
         for (ArrayList<GameObject> objects : lag.values()) {
             for (GameObject obj : objects) {
-                obj.tegn(g);
+                obj.draw(g);
             }
         }
     }
