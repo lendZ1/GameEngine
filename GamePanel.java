@@ -35,30 +35,30 @@ public class GamePanel extends JPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.opp(true);
+            player.up(true);
             System.out.println("Player moving up");
         }
         else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.ned(true);
+            player.down(true);
         }   
         else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.bakover(true);
+            player.backward(true);
         }
         else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.fremover(true);
+            player.forward(true);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.opp(false);
+            player.up(false);
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.ned(false);
+            player.down(false);
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.bakover(false);
+            player.backward(false);
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.fremover(false);
+            player.forward(false);
         }
     }
 
