@@ -17,8 +17,8 @@ public class Player extends GameObject {
     private int kollisjonAvstand; //dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
    
 
-    public Player(int xpos, int ypos, int høyde, int bredde, int hastighet, Color farge, int layer) {
-        super(xpos, ypos, høyde, bredde, 0, 0, farge, 1, false /*player is not movable by default*/);
+    public Player(int xpos, int ypos, int height, int width, int hastighet, Color farge, int layer) {
+        super(xpos, ypos, height, width, 0, 0, farge, 1, false /*player is not movable by default*/);
         this.hastighet = hastighet;
         setBounce(false);
 
@@ -88,7 +88,7 @@ public class Player extends GameObject {
 
     @Override
     public void tegn(Graphics g){
-        g.drawImage(image, xpos, ypos, bredde, høyde, null);
+        g.drawImage(image, xpos, ypos, width, height, null);
     }
 
 
@@ -99,14 +99,14 @@ public class Player extends GameObject {
         if (testX < 0) {
             kollisjonAvstand = -xpos; // Move to edge
             return true;
-        }else if(testX + bredde > gamemap.bredde) {
-            kollisjonAvstand = gamemap.bredde - (xpos + bredde);
+        }else if(testX + width > gamemap.bredde) {
+            kollisjonAvstand = gamemap.bredde - (xpos + width);
             return true;
         } else if (testY < 0) {
             kollisjonAvstand = -ypos; // Move to edge
             return true;
-        } else if (testY + høyde > gamemap.høyde) {
-            kollisjonAvstand = gamemap.høyde - (ypos + høyde);
+        } else if (testY + height > gamemap.høyde) {
+            kollisjonAvstand = gamemap.høyde - (ypos + height);
             return true;
         }
 
@@ -114,27 +114,27 @@ public class Player extends GameObject {
         for (GameObject obj : layerObjects) {
             if (obj != this) {
                     // Check overlap in both axes
-                    boolean overlapX = testX < obj.xpos + obj.bredde && testX + bredde > obj.xpos;
-                    boolean overlapY = testY < obj.ypos + obj.høyde && testY + høyde > obj.ypos;
+                    boolean overlapX = testX < obj.xpos + obj.width && testX + width > obj.xpos;
+                    boolean overlapY = testY < obj.ypos + obj.height && testY + height > obj.ypos;
 
                     if (overlapX && overlapY) {
                         // Determine if it's a horizontal or vertical collision
-                        int distLeft   = Math.abs(testX + bredde - obj.xpos);           // hitting from left
-                        int distRight  = Math.abs(testX - (obj.xpos + obj.bredde));     // hitting from right
-                        int distTop    = Math.abs(testY + høyde - obj.ypos);            // hitting from top
-                        int distBottom = Math.abs(testY - (obj.ypos + obj.høyde));      // hitting from bottom
+                        int distLeft   = Math.abs(testX + width - obj.xpos);           // hitting from left
+                        int distRight  = Math.abs(testX - (obj.xpos + obj.width));     // hitting from right
+                        int distTop    = Math.abs(testY + height - obj.ypos);            // hitting from top
+                        int distBottom = Math.abs(testY - (obj.ypos + obj.height));      // hitting from bottom
 
                         // Pick the smallest distance — that's the collision side
                         int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
 
                         if (minDist == distLeft) {
-                            kollisjonAvstand = obj.xpos - (xpos + bredde);
+                            kollisjonAvstand = obj.xpos - (xpos + width);
                         } else if (minDist == distRight) {
-                            kollisjonAvstand = (obj.xpos + obj.bredde) - xpos;
+                            kollisjonAvstand = (obj.xpos + obj.width) - xpos;
                         } else if (minDist == distTop) {
-                            kollisjonAvstand = obj.ypos - (ypos + høyde);
+                            kollisjonAvstand = obj.ypos - (ypos + height);
                         } else {
-                            kollisjonAvstand = (obj.ypos + obj.høyde) - ypos;
+                            kollisjonAvstand = (obj.ypos + obj.height) - ypos;
                         }
 
                         return true;
