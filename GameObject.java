@@ -34,22 +34,20 @@ public class GameObject{
         this.xspeed = xspeed;
         this.yspeed = yspeed;
         this.movable = movable;
-
-
     }
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
         this.layerObjects = layerObjects;
     }
 
-    public void økXfart(int xspeed) {
+    public void increaseXspeed(int xspeed) {
         this.xspeed += xspeed;
     }
 
-    public void økYfart(int yspeed) {
+    public void increaseYspeed(int yspeed) {
         this.yspeed += yspeed;
     }
-    public void settFart(int xspeed, int yspeed) {
+    public void setSpeed(int xspeed, int yspeed) {
         this.xspeed = xspeed;
         this.yspeed = yspeed;
     }   
