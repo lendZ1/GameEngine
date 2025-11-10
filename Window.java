@@ -2,9 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class Vindu extends JFrame {
+public class Window extends JFrame {
     GamePanel gamePanel;
-    public Vindu(GamePanel gamePanel) {
+    public Window(GamePanel gamePanel) {
         
         setTitle("Bevegende Panel Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

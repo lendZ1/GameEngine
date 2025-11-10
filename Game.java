@@ -2,7 +2,7 @@ import java.awt.Color;
 
 
 public class Game {
-    public Vindu vindu;
+    public Window window;
     public GamePanel panel;
     public GameMap gamemap;
     private GameObject g1;
@@ -12,7 +12,7 @@ public class Game {
         gamemap = new GameMap(800, 600);
         panel = new GamePanel(gamemap); 
         gamemap.setGamePanel(panel);
-        vindu = new Vindu(panel);
+        window = new Window(panel);
 
 
         gamemap.addPlayer(new GOBuilder()
