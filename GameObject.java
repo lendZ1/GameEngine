@@ -81,7 +81,7 @@ public class GameObject{
         if (xpos <=0) {
             registerCollision();
             return true;
-        } else if (xpos + width + this.xspeed >= gamemap.bredde) {
+        } else if (xpos + width + this.xspeed >= gamemap.width()) {
             return true;
         }
 
@@ -107,7 +107,7 @@ public class GameObject{
         if (ypos <= 0) {
             registerCollision();
             return true;
-        } else if (ypos + height + this.yspeed >= gamemap.høyde) {
+        } else if (ypos + height + this.yspeed >= gamemap.height()) {
             return true;
         }
         for (GameObject obj : layerObjects) {

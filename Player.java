@@ -100,14 +100,14 @@ public class Player extends GameObject {
         if (testX < 0) {
             collisionDistance = -xpos; // move to left edge
             return true;
-        } else if (testX + width > gamemap.bredde) {
-            collisionDistance = gamemap.bredde - (xpos + width); // move to right edge
+        } else if (testX + width > gamemap.width()) {
+            collisionDistance = gamemap.width() - (xpos + width); // move to right edge
             return true;
         } else if (testY < 0) {
             collisionDistance = -ypos; // move to top edge
             return true;
-        } else if (testY + height > gamemap.høyde) {
-            collisionDistance = gamemap.høyde - (ypos + height); // move to bottom edge
+        } else if (testY + height > gamemap.height()) {
+            collisionDistance = gamemap.height() - (ypos + height); // move to bottom edge
             return true;
         }
 
