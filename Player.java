@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 
 public class Player extends GameObject {
-    private int speed; //the speed the player moves when it is moved
+    private int speed; // the speed the player moves when it is moved
     private boolean forward = false;
     private boolean backward = false;
     private boolean up = false;
@@ -18,26 +18,26 @@ public class Player extends GameObject {
    
 
     public Player(int xpos, int ypos, int height, int width, int speed, Color color, int layer) {
-        super(xpos, ypos, height, width, 0, 0, color, 1, false /*player is not movable by default*/);
+        super(xpos, ypos, height, width, 0, 0, color, 1, false /* player is not movable by default */);
         this.speed = speed;
         setBounce(false);
 
          try {
-            image=ImageIO.read(new File("PlaceHolder.png"));
+            image = ImageIO.read(new File("PlaceHolder.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    //metodene blir kalt fra GamePanel når input registreres
+    // Methods called from GamePanel when input is detected
     public void forward(boolean forward) { this.forward = forward; }
     public void backward(boolean backward)   { this.backward = backward; }
     public void up(boolean up)           { this.up = up; }
     public void down(boolean down)       { this.down = down; }
 
     @Override
-    public void updatePosition() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
+    public void updatePosition() {    // also checks collisions here to avoid pushing the object through colliders
 
         int nextX = xpos;
         int nextY = ypos;
@@ -73,7 +73,7 @@ public class Player extends GameObject {
             }
         }
 
-        // Separate axis movement for smooth sliding along walls
+        // Separate-axis movement for smooth sliding along walls
 
         if (forward || backward) {
             if (!collisionAt(nextX, ypos)) xpos = nextX;
@@ -95,18 +95,19 @@ public class Player extends GameObject {
     // Checks whether moving to (testX, testY) would cause a collision
     private boolean collisionAt(int testX, int testY) {
         collisionDistance = 0;
-        // Map bounds
+
+        // Check map bounds:
         if (testX < 0) {
-            collisionDistance = -xpos; // Move to edge
+            collisionDistance = -xpos; // move to left edge
             return true;
-        }else if(testX + width > gamemap.bredde) {
-            collisionDistance = gamemap.bredde - (xpos + width);
+        } else if (testX + width > gamemap.bredde) {
+            collisionDistance = gamemap.bredde - (xpos + width); // move to right edge
             return true;
         } else if (testY < 0) {
-            collisionDistance = -ypos; // Move to edge
+            collisionDistance = -ypos; // move to top edge
             return true;
         } else if (testY + height > gamemap.høyde) {
-            collisionDistance = gamemap.høyde - (ypos + height);
+            collisionDistance = gamemap.høyde - (ypos + height); // move to bottom edge
             return true;
         }
 
@@ -119,10 +120,10 @@ public class Player extends GameObject {
 
                     if (overlapX && overlapY) {
                         // Determine if it's a horizontal or vertical collision
-                        int distLeft   = Math.abs(testX + width - obj.xpos);           // hitting from left
-                        int distRight  = Math.abs(testX - (obj.xpos + obj.width));     // hitting from right
-                        int distTop    = Math.abs(testY + height - obj.ypos);            // hitting from top
-                        int distBottom = Math.abs(testY - (obj.ypos + obj.height));      // hitting from bottom
+                        int distLeft   = Math.abs(testX + width - obj.xpos);           // distance from left collission
+                        int distRight  = Math.abs(testX - (obj.xpos + obj.width));     // distance from right collission
+                        int distTop    = Math.abs(testY + height - obj.ypos);          // distance from top collission
+                        int distBottom = Math.abs(testY - (obj.ypos + obj.height));    // distance from bottom collission
 
                         // Pick the smallest distance — that's the collision side
                         int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
