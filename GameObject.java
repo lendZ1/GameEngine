@@ -6,8 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
-
       
 public class GameObject{
     public ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
@@ -16,13 +14,12 @@ public class GameObject{
     private int xspeed = 0;
     private int yspeed = 0;
     private Color color;
-    private boolean bounce = true; //this variable determines if the objcet should bounce back when colliding
-    private boolean movable;    //if the GO can be moved or not
-    //bounce can be true while movable is false in case the object hits another immovable object
+    private boolean bounce = true; // this variable determines if the object should bounce back when colliding
+    private boolean movable;    // if the GameObject can be moved or not
+    // bounce can be true while movable is false in case the object hits another immovable object
     public int height, width;
     public static GameMap gamemap; 
     public BufferedImage image;
-
 
     public GameObject(int xpos, int ypos, int height, int width, int xspeed, int yspeed, Color color, int layer, boolean movable) {
         this.xpos = xpos;
@@ -57,31 +54,30 @@ public class GameObject{
             ypos += yspeed;
     }
 
-    public void sjekkKollisjon() {
-        if (KollisjonHorisontal()) {
+    public void checkCollission() {
+        if (collissionHorisontal()) {
             if (bounce) {
-                xspeed = -xspeed; // Spretter tilbake
+                xspeed = -xspeed; // Bounces back
             } else {
-                xspeed = 0; // Stopper horisontal bevegelse
-        }
+                xspeed = 0; // Stops horizontal movement
+            }
 
         }
-        if (KollisjonVertikal()) {
+        if (collissionVertical()) {
             if (bounce) {
-                yspeed = -yspeed; // Spretter tilbake
+                yspeed = -yspeed; // Bounces back
             } else {
-                yspeed = 0; // Stopper vertikal bevegelse
+                yspeed = 0; // Stops vertical movement
             }
         }
     }
 
-    public void draw(Graphics g) { // Metode for å tegne GameObject på vinduet
+    public void draw(Graphics g) { // Method to draw GameObject on the window
         g.setColor(color);
         g.fillRect(xpos, ypos, width, height);
     }
 
-
-    public boolean KollisjonHorisontal(){
+    private boolean collissionHorisontal(){
         if (xpos <=0) {
             registerCollision();
             return true;
@@ -90,15 +86,15 @@ public class GameObject{
         }
 
         for (GameObject obj : layerObjects) {
-            if (this != obj) { // Sjekker at det ikke er samme GameObject
+            if (this != obj) { // Check that it is not the same GameObject
                 if (this.xpos + this.xspeed < obj.xpos + obj.width &&
                     this.xpos + this.width + this.xspeed > obj.xpos &&
                     this.ypos < obj.ypos + obj.height &&
                     this.ypos + this.height > obj.ypos) {
-                    registerCollision();   // Kall registrerKollisjon ved kollisjon
-                    if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
-                        return true;                        //then collision will be registered
-                    }  else if(isMovable()){    //Otherwise if this object is movable, collision works as usual
+                    registerCollision();   // Call registerCollision on collision
+                    if (!obj.isMovable() && !isMovable()){  // if the other object is not movable and this object is neither
+                        return true;                        // then collision will be registered
+                    }  else if(isMovable()){    // Otherwise if this object is movable, collision works as usual
                         return true;        
                     }                                     
                 }
@@ -107,7 +103,7 @@ public class GameObject{
         return false;
     }
 
-    public boolean KollisjonVertikal(){
+    private boolean collissionVertical(){
         if (ypos <= 0) {
             registerCollision();
             return true;
@@ -115,15 +111,15 @@ public class GameObject{
             return true;
         }
         for (GameObject obj : layerObjects) {
-            if (this != obj) { // Sjekker at det ikke er samme GameObject
+            if (this != obj) { // Check that it is not the same GameObject
                 if (this.ypos + this.yspeed < obj.ypos + obj.height &&
                     this.ypos + this.height + this.yspeed > obj.ypos &&
                     this.xpos < obj.xpos + obj.width &&
                     this.xpos + this.width > obj.xpos) {
-                    registerCollision();   //Kall registrerKollisjon ved kollisjon
-                    if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
-                        return true;                        //then collision will be registered
-                    } else if(isMovable()){    //Otherwise if this object is movable, collision works as usual
+                    registerCollision();   // Call registerCollision on collision
+                    if (!obj.isMovable() && !isMovable()){  // if the other object is not movable and this object is neither
+                        return true;                        // then collision will be registered
+                    } else if(isMovable()){    // Otherwise if this object is movable, collision works as usual
                         return true;        
                     }                                      
                 }
@@ -136,8 +132,8 @@ public class GameObject{
         this.bounce = bounce;
     }  
 
-    public void registerCollision(){   //metode for at kollisjoner skal ha en effekt feks poeng
-        //endre hva som skjer for ønsket effekt
+    public void registerCollision(){   // method for collisions to have an effect e.g. points
+        // change what happens for desired effect
     }
 
     public boolean isMovable(){
