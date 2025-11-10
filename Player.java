@@ -37,7 +37,7 @@ public class Player extends GameObject {
     public void down(boolean down)       { this.down = down; }
 
     @Override
-    public void oppdaterPosisjon() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
+    public void updatePosition() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
 
         int nextX = xpos;
         int nextY = ypos;

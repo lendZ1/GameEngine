@@ -52,7 +52,7 @@ public class GameObject{
         this.yspeed = yspeed;
     }   
 
-    public void oppdaterPosisjon(){
+    public void updatePosition(){
             xpos += xspeed;
             ypos += yspeed;
     }

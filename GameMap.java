@@ -29,7 +29,7 @@ public class GameMap{
         
         for (ArrayList<GameObject> objects : lag.values()) {
             for (GameObject obj : objects) {
-                obj.oppdaterPosisjon();
+                obj.updatePosition();
             }
         }
     }
