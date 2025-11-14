@@ -9,8 +9,8 @@ public class Game {
 
 
 
-    public Game(Vindu vindu, int width, int height) {
-        this.vindu = vindu;
+    public Game(Window window, int width, int height) {
+        this.window = window;
         gamemap = new GameMap(800, 600);
         panel = new GamePanel(gamemap, width, height);
         gamemap.setGamePanel(panel);

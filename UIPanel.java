@@ -4,14 +4,14 @@ import java.awt.event.ActionListener;
 import java.awt.Dimension;
 
 public class UIPanel extends JPanel {
-    private Vindu vindu;
+    private Window window;
     private int width;
     private int height;
 
     JButton startButton;
 
-    public UIPanel(Vindu vindu, int width, int height) {
-        this.vindu = vindu;
+    public UIPanel(Window window, int width, int height) {
+        this.window = window;
         this.width = width;
         this.height = height;
 
@@ -33,7 +33,7 @@ public class UIPanel extends JPanel {
     }
 
     public void startGame(){
-        Game game = new Game(vindu, width, height);
+        Game game = new Game(window, width, height);
         GameLoop gameLoop = new GameLoop(game);
 
         Thread gameThread = new Thread(gameLoop);   //starter game loop i en egen tråd

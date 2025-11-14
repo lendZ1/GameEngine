@@ -22,7 +22,14 @@ public class GameObject{
     // bounce can be true while movable is false in case the object hits another immovable object
     public int height, width;
     public static GameMap gamemap; 
-    public BufferedImage image;
+    
+    //variables that handles sprites and images:
+    private HashMap<String, ArrayList<BufferedImage>> images =new HashMap<>(); 
+    private int imageIndex=0;   //index to help cycle through the animations
+    private int ticksPerImage=10; //how quickly the sprites cycle through the images
+    private int ticksPerImageCounter=0;
+    private boolean hasImage=false;
+    public String state="idle"; //determines the state of the object: idle, up, down, left, right
 
     public GameObject(int xpos, int ypos, int height, int width, int xspeed, int yspeed, Color color, int layer, boolean movable) {
         this.xpos = xpos;
@@ -46,7 +53,7 @@ public class GameObject{
 
     public void addImage(String state, String filePath){
         BufferedImage image=ImageLoader.load(filePath);
-        image=ImageLoader.scale(image, bredde, høyde);
+        image=ImageLoader.scale(image, width, height);
         switch (state){
             case "idle":
                 images.get("idleImages").add(image);
@@ -74,10 +81,10 @@ public class GameObject{
     public void increaseXspeed(int xspeed) {
         this.xspeed += xspeed;
 
-        if (this.xfart>0){
+        if (this.xspeed>0){
             state="right";
         }
-        else if (this.xfart<0){
+        else if (this.xspeed<0){
             state="left";
         }
     }
@@ -85,10 +92,10 @@ public class GameObject{
     public void increaseYspeed(int yspeed) {
         this.yspeed += yspeed;
 
-        if (this.yfart>0){
+        if (this.yspeed>0){
             state="down";
         }
-        else if (this.yfart<0){
+        else if (this.yspeed<0){
             state="up";
         }
     }
@@ -96,16 +103,16 @@ public class GameObject{
         this.xspeed = xspeed;
         this.yspeed = yspeed;
 
-        if (this.yfart>0){
+        if (this.yspeed>0){
             state="down";
         }
-        else if (this.yfart<0){
+        else if (this.yspeed<0){
             state="up";
         }
-        else if (this.xfart>0){
+        else if (this.xspeed>0){
             state="right";
         }
-        else if (this.xfart<0){
+        else if (this.xspeed<0){
             state="left";
         }
     }   
@@ -118,8 +125,8 @@ public class GameObject{
 
     public void draw(Graphics g) { //draw the image or shape in the window
         if (!hasImage){
-            g.setColor(farge);
-            g.fillRect(xpos, ypos, bredde, høyde);
+            g.setColor(color);
+            g.fillRect(xpos, ypos, width, height);
             return;
         } 
 

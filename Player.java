@@ -21,13 +21,6 @@ public class Player extends GameObject {
         super(xpos, ypos, height, width, 0, 0, color, 1, false /* player is not movable by default */);
         this.speed = speed;
         setBounce(false);
-
-         try {
-            image = ImageIO.read(new File("PlaceHolder.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     // Methods called from GamePanel when input is detected
@@ -90,10 +83,6 @@ public class Player extends GameObject {
         }
     }
 
-    @Override
-    public void draw(Graphics g){
-        g.drawImage(image, xpos, ypos, width, height, null);
-    }
 
 
     // Checks whether moving to (testX, testY) would cause a collision
