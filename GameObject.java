@@ -14,33 +14,25 @@ public class GameObject{
     public ArrayList<GameObject> layerObjects; // ArrayList to hold GameObjects in the same layer
     private int layer;
     public int xpos, ypos;
-    private int xfart=0;
-    private int yfart=0;
-    private Color farge;
-    public int høyde, bredde;
-    public static GameMap gamemap;
+    private int xspeed = 0;
+    private int yspeed = 0;
+    private Color color;
+    private boolean bounce = true; // this variable determines if the object should bounce back when colliding
+    private boolean movable;    // if the GameObject can be moved or not
+    // bounce can be true while movable is false in case the object hits another immovable object
+    public int height, width;
+    public static GameMap gamemap; 
+    public BufferedImage image;
 
-    private boolean bounce = true; // For å sjekke om GameObject skal sprette tilbake når den treffer kanten av vinduet
-    private boolean movable;    //if the GO can be moved or not
-    //bounce can be true while movable is false in case the object hits another immovable object
-
-    //variables that handles sprites and images:
-    private HashMap<String, ArrayList<BufferedImage>> images =new HashMap<>(); 
-    private int imageIndex=0;   //index to help cycle through the animations
-    private int ticksPerImage=10; //how quickly the sprites cycle through the images
-    private int ticksPerImageCounter=0;
-    private boolean hasImage=false;
-    public String state="idle"; //determines the state of the object: idle, up, down, left, right
-
-    public GameObject(int xpos, int ypos, int høyde, int bredde, int xfart, int yfart, Color farge, int layer, boolean movable) {
+    public GameObject(int xpos, int ypos, int height, int width, int xspeed, int yspeed, Color color, int layer, boolean movable) {
         this.xpos = xpos;
         this.ypos = ypos;
-        this.høyde = høyde;
-        this.bredde = bredde;
-        this.farge = farge;
+        this.height = height;
+        this.width = width;
+        this.color = color;
         this.layer = layer;
-        this.xfart = xfart;
-        this.yfart = yfart;
+        this.xspeed = xspeed;
+        this.yspeed = yspeed;
         this.movable = movable;
 
         
@@ -79,8 +71,8 @@ public class GameObject{
         this.layerObjects = layerObjects;
     }
 
-    public void økXfart(int xfart) {
-        this.xfart += xfart;
+    public void increaseXspeed(int xspeed) {
+        this.xspeed += xspeed;
 
         if (this.xfart>0){
             state="right";
@@ -90,8 +82,8 @@ public class GameObject{
         }
     }
 
-    public void økYfart(int yfart) {
-        this.yfart += yfart;
+    public void increaseYspeed(int yspeed) {
+        this.yspeed += yspeed;
 
         if (this.yfart>0){
             state="down";
@@ -100,9 +92,9 @@ public class GameObject{
             state="up";
         }
     }
-    public void settFart(int xfart, int yfart) {
-        this.xfart = xfart;
-        this.yfart = yfart;
+    public void setSpeed(int xspeed, int yspeed) {
+        this.xspeed = xspeed;
+        this.yspeed = yspeed;
 
         if (this.yfart>0){
             state="down";
@@ -118,13 +110,13 @@ public class GameObject{
         }
     }   
 
-    public void oppdaterPosisjon(){
-            xpos += xfart;
-            ypos += yfart;
+    public void updatePosition(){
+            xpos += xspeed;
+            ypos += yspeed;
     }
 
 
-    public void tegn(Graphics g) { // Metode for å tegne GameObject på vinduet
+    public void draw(Graphics g) { //draw the image or shape in the window
         if (!hasImage){
             g.setColor(farge);
             g.fillRect(xpos, ypos, bredde, høyde);
@@ -177,43 +169,45 @@ public class GameObject{
     }
 
 
-    public void sjekkKollisjon() {
-        if (KollisjonHorisontal()) {
+    public void checkCollission() {
+        if (collissionHorisontal()) {
             if (bounce) {
-                xfart = -xfart; // Spretter tilbake
+                xspeed = -xspeed; // Bounces back
             } else {
-                xfart = 0; // Stopper horisontal bevegelse
-        }
+                xspeed = 0; // Stops horizontal movement
+            }
 
         }
-        if (KollisjonVertikal()) {
+        if (collissionVertical()) {
             if (bounce) {
-                yfart = -yfart; // Spretter tilbake
+                yspeed = -yspeed; // Bounces back
             } else {
-                yfart = 0; // Stopper vertikal bevegelse
+                yspeed = 0; // Stops vertical movement
             }
         }
     }
 
 
-    public boolean KollisjonHorisontal(){
+
+
+    private boolean collissionHorisontal(){
         if (xpos <=0) {
-            registrerKollisjon();
+            registerCollision();
             return true;
-        } else if (xpos + bredde + this.xfart >= gamemap.bredde) {
+        } else if (xpos + width + this.xspeed >= gamemap.width()) {
             return true;
         }
 
         for (GameObject obj : layerObjects) {
-            if (this != obj) { // Sjekker at det ikke er samme GameObject
-                if (this.xpos + this.xfart < obj.xpos + obj.bredde &&
-                    this.xpos + this.bredde + this.xfart > obj.xpos &&
-                    this.ypos < obj.ypos + obj.høyde &&
-                    this.ypos + this.høyde > obj.ypos) {
-                    registrerKollisjon();   // Kall registrerKollisjon ved kollisjon
-                    if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
-                        return true;                        //then collision will be registered
-                    }  else if(isMovable()){    //Otherwise if this object is movable, collision works as usual
+            if (this != obj) { // Check that it is not the same GameObject
+                if (this.xpos + this.xspeed < obj.xpos + obj.width &&
+                    this.xpos + this.width + this.xspeed > obj.xpos &&
+                    this.ypos < obj.ypos + obj.height &&
+                    this.ypos + this.height > obj.ypos) {
+                    registerCollision();   // Call registerCollision on collision
+                    if (!obj.isMovable() && !isMovable()){  // if the other object is not movable and this object is neither
+                        return true;                        // then collision will be registered
+                    }  else if(isMovable()){    // Otherwise if this object is movable, collision works as usual
                         return true;        
                     }                                     
                 }
@@ -222,25 +216,25 @@ public class GameObject{
         return false;
     }
 
-    public boolean KollisjonVertikal(){
+    private boolean collissionVertical(){
         if (ypos <= 0) {
-            registrerKollisjon();
+            registerCollision();
             return true;
-        } else if (ypos + høyde + this.yfart >= gamemap.høyde) {
+        } else if (ypos + height + this.yspeed >= gamemap.height()) {
             return true;
         }
         for (GameObject obj : layerObjects) {
-            if (this != obj) { // Sjekker at det ikke er samme GameObject
-                if (this.ypos + this.yfart < obj.ypos + obj.høyde &&
-                    this.ypos + this.høyde + this.yfart > obj.ypos &&
-                    this.xpos < obj.xpos + obj.bredde &&
-                    this.xpos + this.bredde > obj.xpos) {
-                    registrerKollisjon();   //Kall registrerKollisjon ved kollisjon
-                    if (!obj.isMovable() && !isMovable()){  //if the other object is not movable and this object is neither
-                        return true;                        //then collision will be registered
-                    } else if(isMovable()){    //Otherwise if this object is movable, collision works as usual
+            if (this != obj) { // Check that it is not the same GameObject
+                if (this.ypos + this.yspeed < obj.ypos + obj.height &&
+                    this.ypos + this.height + this.yspeed > obj.ypos &&
+                    this.xpos < obj.xpos + obj.width &&
+                    this.xpos + this.width > obj.xpos) {
+                    registerCollision();   // Call registerCollision on collision
+                    if (!obj.isMovable() && !isMovable()){  // if the other object is not movable and this object is neither
+                        return true;                        // then collision will be registered
+                    } else if(isMovable()){    // Otherwise if this object is movable, collision works as usual
                         return true;        
-                    }                                        
+                    }                                      
                 }
             }
         }
@@ -251,8 +245,8 @@ public class GameObject{
         this.bounce = bounce;
     }  
 
-    public void registrerKollisjon(){   //metode for at kollisjoner skal ha en effekt feks poeng
-        //endre hva som skjer for ønsket effekt
+    public void registerCollision(){   // method for collisions to have an effect e.g. points
+        // change what happens for desired effect
     }
 
     public boolean isMovable(){
