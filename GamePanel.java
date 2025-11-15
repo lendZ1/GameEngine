@@ -36,7 +36,6 @@ public class GamePanel extends JPanel implements KeyListener {
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_W) {
             player.opp(true);
-            System.out.println("Player moving up");
         }
         else if (e.getKeyCode() == KeyEvent.VK_S) {
             player.ned(true);
