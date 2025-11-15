@@ -17,6 +17,8 @@ public class GameObject{
     private boolean bounce = true; // this variable determines if the object should bounce back when colliding
     private boolean movable;    // if the GameObject can be moved or not
     // bounce can be true while movable is false in case the object hits another immovable object
+
+
     public int height, width;
     public static GameMap gamemap; 
     public BufferedImage image;
@@ -94,9 +96,9 @@ public class GameObject{
                     registerCollision();   // Call registerCollision on collision
                     if (!obj.isMovable() && !isMovable()){  // if the other object is not movable and this object is neither
                         return true;                        // then collision will be registered
-                    }  else if(isMovable()){    // Otherwise if this object is movable, collision works as usual
-                        return true;        
-                    }                                     
+                    }     
+                    return isMovable(); // Otherwise if this object is movable, collision works as usual
+                                                      
                 }
             }
         }
@@ -119,9 +121,8 @@ public class GameObject{
                     registerCollision();   // Call registerCollision on collision
                     if (!obj.isMovable() && !isMovable()){  // if the other object is not movable and this object is neither
                         return true;                        // then collision will be registered
-                    } else if(isMovable()){    // Otherwise if this object is movable, collision works as usual
-                        return true;        
-                    }                                      
+                    } 
+                    return isMovable(); // Otherwise if this object is movable, collision works as usual                                     
                 }
             }
         }

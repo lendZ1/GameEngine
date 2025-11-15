@@ -6,8 +6,6 @@ er fortsatt et lite gap mellom GO'er ved kollisjon:
     kan nok fikses på samme måte som i Player, ved å finne avstanden til neste kollisjon.
 
 
-implementere sprite
-fikse størrelsen på gameobject til å altid macthe bildet
 
 Tillate for å kunne dytte objekter
 
