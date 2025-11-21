@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class GameMap{
     private int width, height;
     public GamePanel gamepanel;
-    private int gravity=0;    //sets the gravity acceleration where 0 equals no gravity
+    private int gravity=1;    //sets the gravity acceleration where 0 equals no gravity
     private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer
         // 1 beeing the bottom layer
 

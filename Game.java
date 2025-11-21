@@ -16,7 +16,7 @@ public class Game {
 
 
         gamemap.addPlayer(new GOBuilder()
-            .position(100, 100)
+            .position(400, 400)
             .size(50, 50)
             .speed(6)
             .color(Color.BLUE)

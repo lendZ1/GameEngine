@@ -15,7 +15,7 @@ public class GameObject{
     private int yspeed = 0;
     private boolean onGround=false;     //variable to stop gravity acceleration if the object is alrady on the ground
     private Color color;
-    private boolean bounce = true; // this variable determines if the object should bounce back when colliding
+    private boolean bounce = false; // this variable determines if the object should bounce back when colliding
     private boolean movable;    // if the GameObject can be moved or not
     // bounce can be true while movable is false in case the object hits another immovable object
 
@@ -55,7 +55,6 @@ public class GameObject{
     public void updatePosition(){
             xpos += xspeed;
             ypos += yspeed;
-
     }
 
     public void checkCollission() {
@@ -109,9 +108,10 @@ public class GameObject{
 
     private boolean collissionVertical(){
         if (ypos <= 0) {
-            registerCollision();
+            registerCollision(); 
             return true;
         } else if (ypos + height + this.yspeed >= gamemap.height()) {
+            onGround=true;
             return true;
         }
         for (GameObject obj : layerObjects) {

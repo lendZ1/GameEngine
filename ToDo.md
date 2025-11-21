@@ -14,6 +14,6 @@ legge til spesiell effekt for spesifikke objekter
 
 fikse movable til å håndtere når et objekt ikke kan flyttes når det er inntil en kant
 
-legge til fps counter
 
+objects stops before the border with gravity
 
