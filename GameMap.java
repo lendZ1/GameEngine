@@ -47,6 +47,9 @@ public class GameMap{
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
                 obj.updatePosition();
+                if (gravity != 0){
+                    obj.adjustGravity(gravity);
+                }
             }
         }
     }

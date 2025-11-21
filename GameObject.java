@@ -55,6 +55,7 @@ public class GameObject{
     public void updatePosition(){
             xpos += xspeed;
             ypos += yspeed;
+
     }
 
     public void checkCollission() {
@@ -143,9 +144,9 @@ public class GameObject{
     }
 
 
-    private int adjustGravity(){   //handles gravity acceleration
+    public int adjustGravity(int gravity){   //handles gravity acceleration
         if (!onGround){
-            yspeed=yspeed-gamemap.getGravity();
+            yspeed=yspeed+gravity;
         }
         return yspeed;
     }
