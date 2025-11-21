@@ -13,6 +13,7 @@ public class GameObject{
     public int xpos, ypos;
     private int xspeed = 0;
     private int yspeed = 0;
+    private boolean onGround=false;     //variable to stop gravity acceleration if the object is alrady on the ground
     private Color color;
     private boolean bounce = true; // this variable determines if the object should bounce back when colliding
     private boolean movable;    // if the GameObject can be moved or not
@@ -139,6 +140,14 @@ public class GameObject{
 
     public boolean isMovable(){
         return movable;
+    }
+
+
+    private int adjustGravity(){   //handles gravity acceleration
+        if (!onGround){
+            yspeed=yspeed-gamemap.getGravity();
+        }
+        return yspeed;
     }
 
 }
