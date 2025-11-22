@@ -14,7 +14,6 @@ public class Player extends GameObject {
     private boolean backward = false;
     private boolean up = false;
     private boolean down = false;
-    private int collisionDistance; //prevent the player from overlapping wile also not leaving a gap
    
 
     public Player(int xpos, int ypos, int height, int width, int speed, Color color, int layer) {
@@ -89,60 +88,5 @@ public class Player extends GameObject {
     @Override
     public void draw(Graphics g){
         g.drawImage(image, xpos, ypos, width, height, null);
-    }
-
-
-    // Checks whether moving to (testX, testY) would cause a collision
-    @Override
-    public boolean collisionAt(int testX, int testY) {
-        collisionDistance = 0;
-
-        // Check map bounds:
-        if (testX < 0) {
-            collisionDistance = -xpos; // move to left edge
-            return true;
-        } else if (testX + width > gamemap.width()) {
-            collisionDistance = gamemap.width() - (xpos + width); // move to right edge
-            return true;
-        } else if (testY < 0) {
-            collisionDistance = -ypos; // move to top edge
-            return true;
-        } else if (testY + height > gamemap.height()) {
-            collisionDistance = gamemap.height() - (ypos + height); // move to bottom edge
-            return true;
-        }
-
-
-        for (GameObject obj : layerObjects) {
-            if (obj != this) {
-                    // Check overlap in both axes
-                    boolean overlapX = testX < obj.xpos + obj.width && testX + width > obj.xpos;
-                    boolean overlapY = testY < obj.ypos + obj.height && testY + height > obj.ypos;
-
-                    if (overlapX && overlapY) {
-                        // Determine if it's a horizontal or vertical collision
-                        int distLeft   = Math.abs(testX + width - obj.xpos);           // distance from left collission
-                        int distRight  = Math.abs(testX - (obj.xpos + obj.width));     // distance from right collission
-                        int distTop    = Math.abs(testY + height - obj.ypos);          // distance from top collission
-                        int distBottom = Math.abs(testY - (obj.ypos + obj.height));    // distance from bottom collission
-
-                        // Pick the smallest distance — that's the collision side
-                        int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
-
-                        if (minDist == distLeft) {
-                            collisionDistance = obj.xpos - (xpos + width);
-                        } else if (minDist == distRight) {
-                            collisionDistance = (obj.xpos + obj.width) - xpos;
-                        } else if (minDist == distTop) {
-                            collisionDistance = obj.ypos - (ypos + height);
-                        } else {
-                            collisionDistance = (obj.ypos + obj.height) - ypos;
-                        }
-
-                        return true;
-                    }
-                }
-            }
-        return false;
     }
 }

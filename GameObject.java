@@ -80,30 +80,13 @@ public class GameObject{
         }
     }
 
-    /* public void checkCollission() {
-        if (collisionAt()) {
-            if (bounce) {
-                xspeed = -xspeed; // Bounces back
-            } else {
-                xspeed = 0; // Stops horizontal movement
-            }
-
-        }
-        if (collissionVertical()) {
-            if (bounce) {
-                yspeed = -yspeed; // Bounces back
-            } else {
-                yspeed = 0; // Stops vertical movement
-            }
-        }
-    } */
 
     public void draw(Graphics g) { // Method to draw GameObject on the window
         g.setColor(color);
         g.fillRect(xpos, ypos, width, height);
     }
 
-    public boolean collisionAt(int testX, int testY) {
+    protected boolean collisionAt(int testX, int testY) {
         collisionDistance = 0;
 
         // Check map bounds:

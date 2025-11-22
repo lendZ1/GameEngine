@@ -40,12 +40,6 @@ public class GameMap{
     public void update() {  // updates all GameObjects and then checks for collisions
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
-                ///obj.checkCollission();
-            }
-        }
-        
-        for (ArrayList<GameObject> objects : layers.values()) {
-            for (GameObject obj : objects) {
                 obj.updatePosition();
                 if (gravity != 0){
                     obj.adjustGravity(gravity);
