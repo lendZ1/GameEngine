@@ -14,15 +14,19 @@ public class Player extends GameObject {
     private boolean left = false;
     private boolean up = false;
     private boolean down = false;
-    private int kollisjonAvstand; //dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
    
 
-    public Player(int xpos, int ypos, int høyde, int bredde, int hastighet, Color farge, int layer) {
-        super(xpos, ypos, høyde, bredde, 0, 0, farge, 1, false /*player is not movable by default*/);
-        this.hastighet = hastighet;
+    public Player(int xpos, int ypos, int height, int width, int speed, Color color, int layer) {
+        super(xpos, ypos, height, width, 0, 0, color, 1, false /* player is not movable by default */);
+        this.speed = speed;
         setBounce(false);
     }
 
+    // Methods called from GamePanel when input is detected
+    public void forward(boolean forward) { this.forward = forward; }
+    public void backward(boolean backward)   { this.backward = backward; }
+    public void up(boolean up)           { this.up = up; }
+    public void down(boolean down)       { this.down = down; }
     //metodene blir kalt fra GamePanel når input registreres
     public void fremover(boolean right) { this.right = right; }
     public void bakover(boolean left)   { this.left = left; }
@@ -30,57 +34,62 @@ public class Player extends GameObject {
     public void ned(boolean down)           { this.down = down; }
 
     @Override
-    public void oppdaterPosisjon() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
+    public void updatePosition() {    // also checks collisions here to avoid pushing the object through colliders
 
         int nextX = xpos;
         int nextY = ypos;
 
+        if (forward){
+            if (up || down){
+                nextX += Math.sqrt((speed*speed)/2);
         if (right){
             if (up || down){
-                nextX += Math.sqrt((hastighet*hastighet)/2);
+                nextX += Math.sqrt((speed*speed)/2);
             } else{
-                nextX += hastighet;
+                nextX += speed;
             }
             state="right";
         }
 
+        if (backward){
+            if (up || down){
+                nextX -= Math.sqrt((speed*speed)/2);
         if (left){
             if (up || down){
-                nextX -= Math.sqrt((hastighet*hastighet)/2);
+                nextX -= Math.sqrt((speed*speed)/2);
             } else{
-                nextX -= hastighet;
+                nextX -= speed;
             }
             state="left";
         }
 
         if (up){
             if (right || left){
-                nextY -= Math.sqrt((hastighet*hastighet)/2);
+                nextY -= Math.sqrt((speed*speed)/2);
             } else{
-                nextY -= hastighet;
+                nextY -= speed;
             }
-            state="up";
         }
 
         if (down){
             if (right || left){
-                nextY += Math.sqrt((hastighet*hastighet)/2);
+                nextY += Math.sqrt((speed*speed)/2);
             } else{
-                nextY += hastighet;
+                nextY += speed;
             }
             state="down";
         }
 
-        // Separate axis movement for smooth sliding along walls
+        // Separate-axis movement for smooth sliding along walls
 
         if (right || left) {
             if (!kollisjonVed(nextX, ypos)) xpos = nextX;
-            else xpos += kollisjonAvstand;
+            else xpos += collisionDistance;
         }
 
-        if (up || down) {
+        if (opp || ned) {
             if (!kollisjonVed(xpos, nextY)) ypos = nextY;
-            else ypos += kollisjonAvstand;
+            else ypos += collisionDistance;
         }
     }
 
