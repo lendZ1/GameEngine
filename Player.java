@@ -93,7 +93,8 @@ public class Player extends GameObject {
 
 
     // Checks whether moving to (testX, testY) would cause a collision
-    private boolean collisionAt(int testX, int testY) {
+    @Override
+    public boolean collisionAt(int testX, int testY) {
         collisionDistance = 0;
 
         // Check map bounds:
