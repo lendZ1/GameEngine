@@ -2,9 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class Window extends JFrame {
-    GamePanel gamePanel;
-    public Window(GamePanel gamePanel) {
+public class Vindu extends JFrame {
+
+    public Vindu() {
         
         setTitle("Game Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

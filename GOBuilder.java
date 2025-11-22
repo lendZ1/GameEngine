@@ -7,11 +7,11 @@ public class GOBuilder {
 
     private int layer;
     private int xpos, ypos;
-    private int xspeed, yspeed;
-    private int speed;
-    private Color color;
+    private int xfart, yfart;
+    private int hastighet;
+    private Color farge;
     private boolean bounce;
-    private int height, width;
+    private int høyde, bredde;
     private boolean movable;
 
 
@@ -21,14 +21,9 @@ public class GOBuilder {
         return this;
     }
 
-    public GOBuilder speed(int xspeed, int yspeed){
-        this.xspeed = xspeed;
-        this.yspeed = yspeed;
-        return this;
-    }
-
-    public GOBuilder speed(int speed){  //sets the speed for player class, since it only needs one variable
-        this.speed = speed;
+    public GOBuilder fart(int xfart, int yfart){
+        this.xfart = xfart;
+        this.yfart = yfart;
         return this;
     }
 
@@ -38,14 +33,14 @@ public class GOBuilder {
         return this;
     }
 
-    public GOBuilder size(int height, int width){
-        this.height = height;
-        this.width = width;
+    public GOBuilder størrelse(int høyde, int bredde){
+        this.høyde = høyde;
+        this.bredde = bredde;
         return this;
     }
 
-    public GOBuilder color(Color color){
-        this.color = color;
+    public GOBuilder color(Color farge){
+        this.farge = farge;
         return this;        
     }
 
@@ -54,11 +49,16 @@ public class GOBuilder {
         return this;
     }
 
+    public GOBuilder hastighet(int hastighet){
+        this.hastighet = hastighet;
+        return this;
+    }
+
     public GameObject build(){
-        return new GameObject(xpos, ypos, height, width, xspeed, yspeed, color, layer, movable);
+        return new GameObject(xpos, ypos, høyde, bredde, xfart, yfart, farge, layer, movable);
     }
 
     public Player buildPlayer(){
-        return new Player(xpos, ypos, height, width, speed, color, layer);
+        return new Player(xpos, ypos, høyde, bredde, hastighet, farge, layer);
     }
 }

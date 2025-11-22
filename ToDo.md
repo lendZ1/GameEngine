@@ -15,5 +15,4 @@ Sprite:
 
 vinduet tar ikke alltid input
 
-objects stops before the border with gravity
 

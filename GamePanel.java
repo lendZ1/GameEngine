@@ -26,38 +26,38 @@ public class GamePanel extends JPanel implements KeyListener {
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {    // Tegner alle GameObjects på skjermen
         super.paintComponent(g);
-        gamemap.draw(g);
+        gamemap.tegn(g);
     }
 
 
     @Override
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.up(true);
+            player.opp(true);
         }
         else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.down(true);
+            player.ned(true);
         }   
         else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.backward(true);
+            player.bakover(true);
         }
         else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.forward(true);
+            player.fremover(true);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.up(false);
+            player.opp(false);
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.down(false);
+            player.ned(false);
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.backward(false);
+            player.bakover(false);
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.forward(false);
+            player.fremover(false);
         }
     }
 
