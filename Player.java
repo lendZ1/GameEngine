@@ -10,8 +10,8 @@ import javax.imageio.ImageIO;
 
 public class Player extends GameObject {
     private int speed; // the speed the player moves when it is moved
-    private boolean forward = false;
-    private boolean backward = false;
+    private boolean right = false;
+    private boolean left = false;
     private boolean up = false;
     private boolean down = false;
    
@@ -30,8 +30,8 @@ public class Player extends GameObject {
     }
 
     // Methods called from GamePanel when input is detected
-    public void forward(boolean forward) { this.forward = forward; }
-    public void backward(boolean backward)   { this.backward = backward; }
+    public void right(boolean right) { this.right = right; }
+    public void left(boolean left)   { this.left = left; }
     public void up(boolean up)           { this.up = up; }
     public void down(boolean down)       { this.down = down; }
 
@@ -41,7 +41,7 @@ public class Player extends GameObject {
         int nextX = xpos;
         int nextY = ypos;
 
-        if (forward){
+        if (right){
             if (up || down){
                 nextX += Math.sqrt((speed*speed)/2);
             } else{
@@ -49,7 +49,7 @@ public class Player extends GameObject {
             }
         }
 
-        if (backward){
+        if (left){
             if (up || down){
                 nextX -= Math.sqrt((speed*speed)/2);
             } else{
@@ -58,14 +58,14 @@ public class Player extends GameObject {
         }
 
         if (up){
-            if (forward || backward){
+            if (right || left){
                 nextY -= Math.sqrt((speed*speed)/2);
             } else{
                 nextY -= speed;
             }
         }
         if (down){
-            if (forward || backward){
+            if (right || left){
                 nextY += Math.sqrt((speed*speed)/2);
             } else{
                 nextY += speed;
@@ -74,7 +74,7 @@ public class Player extends GameObject {
 
         // Separate-axis movement for smooth sliding along walls
 
-        if (forward || backward) {
+        if (right || left) {
             if (!collisionAt(nextX, ypos)) xpos = nextX;
             else xpos += collisionDistance;
         }

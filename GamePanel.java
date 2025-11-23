@@ -41,10 +41,10 @@ public class GamePanel extends JPanel implements KeyListener {
             player.down(true);
         }   
         else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.backward(true);
+            player.left(true);
         }
         else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.forward(true);
+            player.right(true);
         }
     }
 
@@ -55,9 +55,9 @@ public class GamePanel extends JPanel implements KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
             player.down(false);
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.backward(false);
+            player.left(false);
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.forward(false);
+            player.right(false);
         }
     }
 
