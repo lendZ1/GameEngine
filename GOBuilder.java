@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.ArrayList;
-
+//test
 public class GOBuilder {
 
     private int layer;

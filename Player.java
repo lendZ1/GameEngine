@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
+//test
 
 public class Player extends GameObject {
     private int speed; // the speed the player moves when it is moved
