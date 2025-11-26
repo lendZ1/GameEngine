@@ -2,21 +2,21 @@ import java.awt.Color;
 
 
 public class Game {
-    public Vindu vindu;
+    public Window window;
     public GamePanel panel;
     public GameMap gamemap;
     private GameObject g1;
 
 
 
-    public Game(Vindu vindu, int width, int height) {
-        this.vindu = vindu;
+    public Game(Window window, int width, int height) {
+        this.window = window;
         gamemap = new GameMap(800, 600);
         panel = new GamePanel(gamemap, width, height);
         gamemap.setGamePanel(panel);
-        vindu.setContentPane(panel);
-        vindu.revalidate();
-        vindu.repaint();
+        window.setContentPane(panel);
+        window.revalidate();
+        window.repaint();
         
 
 

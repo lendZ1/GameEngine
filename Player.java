@@ -9,64 +9,63 @@ import javax.imageio.ImageIO;
 
 
 public class Player extends GameObject {
-    private int hastighet; //hvor fort spilleren beveger seg når knappene blir trykket
+    private int speed; //hvor fort spilleren beveger seg når knappene blir trykket
     private boolean right = false;
     private boolean left = false;
     private boolean up = false;
     private boolean down = false;
-    private int kollisjonAvstand; //dersom det er en kollisjon vil den ha avstanden til veggen for å gå helt inntil
    
 
-    public Player(int xpos, int ypos, int høyde, int bredde, int hastighet, Color farge, int layer) {
-        super(xpos, ypos, høyde, bredde, 0, 0, farge, 1, false /*player is not movable by default*/);
-        this.hastighet = hastighet;
+    public Player(int xpos, int ypos, int height, int width, int speed, Color color, int layer) {
+        super(xpos, ypos, height, width, 0, 0, color, 1, false /*player is not movable by default*/);
+        this.speed = speed;
         setBounce(false);
     }
 
     //metodene blir kalt fra GamePanel når input registreres
-    public void fremover(boolean right) { this.right = right; }
-    public void bakover(boolean left)   { this.left = left; }
-    public void opp(boolean up)           { this.up = up; }
-    public void ned(boolean down)           { this.down = down; }
+    public void right(boolean right) { this.right = right; }
+    public void left(boolean left)   { this.left = left; }
+    public void up(boolean up)           { this.up = up; }
+    public void down(boolean down)           { this.down = down; }
 
     @Override
-    public void oppdaterPosisjon() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
+    public void updatePosition() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
 
         int nextX = xpos;
         int nextY = ypos;
 
         if (right){
             if (up || down){
-                nextX += Math.sqrt((hastighet*hastighet)/2);
+                nextX += Math.sqrt((speed*speed)/2);
             } else{
-                nextX += hastighet;
+                nextX += speed;
             }
             state="right";
         }
 
         if (left){
             if (up || down){
-                nextX -= Math.sqrt((hastighet*hastighet)/2);
+                nextX -= Math.sqrt((speed*speed)/2);
             } else{
-                nextX -= hastighet;
+                nextX -= speed;
             }
             state="left";
         }
 
         if (up){
             if (right || left){
-                nextY -= Math.sqrt((hastighet*hastighet)/2);
+                nextY -= Math.sqrt((speed*speed)/2);
             } else{
-                nextY -= hastighet;
+                nextY -= speed;
             }
             state="up";
         }
 
         if (down){
             if (right || left){
-                nextY += Math.sqrt((hastighet*hastighet)/2);
+                nextY += Math.sqrt((speed*speed)/2);
             } else{
-                nextY += hastighet;
+                nextY += speed;
             }
             state="down";
         }
@@ -74,67 +73,13 @@ public class Player extends GameObject {
         // Separate axis movement for smooth sliding along walls
 
         if (right || left) {
-            if (!kollisjonVed(nextX, ypos)) xpos = nextX;
-            else xpos += kollisjonAvstand;
+            if (!collisionAt(nextX, ypos)) xpos = nextX;
+            else xpos += collisionDistance;
         }
 
         if (up || down) {
-            if (!kollisjonVed(xpos, nextY)) ypos = nextY;
-            else ypos += kollisjonAvstand;
+            if (!collisionAt(xpos, nextY)) ypos = nextY;
+            else ypos += collisionDistance;
         }
-    }
-
-
-
-    // Checks whether moving to (testX, testY) would cause a collision
-    private boolean kollisjonVed(int testX, int testY) {
-        kollisjonAvstand=0;
-        // Map bounds
-        if (testX < 0) {
-            kollisjonAvstand = -xpos; // Move to edge
-            return true;
-        }else if(testX + bredde > gamemap.bredde) {
-            kollisjonAvstand = gamemap.bredde - (xpos + bredde);
-            return true;
-        } else if (testY < 0) {
-            kollisjonAvstand = -ypos; // Move to edge
-            return true;
-        } else if (testY + høyde > gamemap.høyde) {
-            kollisjonAvstand = gamemap.høyde - (ypos + høyde);
-            return true;
-        }
-
-
-        for (GameObject obj : layerObjects) {
-            if (obj != this) {
-                    // Check overlap in both axes
-                    boolean overlapX = testX < obj.xpos + obj.bredde && testX + bredde > obj.xpos;
-                    boolean overlapY = testY < obj.ypos + obj.høyde && testY + høyde > obj.ypos;
-
-                    if (overlapX && overlapY) {
-                        // Determine if it's a horizontal or vertical collision
-                        int distLeft   = Math.abs(testX + bredde - obj.xpos);           // hitting from left
-                        int distRight  = Math.abs(testX - (obj.xpos + obj.bredde));     // hitting from right
-                        int distTop    = Math.abs(testY + høyde - obj.ypos);            // hitting from top
-                        int distBottom = Math.abs(testY - (obj.ypos + obj.høyde));      // hitting from bottom
-
-                        // Pick the smallest distance — that's the collision side
-                        int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
-
-                        if (minDist == distLeft) {
-                            kollisjonAvstand = obj.xpos - (xpos + bredde);
-                        } else if (minDist == distRight) {
-                            kollisjonAvstand = (obj.xpos + obj.bredde) - xpos;
-                        } else if (minDist == distTop) {
-                            kollisjonAvstand = obj.ypos - (ypos + høyde);
-                        } else {
-                            kollisjonAvstand = (obj.ypos + obj.høyde) - ypos;
-                        }
-
-                        return true;
-                    }
-                }
-            }
-        return false;
     }
 }
