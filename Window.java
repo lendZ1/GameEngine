@@ -10,7 +10,7 @@ public class Window extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
-        ImageIcon img = new ImageIcon("synpehype.jpg");
+        ImageIcon img = new ImageIcon("resources/images/synpehype.jpg");
         setIconImage(img.getImage());
 
     }
