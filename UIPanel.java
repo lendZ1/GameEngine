@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
+import Tools.*;
 
 public class UIPanel extends JPanel {
     private Window window;
@@ -23,6 +24,7 @@ public class UIPanel extends JPanel {
                 // Code to execute when the button is clicked
                 System.out.println("Button clicked!");
                 startGame();
+                AudioPlayer.playAudio("C:/Users/erlen/OneDrive/Dokumenter/GitHub/Engine/test.wav");
             }
         });
 

@@ -7,12 +7,12 @@ import javax.sound.sampled.*;
 
 
 public class AudioPlayer{
-    public static void playAudio(String filepath) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+    public static void playAudio(String filepath){
         
         try {
             File file = new File(filepath);
+            System.out.print(file.getAbsolutePath());
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-            Clip
 
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
@@ -23,7 +23,8 @@ public class AudioPlayer{
         } catch (IOException e) {
             System.out.println("Error: Could not read the audio file.");
         } catch (LineUnavailableException e) {
-            System.out.println("Error: Audio line unavailable.");
+            System.out.println("Error: Audio line unavailable." + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
