@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.HashMap;
 import java.util.ArrayList;
+import Tools.*;
 
 
 public class GameObject{
