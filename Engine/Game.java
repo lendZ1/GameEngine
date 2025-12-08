@@ -1,14 +1,13 @@
 package Engine;
 
 import java.awt.Color;
+import Engine.GameObjects.*;
 
 
 public class Game {
     public GWindow window;
     public GamePanel panel;
     public GameMap gamemap;
-    private GameObject g1;
-
 
 
     public Game(GWindow window, int width, int height) {
@@ -26,8 +25,8 @@ public class Game {
 
         Player p=new GOBuilder()
             .position(100, 100)
-            .størrelse(50, 50)
-            .hastighet(6)
+            .dimensions(50, 50)
+            .speed(6)
             .color(Color.BLUE)
             .layer(1)
             .buildPlayer();
@@ -45,28 +44,28 @@ public class Game {
 
         gamemap.addGameObject(new GOBuilder()
             .position(50, 50)
-            .størrelse(50, 50)
+            .dimensions(50, 50)
             .color(Color.RED)
             .layer(1)
-            .fart(4, 4)
+            .speed(4, 4)
             .movable(true)
             .build(), 1);
 
         gamemap.addGameObject(new GOBuilder()
             .position(200, 200)
-            .størrelse(50, 50)
+            .dimensions(50, 50)
             .color(Color.YELLOW)
             .layer(1)
-            .fart(4, 4)
+            .speed(4, 4)
             .movable(false)
             .build(), 1);
         
         gamemap.addGameObject(new GOBuilder()
             .position(300, 200)
-            .størrelse(50, 50)
+            .dimensions(50, 50)
             .color(Color.GREEN)
             .layer(1)
-            .fart(1, 1)
+            .speed(1, 1)
             .movable(true)
             .build(), 2);
     }

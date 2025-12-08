@@ -1,4 +1,4 @@
-package Engine;
+package Engine.GameObjects;
 
 import java.awt.*;
 import javax.swing.*;
@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import java.util.HashMap;
 import java.util.ArrayList;
 import Engine.Tools.*;
+import Engine.GameMap;
 
 
 public class GameObject{

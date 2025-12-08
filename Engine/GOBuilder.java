@@ -4,16 +4,17 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.ArrayList;
+import Engine.GameObjects.*;
 
 public class GOBuilder {
 
     private int layer;
     private int xpos, ypos;
-    private int xfart, yfart;
+    private int xSpeed, ySpeed;
     private int hastighet;
-    private Color farge;
+    private Color color;
     private boolean bounce;
-    private int høyde, bredde;
+    private int heigth, width;
     private boolean movable;
 
 
@@ -23,9 +24,14 @@ public class GOBuilder {
         return this;
     }
 
-    public GOBuilder fart(int xfart, int yfart){
-        this.xfart = xfart;
-        this.yfart = yfart;
+    public GOBuilder speed(int xSpeed, int ySpeed){
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+        return this;
+    }
+
+    public GOBuilder speed(int hastighet){
+        this.hastighet = hastighet;
         return this;
     }
 
@@ -35,14 +41,14 @@ public class GOBuilder {
         return this;
     }
 
-    public GOBuilder størrelse(int høyde, int bredde){
-        this.høyde = høyde;
-        this.bredde = bredde;
+    public GOBuilder dimensions(int heigth, int width){
+        this.heigth = heigth;
+        this.width = width;
         return this;
     }
 
-    public GOBuilder color(Color farge){
-        this.farge = farge;
+    public GOBuilder color(Color color){
+        this.color = color;
         return this;        
     }
 
@@ -51,16 +57,11 @@ public class GOBuilder {
         return this;
     }
 
-    public GOBuilder hastighet(int hastighet){
-        this.hastighet = hastighet;
-        return this;
-    }
-
     public GameObject build(){
-        return new GameObject(xpos, ypos, høyde, bredde, xfart, yfart, farge, layer, movable);
+        return new GameObject(xpos, ypos, heigth, width, xSpeed, ySpeed, color, layer, movable);
     }
 
     public Player buildPlayer(){
-        return new Player(xpos, ypos, høyde, bredde, hastighet, farge, layer);
+        return new Player(xpos, ypos, heigth, width, hastighet, color, layer);
     }
 }

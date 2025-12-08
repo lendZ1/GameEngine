@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import Engine.GameObjects.*;
 
 public class GamePanel extends JPanel implements KeyListener {
 

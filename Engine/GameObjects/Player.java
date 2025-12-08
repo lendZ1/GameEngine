@@ -1,4 +1,4 @@
-package Engine;
+package Engine.GameObjects;
 
 import java.awt.*;
 import javax.swing.*;
@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import Engine.*;
 
 
 public class Player extends GameObject {
