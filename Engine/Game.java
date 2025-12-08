@@ -4,14 +4,14 @@ import java.awt.Color;
 
 
 public class Game {
-    public Window window;
+    public GWindow window;
     public GamePanel panel;
     public GameMap gamemap;
     private GameObject g1;
 
 
 
-    public Game(Window window, int width, int height) {
+    public Game(GWindow window, int width, int height) {
         this.window = window;
         gamemap = new GameMap(800, 600);
         panel = new GamePanel(gamemap, width, height);

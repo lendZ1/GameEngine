@@ -4,9 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class Window extends JFrame {
+public class GWindow extends JFrame {
 
-    public Window() {
+    public GWindow() {
         
         setTitle("Game Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import Engine.Tools.*;
 
+
 public class UIPanel extends JPanel {
-    private Window window;
+    private GWindow window;
     private int width;
     private int height;
 
     JButton startButton;
 
-    public UIPanel(Window window, int width, int height) {
+    public UIPanel(GWindow window, int width, int height) {
         this.window = window;
         this.width = width;
         this.height = height;
