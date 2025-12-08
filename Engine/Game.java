@@ -2,6 +2,7 @@ package Engine;
 
 import java.awt.Color;
 import Engine.GameObjects.*;
+import Engine.Tools.GOBuilder;
 
 
 public class Game {
