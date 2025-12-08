@@ -1,8 +1,10 @@
+package Engine;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
-import Tools.*;
+import Engine.Tools.*;
 
 public class UIPanel extends JPanel {
     private Window window;

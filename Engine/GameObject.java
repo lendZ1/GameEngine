@@ -1,3 +1,5 @@
+package Engine;
+
 import java.awt.*;
 import javax.swing.*;
 import java.util.concurrent.BrokenBarrierException;
@@ -8,7 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.HashMap;
 import java.util.ArrayList;
-import Tools.*;
+import Engine.Tools.*;
 
 
 public class GameObject{
