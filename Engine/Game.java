@@ -3,6 +3,8 @@ package Engine;
 import java.awt.Color;
 import Engine.GameObjects.*;
 import Engine.Tools.GOBuilder;
+import Engine.*;
+import Engine.UI.*;
 
 
 public class Game {
@@ -19,10 +21,8 @@ public class Game {
         window.setContentPane(panel);
         window.revalidate();
         window.repaint();
-        
 
-
-
+        startGame();   
 
         Player p=new GOBuilder()
             .position(100, 100)
@@ -70,5 +70,10 @@ public class Game {
             .movable(true)
             .build(), 2);
     }
-    
+
+    private void startGame(){
+        GameLoop gameLoop = new GameLoop(this);
+        Thread gameThread = new Thread(gameLoop);   //starter game loop i en egen tråd
+        gameThread.start();
+    }     
 }

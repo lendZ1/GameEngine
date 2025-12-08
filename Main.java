@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import Engine.*;
 import Engine.Tools.*;
+import Engine.UI.*;
 
 class Main{
     static int width = 800;

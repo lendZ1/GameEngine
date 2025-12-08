@@ -1,10 +1,11 @@
-package Engine;
+package Engine.UI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import Engine.Tools.*;
+import Engine.*;
 
 
 public class UIPanel extends JPanel {
@@ -37,12 +38,8 @@ public class UIPanel extends JPanel {
 
     }
 
-    public void startGame(){
+    private void startGame(){
         Game game = new Game(window, width, height);
-        GameLoop gameLoop = new GameLoop(game);
-
-        Thread gameThread = new Thread(gameLoop);   //starter game loop i en egen tråd
-        gameThread.start();
     }
 }
 

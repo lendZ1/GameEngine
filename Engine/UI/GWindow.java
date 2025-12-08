@@ -1,4 +1,4 @@
-package Engine;
+package Engine.UI;
 
 import java.awt.*;
 import javax.swing.*;
