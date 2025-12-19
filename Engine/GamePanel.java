@@ -1,8 +1,11 @@
+package Engine;
+
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import Engine.GameObjects.*;
 
 public class GamePanel extends JPanel implements KeyListener {
 
@@ -28,37 +31,36 @@ public class GamePanel extends JPanel implements KeyListener {
     @Override
     public void paintComponent(Graphics g) {    // Tegner alle GameObjects på skjermen
         super.paintComponent(g);
-        gamemap.tegn(g);
+        gamemap.draw(g);
     }
 
 
     @Override
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.opp(true);
-            System.out.println("Player moving up");
+            player.up(true);
         }
         else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.ned(true);
+            player.down(true);
         }   
         else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.bakover(true);
+            player.left(true);
         }
         else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.fremover(true);
+            player.right(true);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player.opp(false);
+            player.up(false);
         } else if (e.getKeyCode() == KeyEvent.VK_S) {
-            player.ned(false);
+            player.down(false);
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
-            player.bakover(false);
+            player.left(false);
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
-            player.fremover(false);
+            player.right(false);
         }
     }
 
@@ -69,5 +71,5 @@ public class GamePanel extends JPanel implements KeyListener {
     public void addNotify() {
         super.addNotify();
         requestFocusInWindow();
-}
+    }
 }

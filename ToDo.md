@@ -1,12 +1,18 @@
-diagonal fart er litt for liten fordi deivisjon returnerer heltall og ikke float
 
-sjekkkollisjon()kalles fortsatt for Player selv om den ikke gjør noe.
 
-Tillate for å kunne dytte objekter
+Kollisjon:
+    Tillate for å kunne dytte objekter
+    legge til spesiell effekt for spesifikke objekter
+    sjekkkollisjon()kalles fortsatt for Player selv om den ikke gjør noe.
+    fikse movable til å håndtere når et objekt ikke kan flyttes når det er inntil en kant, endre movable til false når den er inntil en kant
 
-både x og y fart inverteres ved kollisjon
+UI:
+    legge til pause-meny
 
-legge til "poeng" ved kollisjon
+Sprite:
+    endre slik at state går tilbake til idle
 
-lage UI
+
+vinduet tar ikke alltid input
+
 

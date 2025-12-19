@@ -1,17 +1,22 @@
+package Engine.UI;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
+import Engine.Tools.*;
+import Engine.*;
+
 
 public class UIPanel extends JPanel {
-    private Vindu vindu;
+    private GWindow window;
     private int width;
     private int height;
 
     JButton startButton;
 
-    public UIPanel(Vindu vindu, int width, int height) {
-        this.vindu = vindu;
+    public UIPanel(GWindow window, int width, int height) {
+        this.window = window;
         this.width = width;
         this.height = height;
 
@@ -23,6 +28,7 @@ public class UIPanel extends JPanel {
                 // Code to execute when the button is clicked
                 System.out.println("Button clicked!");
                 startGame();
+                AudioPlayer.playAudio("resources/test.wav");
             }
         });
 
@@ -32,12 +38,8 @@ public class UIPanel extends JPanel {
 
     }
 
-    public void startGame(){
-        Game game = new Game(vindu, width, height);
-        GameLoop gameLoop = new GameLoop(game);
-
-        Thread gameThread = new Thread(gameLoop);   //starter game loop i en egen tråd
-        gameThread.start();
+    private void startGame(){
+        Game game = new Game(window, width, height);
     }
 }
 

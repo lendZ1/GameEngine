@@ -1,16 +1,18 @@
+package Engine.UI;
+
 import java.awt.*;
 import javax.swing.*;
 
 
-public class Vindu extends JFrame {
+public class GWindow extends JFrame {
 
-    public Vindu() {
+    public GWindow() {
         
         setTitle("Game Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
-        ImageIcon img = new ImageIcon("synpehype.jpg");
+        ImageIcon img = new ImageIcon("resources/images/synpehype.jpg");
         setIconImage(img.getImage());
 
     }

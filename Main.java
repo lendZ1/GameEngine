@@ -1,14 +1,17 @@
 import java.awt.*;
 import javax.swing.*;
+import Engine.*;
+import Engine.Tools.*;
+import Engine.UI.*;
 
 class Main{
     static int width = 800;
     static int height = 600;
     public static void main(String args[]){
-        Vindu vindu = new Vindu();
-        UIPanel uiPanel = new UIPanel(vindu, width, height);
-        vindu.add(uiPanel);
-        vindu.setVisible(true);
-        vindu.pack();
+        GWindow window = new GWindow();
+        UIPanel uiPanel = new UIPanel(window, width, height);
+        window.add(uiPanel);
+        window.setVisible(true);
+        window.pack();
     }
 }

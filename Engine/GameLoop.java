@@ -1,4 +1,4 @@
-
+package Engine;
 
 public class GameLoop implements Runnable {
     private static final int TICK_RATE = 60; // Ticks per second
