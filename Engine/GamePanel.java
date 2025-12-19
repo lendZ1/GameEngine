@@ -16,8 +16,8 @@ public class GamePanel extends JPanel implements KeyListener {
     public GamePanel(GameMap gamemap, int width, int height) {
         super();
         setFocusable(true);
-        requestFocusInWindow(); // Important for key events to work
-        addKeyListener(this); // Make sure the panel listens to keys
+        requestFocusInWindow();
+        addKeyListener(this);
         setPreferredSize(new Dimension(width, height));
         
         this.gamemap = gamemap;
@@ -29,14 +29,14 @@ public class GamePanel extends JPanel implements KeyListener {
     }
 
     @Override
-    public void paintComponent(Graphics g) {    // Tegner alle GameObjects på skjermen
+    public void paintComponent(Graphics g) {    //redraws all the gameobjects
         super.paintComponent(g);
         gamemap.draw(g);
     }
 
 
     @Override
-    public void keyPressed(KeyEvent e){
+    public void keyPressed(KeyEvent e){     //handles userinput
         if (e.getKeyCode() == KeyEvent.VK_W) {
             player.up(true);
         }
@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {   //handles userinput
         if (e.getKeyCode() == KeyEvent.VK_W) {
             player.up(false);
         } else if (e.getKeyCode() == KeyEvent.VK_S) {

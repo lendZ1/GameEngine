@@ -7,14 +7,13 @@ import Engine.GameObjects.*;
 
 public class GameMap{
     public int width, height;
-    private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer
-        //1 er det nederste laget
+    private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer, 1 being lowest
 
     public GameMap(int width, int height) {
         this.width = width;
         this.height = height;
         layers = new TreeMap<>();
-        GameObject.gamemap=this; //lager en referanse til GameMap i GameObject
+        GameObject.gamemap=this;    //sets a reference to itself from all gameobjects
     }
 
 
@@ -27,7 +26,7 @@ public class GameMap{
     }
 
 
-    public void update() {  //oppdaterer alle GameObject og så sjekker etter kollisjoner   
+    public void update() {  //updates position of all objects 
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
                 obj.updatePosition();
@@ -35,7 +34,7 @@ public class GameMap{
         }
     }
 
-    public void draw(Graphics g) {  //tegner det nedeste laget først
+    public void draw(Graphics g) {  //draws the new updated positions for all objects
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
                 obj.draw(g);
@@ -44,10 +43,10 @@ public class GameMap{
     }
 
 
-    public GameObject addGameObject(GameObject obj, int layer) {  //legger til GameObject i riktig lag og lager ny ArrayList hvis det ikke allerde finnes
-        layers.putIfAbsent(layer, new ArrayList<>());
+    public GameObject addGameObject(GameObject obj, int layer) {
+        layers.putIfAbsent(layer, new ArrayList<>());   //creates new layer if it doesnt already exist
         layers.get(layer).add(obj);
-        obj.setLayerObjects(layers.get(layer));  // Setter layerObjects for GameObject
+        obj.setLayerObjects(layers.get(layer));  //creates a copy of the array whith all the objects in the same layer
         return obj;
     }
 
