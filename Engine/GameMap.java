@@ -49,8 +49,4 @@ public class GameMap{
         obj.setLayerObjects(layers.get(layer));  //creates a copy of the array whith all the objects in the same layer
         return obj;
     }
-
-    public ArrayList<GameObject> getGameObjects(int layer) { 
-        return layers.get(layer);  
-    }
 }

@@ -28,8 +28,8 @@ public class Player extends GameObject {
     //metodene blir kalt fra GamePanel når input registreres
     public void right(boolean right) { this.right = right; }
     public void left(boolean left)   { this.left = left; }
-    public void up(boolean up)           { this.up = up; }
-    public void down(boolean down)           { this.down = down; }
+    public void up(boolean up)       { this.up = up; }
+    public void down(boolean down)   { this.down = down; }
 
     @Override
     public void updatePosition() {    //sjekker også kollisjoner i denne metoden for å unngå å "dytte" objektet videre
