@@ -28,13 +28,13 @@ public class UIPanel extends JPanel {
                 // Code to execute when the button is clicked
                 System.out.println("Button clicked!");
                 startGame();
-                AudioPlayer.playAudio("resources/test.wav");
+                //AudioPlayer.playAudio("resources/test.wav");
             }
         });
 
 
         add(startButton);
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(width, height));**
 
     }
 
