@@ -34,7 +34,7 @@ public class UIPanel extends JPanel {
 
 
         add(startButton);
-        setPreferredSize(new Dimension(width, height));**
+        setPreferredSize(new Dimension(width, height));
 
     }
 

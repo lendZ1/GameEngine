@@ -7,7 +7,6 @@ import Engine.GameObjects.*;
 
 public class GameMap{
     public int width, height;
-    public GamePanel gamepanel;
     private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer
         //1 er det nederste laget
 
@@ -26,10 +25,7 @@ public class GameMap{
     public int width(){
         return width;
     }
-    
-    public void setGamePanel(GamePanel gamepanel) {
-        this.gamepanel = gamepanel;
-    }
+
 
     public void update() {  //oppdaterer alle GameObject og så sjekker etter kollisjoner   
         for (ArrayList<GameObject> objects : layers.values()) {
@@ -53,14 +49,6 @@ public class GameMap{
         layers.get(layer).add(obj);
         obj.setLayerObjects(layers.get(layer));  // Setter layerObjects for GameObject
         return obj;
-    }
-
-    public Player addPlayer(Player player, int layer) {
-        layers.putIfAbsent(layer, new ArrayList<>());
-        layers.get(layer).add(player);
-        player.setLayerObjects(layers.get(layer));  // Setter layerObjects for Player
-        gamepanel.setPlayer(player, layer);
-        return player;
     }
 
     public ArrayList<GameObject> getGameObjects(int layer) { 

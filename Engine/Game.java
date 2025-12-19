@@ -17,7 +17,6 @@ public class Game {
         this.window = window;
         gamemap = new GameMap(800, 600);
         panel = new GamePanel(gamemap, width, height);
-        gamemap.setGamePanel(panel);
         window.setContentPane(panel);
         window.revalidate();
         window.repaint();
@@ -41,7 +40,8 @@ public class Game {
             p.addImage("left","resources/images/WalkingSprites/boy_left_2.png");
             p.addImage("down","resources/images/WalkingSprites/boy_down_1.png");
             p.addImage("down","resources/images/WalkingSprites/boy_down_2.png");
-            gamemap.addPlayer(p,1);
+            gamemap.addGameObject(p,1);
+            panel.setPlayer(p);
 
         gamemap.addGameObject(new GOBuilder()
             .position(50, 50)

@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements KeyListener {
     }
 
 
-    public void setPlayer(Player player, int layer) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
