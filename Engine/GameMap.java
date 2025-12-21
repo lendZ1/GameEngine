@@ -7,6 +7,7 @@ import Engine.GameObjects.*;
 
 public class GameMap{
     public int width, height;
+    private int cameraOffsetX=50, cameraOffsetY=50;
     private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer, 1 being lowest
 
     public GameMap(int width, int height) {
@@ -37,7 +38,7 @@ public class GameMap{
     public void draw(Graphics g) {  //draws the new updated positions for all objects
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
-                obj.draw(g ,0,0);
+                obj.draw(g, cameraOffsetX, cameraOffsetY);
             }
         }
     }

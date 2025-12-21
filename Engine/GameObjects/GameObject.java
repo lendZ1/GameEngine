@@ -212,28 +212,28 @@ public class GameObject{
 
         switch(state){
             case "idle":
-                getImage(g, "idleImages");
+                getImage(g, "idleImages", cameraOffsetX, cameraOffsetY);
                 break;
             
             case "up":
-                getImage(g, "upImages");
+                getImage(g, "upImages", cameraOffsetX, cameraOffsetY);
                 break;
 
             case "down":
-                getImage(g, "downImages");
+                getImage(g, "downImages", cameraOffsetX, cameraOffsetY);
                 break;
 
             case "left":
-                getImage(g, "leftImages");
+                getImage(g, "leftImages", cameraOffsetX, cameraOffsetY);
                 break;
 
             case "right":
-                getImage(g, "rightImages");
+                getImage(g, "rightImages", cameraOffsetX, cameraOffsetY);
                 break;
         }
     }
 
-    private void getImage(Graphics g, String state){ //called in tegn() method to draw the correct image
+    private void getImage(Graphics g, String state, int cameraOffsetX, int cameraOffsetY){ //called in tegn() method to draw the correct image
         String imageList=state;
         if (images.get(imageList).size()==0){   //checks if there is an image for the correct animation, if not then gets another image from the list, checks idle first.
             for (String s: images.keySet()){
@@ -246,7 +246,7 @@ public class GameObject{
         if (imageIndex>=images.get(imageList).size()){ //if the index is bigger than the array, then it is goes back to 0
             imageIndex=0;
         }
-            g.drawImage(images.get(imageList).get(imageIndex), xpos, ypos, null);
+            g.drawImage(images.get(imageList).get(imageIndex), xpos-cameraOffsetX, ypos-cameraOffsetY, null);
 
             if (ticksPerImageCounter>=ticksPerImage){
                 imageIndex++;
