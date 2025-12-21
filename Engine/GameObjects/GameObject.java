@@ -212,30 +212,30 @@ public class GameObject{
 
         switch(state){
             case "idle":
-                getImage(g, "idleImages", cameraOffsetX, cameraOffsetY);
+                g.drawImage(getImage("idleImages"), xpos-cameraOffsetX, ypos-cameraOffsetY, null);
                 break;
             
             case "up":
-                getImage(g, "upImages", cameraOffsetX, cameraOffsetY);
+                g.drawImage(getImage("upImages"), xpos-cameraOffsetX, ypos-cameraOffsetY, null);
                 break;
 
             case "down":
-                getImage(g, "downImages", cameraOffsetX, cameraOffsetY);
+                g.drawImage(getImage("downImages"), xpos-cameraOffsetX, ypos-cameraOffsetY, null);
                 break;
 
             case "left":
-                getImage(g, "leftImages", cameraOffsetX, cameraOffsetY);
+                g.drawImage(getImage("leftImages"), xpos-cameraOffsetX, ypos-cameraOffsetY, null);
                 break;
 
             case "right":
-                getImage(g, "rightImages", cameraOffsetX, cameraOffsetY);
+                g.drawImage(getImage("rightImages"), xpos-cameraOffsetX, ypos-cameraOffsetY, null);
                 break;
         }
     }
 
-    private void getImage(Graphics g, String state, int cameraOffsetX, int cameraOffsetY){ //called in tegn() method to draw the correct image
+    private BufferedImage getImage(String state){
         String imageList=state;
-        if (images.get(imageList).size()==0){   //checks if there is an image for the correct animation, if not then gets another image from the list, checks idle first.
+        if (images.get(imageList).size()==0){   //checks if there is an image for the correct animation, if not then gets another image from the list, checks idle images first.
             for (String s: images.keySet()){
                 if (images.get(s).size()!=0){
                     imageList=s;
@@ -246,13 +246,13 @@ public class GameObject{
         if (imageIndex>=images.get(imageList).size()){ //if the index is bigger than the array, then it is goes back to 0
             imageIndex=0;
         }
-            g.drawImage(images.get(imageList).get(imageIndex), xpos-cameraOffsetX, ypos-cameraOffsetY, null);
-
+            BufferedImage image=images.get(imageList).get(imageIndex);
             if (ticksPerImageCounter>=ticksPerImage){
                 imageIndex++;
                 ticksPerImageCounter=0;
             }
             ticksPerImageCounter++;
+            return image;
     }
 
 
