@@ -203,10 +203,10 @@ public class GameObject{
     }
 
 
-    public void draw(Graphics g) { // Metode for å tegne GameObject på vinduet
+    public void draw(Graphics g, int cameraOffsetX, int cameraOffsetY) { // Metode for å tegne GameObject på vinduet
         if (!hasImage){
             g.setColor(color);
-            g.fillRect(xpos, ypos, width, height);
+            g.fillRect(xpos-cameraOffsetX, ypos-cameraOffsetY, width, height);
             return;
         } 
 

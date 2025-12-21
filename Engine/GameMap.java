@@ -37,7 +37,7 @@ public class GameMap{
     public void draw(Graphics g) {  //draws the new updated positions for all objects
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
-                obj.draw(g);
+                obj.draw(g ,0,0);
             }
         }
     }
