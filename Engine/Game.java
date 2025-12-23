@@ -40,7 +40,7 @@ public class Game {
             p.addImage("left","resources/images/WalkingSprites/boy_left_2.png");
             p.addImage("down","resources/images/WalkingSprites/boy_down_1.png");
             p.addImage("down","resources/images/WalkingSprites/boy_down_2.png");
-            gamemap.addGameObject(p,1);
+            gamemap.addPlayer(p,1);
             panel.setPlayer(p);
 
         gamemap.addGameObject(new GOBuilder()

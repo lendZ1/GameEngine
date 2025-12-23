@@ -7,6 +7,7 @@ import Engine.GameObjects.*;
 
 public class GameMap{
     public int width, height;
+    private Player player;
     private int cameraOffsetX=50, cameraOffsetY=50;
     private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer, 1 being lowest
 
@@ -49,5 +50,10 @@ public class GameMap{
         layers.get(layer).add(obj);
         obj.setLayerObjects(layers.get(layer));  //creates a copy of the array whith all the objects in the same layer
         return obj;
+    }
+
+    public GameObject addPlayer(Player player, int layer){  //keeps track of the player object when added
+        this.player=player;
+        return addGameObject(player, layer);
     }
 }
