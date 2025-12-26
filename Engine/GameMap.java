@@ -9,6 +9,7 @@ public class GameMap{
     public int width, height;
     private Player player;
     private int cameraOffsetX=50, cameraOffsetY=50;
+    private int panelWidth, panelHeight;
     private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer, 1 being lowest
 
     public GameMap(int width, int height) {
