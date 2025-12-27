@@ -23,9 +23,6 @@ public class GamePanel extends JPanel implements KeyListener {
         this.gamemap = gamemap;
     }
 
-    
-
-
     public void setPlayer(Player player) {
         this.player = player;
     }

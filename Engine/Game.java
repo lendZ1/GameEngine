@@ -16,6 +16,7 @@ public class Game {
     public Game(GWindow window, int width, int height) {
         this.window = window;
         gamemap = new GameMap(800, 600);
+        gamemap.setPanelSize(width, height);
         panel = new GamePanel(gamemap, width, height);
         window.setContentPane(panel);
         window.revalidate();

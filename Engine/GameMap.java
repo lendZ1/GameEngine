@@ -19,6 +19,11 @@ public class GameMap{
         GameObject.gamemap=this;    //sets a reference to itself from all gameobjects
     }
 
+    public void setPanelSize(int panelWidth, int panelHeight){
+        this.panelWidth=panelWidth;
+        this.panelHeight=panelHeight;
+    }
+
 
     public int height(){
         return height;
