@@ -15,14 +15,12 @@ public class Game {
 
     public Game(GWindow window, int width, int height) {
         this.window = window;
-        gamemap = new GameMap(800, 600);
+        gamemap = new GameMap(1000, 600);
         gamemap.setPanelSize(width, height);
         panel = new GamePanel(gamemap, width, height);
         window.setContentPane(panel);
         window.revalidate();
-        window.repaint();
-
-        startGame();   
+        window.repaint(); 
 
         Player p=new GOBuilder()
             .position(100, 100)
@@ -70,6 +68,8 @@ public class Game {
             .speed(1, 1)
             .movable(true)
             .build(), 2);
+
+        startGame();  
     }
 
     private void startGame(){

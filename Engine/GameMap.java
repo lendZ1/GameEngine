@@ -40,6 +40,15 @@ public class GameMap{
                 obj.updatePosition();
             }
         }
+        adjustCamera();
+    }
+
+    private void adjustCamera(){
+        if (player.xpos-(panelWidth/2)<=0){  //checks if the camera should stop at the left border
+            cameraOffsetX=0;
+        }else if(player.xpos+(panelWidth/2)>=width){    //checks if the camera should stop at the right border
+            cameraOffsetX=width-panelWidth;
+        }
     }
 
     public void draw(Graphics g) {  //draws the new updated positions for all objects
