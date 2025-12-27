@@ -49,6 +49,12 @@ public class GameMap{
         }else if(player.xpos+(panelWidth/2)>=width){    //checks if the camera should stop at the right border
             cameraOffsetX=width-panelWidth;
         }
+
+        if (player.ypos-(panelHeight/2)<=0){  //checks if the camera should stop at the top border
+            cameraOffsetY=0;
+        }else if(player.ypos+(panelHeight/2)>=height){    //checks if the camera should stop at the bottom border
+            cameraOffsetY=height-panelHeight;
+        }
     }
 
     public void draw(Graphics g) {  //draws the new updated positions for all objects
