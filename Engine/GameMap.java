@@ -44,16 +44,29 @@ public class GameMap{
     }
 
     private void adjustCamera(){
+        //horisontal checks:
         if (player.xpos-(panelWidth/2)<=0){  //checks if the camera should stop at the left border
             cameraOffsetX=0;
-        }else if(player.xpos+(panelWidth/2)>=width){    //checks if the camera should stop at the right border
+        } else if(player.xpos+(panelWidth/2)>=width){    //checks if the camera should stop at the right border
             cameraOffsetX=width-panelWidth;
+
+        } else if (player.xpos-cameraOffsetX<panelWidth/3){     //keeps the player within the middle third of the camera
+            cameraOffsetX-=player.speed;
+        } else if (player.xpos-cameraOffsetX<2*panelWidth/3){   //keeps the player within the middle third of the camera
+            cameraOffsetX+=player.speed;
         }
 
-        if (player.ypos-(panelHeight/2)<=0){  //checks if the camera should stop at the top border
+
+        //vertical checks:
+        if (player.ypos-(panelHeight/2)<=0){    //checks if the camera should stop at the top border
             cameraOffsetY=0;
-        }else if(player.ypos+(panelHeight/2)>=height){    //checks if the camera should stop at the bottom border
+        } else if(player.ypos+(panelHeight/2)>=height){    //checks if the camera should stop at the bottom border
             cameraOffsetY=height-panelHeight;
+            
+        } else if (player.ypos-cameraOffsetY<panelHeight/3){     //keeps the player within the middle third of the camera
+            cameraOffsetY-=player.speed;
+        } else if (player.ypos-cameraOffsetY<2*panelHeight/3){     //keeps the player within the middle third of the camera
+            cameraOffsetY+=player.speed;
         }
     }
 

@@ -12,7 +12,7 @@ import Engine.*;
 
 
 public class Player extends GameObject {
-    private int speed; //hvor fort spilleren beveger seg når knappene blir trykket
+    public int speed; //hvor fort spilleren beveger seg når knappene blir trykket
     private boolean right = false;
     private boolean left = false;
     private boolean up = false;
