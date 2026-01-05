@@ -52,7 +52,7 @@ public class GameMap{
 
         } else if (player.xpos-cameraOffsetX<panelWidth/3){     //keeps the player within the middle third of the camera
             cameraOffsetX-=player.speed;
-        } else if (player.xpos-cameraOffsetX<2*panelWidth/3){   //keeps the player within the middle third of the camera
+        } else if (player.xpos-cameraOffsetX>2*panelWidth/3){   //keeps the player within the middle third of the camera
             cameraOffsetX+=player.speed;
         }
 
@@ -65,7 +65,7 @@ public class GameMap{
             
         } else if (player.ypos-cameraOffsetY<panelHeight/3){     //keeps the player within the middle third of the camera
             cameraOffsetY-=player.speed;
-        } else if (player.ypos-cameraOffsetY<2*panelHeight/3){     //keeps the player within the middle third of the camera
+        } else if (player.ypos-cameraOffsetY>2*panelHeight/3){     //keeps the player within the middle third of the camera
             cameraOffsetY+=player.speed;
         }
     }
