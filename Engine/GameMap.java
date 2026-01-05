@@ -44,29 +44,25 @@ public class GameMap{
     }
 
     private void adjustCamera(){
-        //horisontal checks:
-        if (player.xpos-(panelWidth/2)<=0){  //checks if the camera should stop at the left border
-            cameraOffsetX=0;
-        } else if(player.xpos+(panelWidth/2)>=width){    //checks if the camera should stop at the right border
-            cameraOffsetX=width-panelWidth;
+        // Calculate target camera position to center player
+        int targetCameraX = player.xpos + player.width / 2 - panelWidth / 2;
+        int targetCameraY = player.ypos + player.height / 2 - panelHeight / 2;
 
-        } else if (player.xpos+player.width-cameraOffsetX<panelWidth/2){     //keeps the player in the middle
-            cameraOffsetX-=player.speed;
-        } else if (player.xpos-cameraOffsetX>panelWidth/2){   //keeps the player in the middle
-            cameraOffsetX+=player.speed;
+        // Clamp to map boundaries
+        targetCameraX = Math.max(0, Math.min(targetCameraX, width - panelWidth));
+        targetCameraY = Math.max(0, Math.min(targetCameraY, height - panelHeight));
+
+        // Smoothly move camera toward target instead of jumping
+        if (cameraOffsetX < targetCameraX) {
+            cameraOffsetX = Math.min(cameraOffsetX + player.speed, targetCameraX);
+        } else if (cameraOffsetX > targetCameraX) {
+            cameraOffsetX = Math.max(cameraOffsetX - player.speed, targetCameraX);
         }
 
-
-        //vertical checks:
-        if (player.ypos-(panelHeight/2)<=0){    //checks if the camera should stop at the top border
-            cameraOffsetY=0;
-        } else if(player.ypos+(panelHeight/2)>=height){    //checks if the camera should stop at the bottom border
-            cameraOffsetY=height-panelHeight;
-            
-        } else if (player.ypos+player.height-cameraOffsetY<panelHeight/2){     //keeps the player in the middle
-            cameraOffsetY-=player.speed;
-        } else if (player.ypos-cameraOffsetY>panelHeight/2){     //keeps the player in the middle
-            cameraOffsetY+=player.speed;
+        if (cameraOffsetY < targetCameraY) {
+            cameraOffsetY = Math.min(cameraOffsetY + player.speed, targetCameraY);
+        } else if (cameraOffsetY > targetCameraY) {
+            cameraOffsetY = Math.max(cameraOffsetY - player.speed, targetCameraY);
         }
     }
 
