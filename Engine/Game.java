@@ -11,36 +11,39 @@ public class Game {
     public GWindow window;
     public GamePanel panel;
     public GameMap gamemap;
+    public GameLoop gameLoop;
+    public Player player;
+    public Thread gameThread;
 
 
     public Game(GWindow window, int width, int height) {
         this.window = window;
         gamemap = new GameMap(1400, 1000);
         gamemap.setPanelSize(width, height);
-        panel = new GamePanel(gamemap, width, height);
+        panel = new GamePanel(this, width, height);
         window.setContentPane(panel);
         window.revalidate();
         window.repaint(); 
 
-        Player p=new GOBuilder()
+        player=new GOBuilder()
             .position(100, 100)
             .dimensions(50, 50)
             .speed(6)
             .color(Color.BLUE)
             .layer(1)
             .buildPlayer();
-            p.addImage("idle","resources/images/WalkingSprites/boy_up_1.png");
-            p.addImage("idle","resources/images/WalkingSprites/boy_up_2.png");
-            p.addImage("up","resources/images/WalkingSprites/boy_up_1.png");
-            p.addImage("up","resources/images/WalkingSprites/boy_up_2.png");
-            p.addImage("right","resources/images/WalkingSprites/boy_right_1.png");
-            p.addImage("right","resources/images/WalkingSprites/boy_right_2.png");
-            p.addImage("left","resources/images/WalkingSprites/boy_left_1.png");
-            p.addImage("left","resources/images/WalkingSprites/boy_left_2.png");
-            p.addImage("down","resources/images/WalkingSprites/boy_down_1.png");
-            p.addImage("down","resources/images/WalkingSprites/boy_down_2.png");
-            gamemap.addPlayer(p,1);
-            panel.setPlayer(p);
+            player.addImage("idle","resources/images/WalkingSprites/boy_up_1.png");
+            player.addImage("idle","resources/images/WalkingSprites/boy_up_2.png");
+            player.addImage("up","resources/images/WalkingSprites/boy_up_1.png");
+            player.addImage("up","resources/images/WalkingSprites/boy_up_2.png");
+            player.addImage("right","resources/images/WalkingSprites/boy_right_1.png");
+            player.addImage("right","resources/images/WalkingSprites/boy_right_2.png");
+            player.addImage("left","resources/images/WalkingSprites/boy_left_1.png");
+            player.addImage("left","resources/images/WalkingSprites/boy_left_2.png");
+            player.addImage("down","resources/images/WalkingSprites/boy_down_1.png");
+            player.addImage("down","resources/images/WalkingSprites/boy_down_2.png");
+            gamemap.addPlayer(player,1);
+            panel.setPlayer(player);
 
         gamemap.addGameObject(new GOBuilder()
             .position(50, 50)
@@ -73,8 +76,8 @@ public class Game {
     }
 
     private void startGame(){
-        GameLoop gameLoop = new GameLoop(this);
-        Thread gameThread = new Thread(gameLoop);   //starter game loop i en egen tråd
+        gameLoop = new GameLoop(this);
+        gameThread = new Thread(gameLoop);   //starter game loop i en egen tråd
         gameThread.start();
     }     
 }

@@ -11,16 +11,16 @@ public class GamePanel extends JPanel implements KeyListener {
 
     private GameMap gamemap;
     private Player player;
+    private GameLoop gameloop;
     
 
-    public GamePanel(GameMap gamemap, int width, int height) {
+    public GamePanel(Game game, int width, int height) {
+        this.gamemap=game.gamemap;
         super();
         setFocusable(true);
         requestFocusInWindow();
         addKeyListener(this);
         setPreferredSize(new Dimension(width, height));
-        
-        this.gamemap = gamemap;
     }
 
     public void setPlayer(Player player) {
@@ -47,6 +47,10 @@ public class GamePanel extends JPanel implements KeyListener {
         }
         else if (e.getKeyCode() == KeyEvent.VK_D) {
             player.right(true);
+        }
+
+        else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            
         }
     }
 
