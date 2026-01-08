@@ -71,6 +71,10 @@ public class GamePanel extends JPanel implements KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
             player.right(false);
         }
+
+        else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            gameLoop.resume();
+        }
     }
 
     @Override

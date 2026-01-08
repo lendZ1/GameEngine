@@ -28,7 +28,10 @@ public class GameLoop implements Runnable {
         long now;
         double delta = 0;
 
-        while (!paused) {
+        while (true) {
+            while(paused){
+                Thread.yield();
+            }
             now = System.nanoTime();
             delta += (now - lastTime) / (double) TICK_INTERVAL;
             lastTime = now;
