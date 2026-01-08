@@ -1,5 +1,6 @@
 package Engine;
 
+import Engine.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -12,10 +13,13 @@ public class GamePanel extends JPanel implements KeyListener {
     private GameMap gamemap;
     private Player player;
     private GameLoop gameloop;
+    private Thread gameThread;
+
     
 
     public GamePanel(Game game, int width, int height) {
         this.gamemap=game.gamemap;
+        this.gameThread=game.gameThread;
         super();
         setFocusable(true);
         requestFocusInWindow();
@@ -50,7 +54,11 @@ public class GamePanel extends JPanel implements KeyListener {
         }
 
         else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt(); // restore interrupt flag
+            }
         }
     }
 
