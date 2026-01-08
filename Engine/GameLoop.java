@@ -6,11 +6,20 @@ public class GameLoop implements Runnable {
     private Game game;
     private GamePanel panel;
     private GameMap gamemap;
+    private Boolean paused=false;
 
     public GameLoop(Game game) {
         this.game = game;
         this.panel = game.panel; // Initialize the game panel with the game instance
         this.gamemap = game.gamemap;     // Initialize the map with the game instance
+    }
+
+    public void pause(){
+        paused=true;
+    }
+
+    public void resume(){
+        paused=false;
     }
 
     @Override
@@ -19,7 +28,7 @@ public class GameLoop implements Runnable {
         long now;
         double delta = 0;
 
-        while (true) {
+        while (!paused) {
             now = System.nanoTime();
             delta += (now - lastTime) / (double) TICK_INTERVAL;
             lastTime = now;

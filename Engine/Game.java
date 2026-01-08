@@ -77,7 +77,8 @@ public class Game {
 
     private void startGame(){
         gameLoop = new GameLoop(this);
-        gameThread = new Thread(gameLoop);   //starter game loop i en egen tråd
+        panel.setGameLoop(gameLoop);
+        gameThread = new Thread(gameLoop);   //starts the gameLoop in a new thread
         gameThread.start();
     }     
 }

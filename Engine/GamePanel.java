@@ -12,19 +12,21 @@ public class GamePanel extends JPanel implements KeyListener {
 
     private GameMap gamemap;
     private Player player;
-    private GameLoop gameloop;
-    private Thread gameThread;
+    private GameLoop gameLoop;
 
     
 
     public GamePanel(Game game, int width, int height) {
         this.gamemap=game.gamemap;
-        this.gameThread=game.gameThread;
         super();
         setFocusable(true);
         requestFocusInWindow();
         addKeyListener(this);
         setPreferredSize(new Dimension(width, height));
+    }
+
+    public void setGameLoop(GameLoop gameLoop){
+        this.gameLoop=gameLoop;
     }
 
     public void setPlayer(Player player) {
@@ -54,11 +56,7 @@ public class GamePanel extends JPanel implements KeyListener {
         }
 
         else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt(); // restore interrupt flag
-            }
+            gameLoop.pause();
         }
     }
 
