@@ -8,14 +8,14 @@ import Engine.Tools.*;
 import Engine.*;
 
 
-public class UIPanel extends JPanel {
+public class StartMenu extends JPanel {
     private GWindow window;
     private int width;
     private int height;
 
     JButton startButton;
 
-    public UIPanel(GWindow window, int width, int height) {
+    public StartMenu(GWindow window, int width, int height) {
         this.window = window;
         this.width = width;
         this.height = height;
