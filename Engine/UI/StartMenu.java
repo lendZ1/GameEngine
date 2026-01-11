@@ -4,18 +4,17 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
-import Engine.Tools.*;
 import Engine.*;
 
 
-public class UIPanel extends JPanel {
+public class StartMenu extends JPanel {
     private GWindow window;
     private int width;
     private int height;
 
     JButton startButton;
 
-    public UIPanel(GWindow window, int width, int height) {
+    public StartMenu(GWindow window, int width, int height) {
         this.window = window;
         this.width = width;
         this.height = height;
@@ -40,6 +39,9 @@ public class UIPanel extends JPanel {
 
     private void startGame(){
         Game game = new Game(window, width, height);
+        window.remove(this);
+        window.revalidate();
+        window.repaint();
     }
 }
 

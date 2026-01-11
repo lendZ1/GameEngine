@@ -9,8 +9,8 @@ class Main{
     static int height = 600;
     public static void main(String args[]){
         GWindow window = new GWindow();
-        UIPanel uiPanel = new UIPanel(window, width, height);
-        window.add(uiPanel);
+        StartMenu startMenu = new StartMenu(window, width, height);
+        window.add(startMenu);
         window.setVisible(true);
         window.pack();
     }
