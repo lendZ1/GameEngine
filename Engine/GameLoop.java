@@ -6,7 +6,7 @@ public class GameLoop implements Runnable {
     private Game game;
     private GamePanel panel;
     private GameMap gamemap;
-    private Boolean paused=false;
+    private volatile boolean paused = false;
 
     public GameLoop(Game game) {
         this.game = game;
@@ -15,11 +15,11 @@ public class GameLoop implements Runnable {
     }
 
     public void pause(){
-        paused=true;
+        paused = true;
     }
 
     public void resume(){
-        paused=false;
+        paused = false;
     }
 
     @Override
@@ -29,14 +29,20 @@ public class GameLoop implements Runnable {
         double delta = 0;
 
         while (true) {
-            while(paused){
-                Thread.yield();
+            if (paused) {
+                // while paused, yield and keep the lastTime fresh so we don't accumulate delta
+                while (paused) {
+                    Thread.yield();
+                }
+                lastTime = System.nanoTime();
             }
+
             now = System.nanoTime();
             delta += (now - lastTime) / (double) TICK_INTERVAL;
             lastTime = now;
 
             while (delta >= 1) {
+                if (paused) break; // stop processing ticks immediately when paused
                 gamemap.update();     // update game logic
                 panel.repaint();    // request a redraw
                 delta--;
