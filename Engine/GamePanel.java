@@ -1,6 +1,7 @@
 package Engine;
 
 import Engine.*;
+import Engine.UI.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,11 +14,18 @@ public class GamePanel extends JPanel implements KeyListener {
     private GameMap gamemap;
     private Player player;
     private GameLoop gameLoop;
+    private GWindow window;
+    private int width, height;
+    private Game game;
 
     
 
     public GamePanel(Game game, int width, int height) {
+        this.game=game;
         this.gamemap=game.gamemap;
+        this.window=game.window;
+        this.width=width;
+        this.height=height;
         super();
         setFocusable(true);
         requestFocusInWindow();
@@ -56,7 +64,11 @@ public class GamePanel extends JPanel implements KeyListener {
         }
 
         else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            gameLoop.pause();
+                gameLoop.pause();
+                window.getContentPane().removeAll();
+                window.add(new PauseMenu(width, height, game));
+                window.revalidate();
+                window.repaint();
         }
     }
 

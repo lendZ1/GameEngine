@@ -39,6 +39,9 @@ public class StartMenu extends JPanel {
 
     private void startGame(){
         Game game = new Game(window, width, height);
+        window.remove(this);
+        window.revalidate();
+        window.repaint();
     }
 }
 

@@ -8,9 +8,14 @@ import Engine.*;
 
 public class PauseMenu extends JPanel {
     GameLoop gameLoop;
+    GamePanel gamePanel;
+    GWindow window;
     
     public PauseMenu(int width, int height, Game game) {
         gameLoop=game.gameLoop;
+        gamePanel=game.panel;
+        window=game.window;
+        
 
         JButton resumeButton=new JButton("Resume");
         resumeButton.addActionListener(new ActionListener() {
@@ -19,5 +24,8 @@ public class PauseMenu extends JPanel {
                 gameLoop.resume();
             }
         });
+
+        add(resumeButton);
+        setPreferredSize(new Dimension(width, height));
     }
 }
