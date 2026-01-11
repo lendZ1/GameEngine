@@ -21,11 +21,21 @@ public class PauseMenu extends JPanel {
         resumeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gameLoop.resume();
+                resume();
             }
         });
 
         add(resumeButton);
         setPreferredSize(new Dimension(width, height));
     }
+
+    public void resume(){
+        window.setContentPane(gamePanel);
+        window.revalidate();
+        window.repaint();
+
+        gameLoop.resume();
+    }
+
+
 }

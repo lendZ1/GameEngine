@@ -64,11 +64,10 @@ public class GamePanel extends JPanel implements KeyListener {
         }
 
         else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                gameLoop.pause();
-                window.getContentPane().removeAll();
-                window.add(new PauseMenu(width, height, game));
-                window.revalidate();
-                window.repaint();
+            gameLoop.pause();
+            window.setContentPane(new PauseMenu(width, height, game));
+            window.revalidate();
+            window.repaint();
         }
     }
 
@@ -82,10 +81,6 @@ public class GamePanel extends JPanel implements KeyListener {
             player.left(false);
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
             player.right(false);
-        }
-
-        else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            gameLoop.resume();
         }
     }
 
