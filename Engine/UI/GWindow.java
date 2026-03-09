@@ -6,8 +6,12 @@ import javax.swing.*;
 
 public class GWindow extends JFrame {
 
-    public GWindow() {
+    public GWindow(boolean fullscreen) {
         
+        if (fullscreen){
+            setUndecorated(true);
+        }
+
         setTitle("Game Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);

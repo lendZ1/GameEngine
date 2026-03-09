@@ -18,7 +18,7 @@ class Main{
             height = 600;
         }
 
-        GWindow window = new GWindow();
+        GWindow window = new GWindow(fullscreen);
         StartMenu startMenu = new StartMenu(window, width, height);
         window.add(startMenu);
         window.setVisible(true);
