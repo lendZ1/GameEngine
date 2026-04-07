@@ -21,12 +21,12 @@ public class GamePanel extends JPanel implements KeyListener {
     
 
     public GamePanel(Game game, int width, int height) {
+        super();
         this.game=game;
         this.gamemap=game.gamemap;
         this.window=game.window;
         this.width=width;
         this.height=height;
-        super();
         setFocusable(true);
         requestFocusInWindow();
         addKeyListener(this);
