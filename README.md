@@ -1,5 +1,8 @@
 # GameEngine
 
+Requires hardware acceleration on linux
+
+
 
 Main:
 Creates a GWindow and a uiPanel
