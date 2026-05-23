@@ -1,7 +1,7 @@
 # GameEngine
 
-Requires hardware acceleration on linux
-
+##Requires hardware acceleration on linux
+Use "java -Dsun.java2d.opengl=true Main" to run the app or export JAVA_TOOL_OPTIONS="-Dsun.java2d.opengl=true" to fix globally 
 
 
 Main:
