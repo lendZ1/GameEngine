@@ -1,1 +1,1 @@
-rootProject.name = "lwjglgradletest"
+rootProject.name = "GameEngine"

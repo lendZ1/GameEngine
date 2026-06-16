@@ -23,6 +23,6 @@ dependencies {
 }
 
 application {
-    mainClass.set("org.example.WindowTest")
+    mainClass.set("org.example.Main")
 }
 
