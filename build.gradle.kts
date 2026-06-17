@@ -8,7 +8,15 @@ repositories {
 }
 
 val lwjglVersion = "3.3.6"
-val lwjglNatives = "natives-linux"
+
+
+//fetches correct natives for the current platform (windows, macos, linux)
+val lwjglNatives = when {
+    org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem().isWindows -> "natives-windows"
+    org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem().isMacOsX -> "natives-macos"
+    org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem().isLinux -> "natives-linux"
+    else -> "natives-linux"
+}
 
 dependencies {
     implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
