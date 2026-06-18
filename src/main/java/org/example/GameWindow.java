@@ -15,16 +15,32 @@ import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class GameWindow {
-    private long window;
+    private final GameObject gameObject;
 
-    public GameWindow(){
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
-        init();
+    public GameWindow(GameObject gameObject){
+        this.gameObject = gameObject;
+        run();
     }
 
     //exammple code from https://www.lwjgl.org/guide:
 
+    // The window handle
+    private long window;
 
+    private void run() {
+        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
+
+        init();
+        loop();
+
+        // Free the window callbacks and destroy the window
+        glfwFreeCallbacks(window);
+        glfwDestroyWindow(window);
+
+        // Terminate GLFW and free the error callback
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
+    }
 
     private void init() {
         // Setup an error callback. The default implementation
@@ -63,15 +79,11 @@ public class GameWindow {
             GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
             // Center the window
-            try {
-                glfwSetWindowPos(
-                        window,
-                        (vidmode.width() - pWidth.get(0)) / 2,
-                        (vidmode.height() - pHeight.get(0)) / 2
-                );
-            } catch (IllegalStateException e) {
-                // Wayland doesn't support window positioning
-            }
+            glfwSetWindowPos(
+                    window,
+                    (vidmode.width() - pWidth.get(0)) / 2,
+                    (vidmode.height() - pHeight.get(0)) / 2
+            );
         } // the stack frame is popped automatically
 
         // Make the OpenGL context current
@@ -83,8 +95,34 @@ public class GameWindow {
         glfwShowWindow(window);
     }
 
-    public long provideWindow(){
-        return window;
+    private void loop() {
+        // This line is critical for LWJGL's interoperation with GLFW's
+        // OpenGL context, or any context that is managed externally.
+        // LWJGL detects the context that is current in the current thread,
+        // creates the GLCapabilities instance and makes the OpenGL
+        // bindings available for use.
+        GL.createCapabilities();
+
+        // Set the clear color
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0.0, 300.0, 300.0, 0.0, -1.0, 1.0);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+
+        // Run the rendering loop until the user has attempted to close
+        // the window or has pressed the ESCAPE key.
+        while ( !glfwWindowShouldClose(window) ) {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            gameObject.draw();
+
+            glfwSwapBuffers(window); // swap the color buffers
+
+            // Poll for window events. The key callback above will only be
+            // invoked during this call.
+            glfwPollEvents();
+        }
     }
 
 }

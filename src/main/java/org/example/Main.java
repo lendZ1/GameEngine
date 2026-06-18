@@ -6,7 +6,7 @@ import java.awt.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-            Game game=new Game();
-            game.run();
+            GameObject g1 = new GameObject(100, 100, 50, 50, Color.red);
+            new GameWindow(g1);
     }
 }
