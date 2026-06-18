@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11C.GL_QUADS;
 
 public class GameObject {
 
@@ -29,13 +28,15 @@ public class GameObject {
         this.ypos = y;
         this.height= height;
         this.width=width;
-     }
+        this.color = color;
+      }
 
-     public void draw(){
-         glBegin(GL_QUADS);
-         glVertex2f(xpos,ypos);
-         glVertex2f(xpos + width, ypos);
-         glVertex2f(xpos + width, ypos + height);
+      public void draw(){
+          glColor3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f);
+          glBegin(GL_QUADS);
+          glVertex2f(xpos,ypos);
+          glVertex2f(xpos + width, ypos);
+          glVertex2f(xpos + width, ypos + height);
          glVertex2f(xpos,     ypos + height);
          glEnd();
      }
