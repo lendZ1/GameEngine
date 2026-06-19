@@ -1,0 +1,13 @@
+# IDE
+.idea/
+*.iml
+
+# Build artifacts
+build/
+.gradle/
+*.class
+*.jar
+
+# OS
+.DS_Store
+Thumbs.db
