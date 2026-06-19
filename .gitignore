@@ -1,4 +1,9 @@
 .gradle
+# IDE
+.idea/
+*.iml
+
+# Build artifacts
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -35,9 +40,10 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
+.gradle/
+*.class
+*.jar
 
-### VS Code ###
-.vscode/
-
-### Mac OS ###
+# OS
 .DS_Store
+Thumbs.db
