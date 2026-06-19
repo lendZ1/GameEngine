@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.LogicComponents.GameObject;
+import org.example.LogicComponents.GameWindow;
 import org.lwjgl.opengl.GL;
 
 import java.awt.*;

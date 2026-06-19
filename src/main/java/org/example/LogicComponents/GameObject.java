@@ -1,9 +1,6 @@
-package org.example;
+package org.example.LogicComponents;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;
 
