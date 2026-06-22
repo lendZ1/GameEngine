@@ -28,6 +28,6 @@ public class Game {
     }
 
     public void update(){
-        gameObject.draw();
+        gameObject.draw(0,0);
     }
 }

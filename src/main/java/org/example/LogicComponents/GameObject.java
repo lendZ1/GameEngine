@@ -10,6 +10,7 @@ public class GameObject {
     public int height, width;
     private int xspeed=0 , yspeed=0;
     private Color color;
+    public static GameMap gameMap;
 
     //public static GameMap gamemap;
 
@@ -28,12 +29,12 @@ public class GameObject {
         this.color = color;
       }
 
-      public void draw(){
+      public void draw(int cameraOffsetX, int cameraOffsetY){
           glColor3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f);
           glBegin(GL_QUADS);
-          glVertex2f(xpos,ypos);
-          glVertex2f(xpos + width, ypos);
-          glVertex2f(xpos + width, ypos + height);
+          glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
+          glVertex2f(xpos + width - cameraOffsetX, ypos - cameraOffsetY);
+          glVertex2f(xpos + width - cameraOffsetX, ypos + height - cameraOffsetY);
          glVertex2f(xpos,     ypos + height);
          glEnd();
      }
