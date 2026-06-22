@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.LogicComponents.GameLoop;
+import org.example.LogicComponents.GameMap;
 import org.example.LogicComponents.GameObject;
 import org.example.LogicComponents.GameWindow;
 import org.lwjgl.opengl.GL;
@@ -15,11 +16,12 @@ public class Game {
     GameObject gameObject;
     long window;
     GameLoop gameLoop;
+    GameMap gameMap;
     public Game(){
-        gameObject = new GameObject(100, 100, 50, 50, Color.red);
         window=new GameWindow().provideWindow();
         gameLoop = new GameLoop(window, this);
-
+        gameMap = new GameMap(1000, 1000);
+        gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
 
     }
 
@@ -28,6 +30,6 @@ public class Game {
     }
 
     public void update(){
-        gameObject.draw(0,0);
+        gameMap.draw();
     }
 }
