@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.LogicComponents.GameLoop;
-import org.example.LogicComponents.GameMap;
-import org.example.LogicComponents.GameObject;
-import org.example.LogicComponents.GameWindow;
+import org.example.LogicComponents.*;
 import org.lwjgl.opengl.GL;
 
 import java.awt.*;
@@ -22,6 +19,7 @@ public class Game {
         gameLoop = new GameLoop(window, this);
         gameMap = new GameMap(1000, 1000);
         gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
+        gameMap.addPlayer(new Player(200, 200, 50, 50, Color.BLUE, 5),0);
 
     }
 
@@ -30,6 +28,7 @@ public class Game {
     }
 
     public void update(){
+        gameMap.update();
         gameMap.draw();
     }
 }

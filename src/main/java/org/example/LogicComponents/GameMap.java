@@ -36,7 +36,7 @@ public class GameMap{
     public void update() {  //updates position of all objects
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
-                //obj.updatePosition();
+                obj.updatePosition();
             }
         }
         adjustCamera();
@@ -77,7 +77,7 @@ public class GameMap{
     public GameObject addGameObject(GameObject obj, int layer) {
         layers.putIfAbsent(layer, new ArrayList<>());   //creates new layer if it doesnt already exist
         layers.get(layer).add(obj);
-        //obj.setLayerObjects(layers.get(layer));  //creates a copy of the array whith all the objects in the same layer
+        obj.setLayerObjects(layers.get(layer));  //creates a copy of the array whith all the objects in the same layer
         return obj;
     }
 

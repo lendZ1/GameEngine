@@ -38,7 +38,7 @@ public class GameWindow {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
         // Create the window
-        window = glfwCreateWindow(300, 300, "Game Window", NULL, NULL);
+        window = glfwCreateWindow(1000, 1000, "Game Window", NULL, NULL);
         if ( window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
