@@ -15,7 +15,7 @@ public class Game {
     GameLoop gameLoop;
     GameMap gameMap;
     public Game(){
-        window=new GameWindow().provideWindow();
+        window=new GameWindow(1000,1000).provideWindow();
         gameLoop = new GameLoop(window, this);
         gameMap = new GameMap(1000, 1000);
         gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
