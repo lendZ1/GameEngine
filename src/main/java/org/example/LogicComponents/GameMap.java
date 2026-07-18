@@ -39,7 +39,7 @@ public class GameMap{
                 obj.updatePosition();
             }
         }
-        adjustCamera();
+        //adjustCamera();
     }
 
     private void adjustCamera(){

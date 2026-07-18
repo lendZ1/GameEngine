@@ -47,7 +47,7 @@ public class GameLoop implements Runnable {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0.0, 300.0, 300.0, 0.0, -1.0, 1.0);
+        glOrtho(0.0, 1000.0, 1000.0, 0.0, -1.0, 1.0);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
@@ -67,11 +67,12 @@ public class GameLoop implements Runnable {
 
             while (delta >= 1) {
                 if (paused) break; // stop processing ticks immediately when paused
-
-                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-                game.update();
-
                 delta--;
+            }
+
+            if (!paused) {
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+                game.update(); // draw once per frame
             }
 
             try {
@@ -79,7 +80,6 @@ public class GameLoop implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
 
             glfwSwapBuffers(window); // swap the color buffers
 
