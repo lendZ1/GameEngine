@@ -8,4 +8,25 @@ public class Player extends GameObject{
         super(x, y, height, width, color);
         this.speed=speed;
     }
+
+    public void move(Direction direction) {
+        switch (direction) {
+            case UP:
+                ypos -= speed;
+                break;
+            case DOWN:
+                ypos += speed;
+                break;
+            case LEFT:
+                xpos -= speed;
+                break;
+            case RIGHT:
+                xpos += speed;
+                break;
+        }
+    }
+}
+
+enum Direction {
+    UP, DOWN, LEFT, RIGHT
 }

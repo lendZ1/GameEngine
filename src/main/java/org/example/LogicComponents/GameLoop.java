@@ -17,10 +17,12 @@ public class GameLoop implements Runnable {
     private long window;
     private volatile boolean paused = false;
     private Game game;
+    private EventHandler eventHandler;
 
-    public GameLoop(long window, Game game) {
+    public GameLoop(long window, Game game, EventHandler eventHandler) {
         this.window=window;
         this.game=game;
+        this.eventHandler=eventHandler;
     }
 
     public void pause(){
@@ -72,6 +74,8 @@ public class GameLoop implements Runnable {
 
             if (!paused) {
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+
+                eventHandler.handlePlayerInput();
                 game.update(); // draw once per frame
             }
 
