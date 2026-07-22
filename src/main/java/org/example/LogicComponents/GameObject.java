@@ -9,7 +9,7 @@ public class GameObject {
 
     public int xpos, ypos;
     public int height, width;
-    private int xspeed=1 , yspeed=1;
+    private int xspeed=0 , yspeed=0;
     private Color color;
     public static GameMap gameMap;
     private State state;
@@ -44,11 +44,13 @@ public class GameObject {
 
 
     public void updatePosition(){
+
+        //simulates position of next tick to check for collision
         int nextX = xpos+xspeed;
         int nextY = ypos+yspeed;
 
         if (!bounce){
-            if (!collisionAt(nextX, ypos)) xpos = nextX;    //checks horisontal collision
+            if (!collisionAt(nextX, ypos)) xpos = nextX;    //checks horizontal collision
             else xpos += collisionDistance;
 
             if (!collisionAt(xpos, nextY)) ypos = nextY;    //checks vertical collision
@@ -56,13 +58,13 @@ public class GameObject {
         }
 
         else{
-            if (!collisionAt(nextX, ypos)) xpos = nextX;
+            if (!collisionAt(nextX, ypos)) xpos = nextX;    //checks horizontal collision
             else {
                 setSpeed(-xspeed, yspeed);
                 xpos += collisionDistance;
             }
 
-            if (!collisionAt(xpos, nextY)) ypos = nextY;
+            if (!collisionAt(xpos, nextY)) ypos = nextY;    //checks vertical collision
             else {
                 setSpeed(xspeed, -yspeed);
                 ypos += collisionDistance;
@@ -73,7 +75,7 @@ public class GameObject {
     protected boolean collisionAt(int testX, int testY) {
         collisionDistance = 0;
 
-        // Check map bounds:
+        // Checks collision with map bounds:
         if (testX < 0) {
             collisionDistance = -xpos; // move to left edge
             return true;
@@ -89,18 +91,19 @@ public class GameObject {
         }
 
 
+        //checks collision for all objects in the same layer
         for (GameObject obj : layerObjects) {
             if (obj != this) {
-                // Check overlap in both axes
+                // Check overlap both horizontally and vertically
                 boolean overlapX = testX < obj.xpos + obj.width && testX + width > obj.xpos;
                 boolean overlapY = testY < obj.ypos + obj.height && testY + height > obj.ypos;
 
                 if (overlapX && overlapY) {
-                    // Determine if it's a horizontal or vertical collision
-                    int distLeft   = Math.abs(testX + width - obj.xpos);           // distance from left collission
-                    int distRight  = Math.abs(testX - (obj.xpos + obj.width));     // distance from right collission
-                    int distTop    = Math.abs(testY + height - obj.ypos);          // distance from top collission
-                    int distBottom = Math.abs(testY - (obj.ypos + obj.height));    // distance from bottom collission
+                    //calculates the distances of collision from each side of the object
+                    int distLeft   = Math.abs(testX + width - obj.xpos);           // distance from left collision
+                    int distRight  = Math.abs(testX - (obj.xpos + obj.width));     // distance from right collision
+                    int distTop    = Math.abs(testY + height - obj.ypos);          // distance from top collision
+                    int distBottom = Math.abs(testY - (obj.ypos + obj.height));    // distance from bottom collision
 
                     // Pick the smallest distance — that's the collision side
                     int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
