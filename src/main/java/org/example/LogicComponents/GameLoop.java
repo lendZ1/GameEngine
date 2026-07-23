@@ -17,12 +17,10 @@ public class GameLoop implements Runnable {
     private long window;
     private volatile boolean paused = false;
     private Game game;
-    private EventHandler eventHandler;
 
-    public GameLoop(long window, Game game, EventHandler eventHandler) {
+    public GameLoop(long window, Game game) {
         this.window=window;
         this.game=game;
-        this.eventHandler=eventHandler;
     }
 
     public void pause(){
@@ -30,6 +28,9 @@ public class GameLoop implements Runnable {
     }
     public void resume(){
         paused = false;
+    }
+    public void togglePause() {
+        paused = !paused;
     }
 
     @Override
@@ -56,11 +57,14 @@ public class GameLoop implements Runnable {
         while (!glfwWindowShouldClose(window)) {
 
             if (paused) {
-                // while paused, yield and keep the lastTime fresh so we don't accumulate delta
-                while (paused) {
-                    Thread.yield();
+                glfwPollEvents();
+                try {
+                    Thread.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
                 lastTime = System.nanoTime();
+                continue;
             }
 
             now = System.nanoTime();
@@ -72,12 +76,8 @@ public class GameLoop implements Runnable {
                 delta--;
             }
 
-            if (!paused) {
-                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-
-                eventHandler.handlePlayerInput();
-                game.update(); // draw once per frame
-            }
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            game.update(); // draw once per frame
 
             try {
                 Thread.sleep(2); // optional: prevents CPU overload

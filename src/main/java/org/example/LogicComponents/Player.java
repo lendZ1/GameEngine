@@ -2,6 +2,7 @@ package org.example.LogicComponents;
 
 import java.awt.*;
 
+
 public class Player extends GameObject{
     
     public int speed;
@@ -21,23 +22,19 @@ public class Player extends GameObject{
         this.speed=speed;
     }
 
-    public void move(Direction direction) {
+    public void move(Direction direction, boolean moving) {
         switch (direction) {
             case UP:
-                up=true;
-                ypos -= speed;
+                up=moving;
                 break;
             case DOWN:
-                down=true;
-                ypos += speed;
+                down=moving;
                 break;
             case LEFT:
-                left=true;
-                xpos -= speed;
+                left=moving;
                 break;
             case RIGHT:
-                right=true;
-                xpos += speed;
+                right=moving;
                 break;
         }
     }

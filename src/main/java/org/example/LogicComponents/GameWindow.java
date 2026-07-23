@@ -15,6 +15,7 @@ public class GameWindow {
     private long window;
     private int width;
     private int height;
+    private EventHandler eventHandler;
 
     public GameWindow(int width, int height){
         this.width = width;
@@ -45,10 +46,11 @@ public class GameWindow {
         if ( window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
 
-        // Setup a key callback. It will be called every time a key is pressed, repeated or released.
+        // Setup a key callback. GLFW delivers key events here, not through AWT listeners.
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-            if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
-                glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
+            if (eventHandler != null) {
+                eventHandler.handleKeyEvent(key, action);
+            }
         });
 
         // Get the thread stack and push a new frame
@@ -85,6 +87,10 @@ public class GameWindow {
 
     public long provideWindow(){
         return window;
+    }
+
+    public void setEventHandler(EventHandler eventHandler) {
+        this.eventHandler = eventHandler;
     }
 
 }

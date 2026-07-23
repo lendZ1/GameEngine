@@ -19,9 +19,11 @@ public class Game {
 
     public Game(){
         player = new Player(200, 200, 50, 50, Color.BLUE, 5);
-        window=new GameWindow(1000,1000).provideWindow();
-        eventHandler = new EventHandler(window, player);
-        gameLoop = new GameLoop(window, this, eventHandler);
+        GameWindow gameWindow = new GameWindow(1000,1000);
+        window = gameWindow.provideWindow();
+        gameLoop = new GameLoop(window, this);
+        eventHandler = new EventHandler(player, gameLoop);
+        gameWindow.setEventHandler(eventHandler);
         gameMap = new GameMap(1000, 1000);
         gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
         gameMap.addPlayer(player,0);
