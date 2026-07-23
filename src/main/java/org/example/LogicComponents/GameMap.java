@@ -42,6 +42,14 @@ public class GameMap{
         //adjustCamera();
     }
 
+    public void draw() {  //draws the new updated positions for all objects
+        for (ArrayList<GameObject> objects : layers.values()) {
+            for (GameObject obj : objects) {
+                obj.draw(cameraOffsetX, cameraOffsetY);
+            }
+        }
+    }
+
     private void adjustCamera(){
         // Calculate target camera position to center player
         int targetCameraX = player.xpos + player.width / 2 - panelWidth / 2;
@@ -62,14 +70,6 @@ public class GameMap{
             cameraOffsetY = Math.min(cameraOffsetY + player.speed, targetCameraY);
         } else if (cameraOffsetY > targetCameraY) {
             cameraOffsetY = Math.max(cameraOffsetY - player.speed, targetCameraY);
-        }
-    }
-
-    public void draw() {  //draws the new updated positions for all objects
-        for (ArrayList<GameObject> objects : layers.values()) {
-            for (GameObject obj : objects) {
-                obj.draw(cameraOffsetX, cameraOffsetY);
-            }
         }
     }
 
