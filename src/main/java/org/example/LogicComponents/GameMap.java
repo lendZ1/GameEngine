@@ -2,13 +2,12 @@ package org.example.LogicComponents;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
-import java.awt.Graphics;
 
 public class GameMap{
     public int width, height;
     private Player player;
     private int cameraOffsetX=0, cameraOffsetY=0;
-    private int panelWidth, panelHeight;
+    private int windowWidth, windowHeight;
     private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer, 1 being lowest
 
     public GameMap(int width, int height) {
@@ -18,9 +17,9 @@ public class GameMap{
         GameObject.gameMap=this;    //sets a reference to itself from all gameobjects
     }
 
-    public void setPanelSize(int panelWidth, int panelHeight){
-        this.panelWidth=panelWidth;
-        this.panelHeight=panelHeight;
+    public void setWindowSize(int windowWidth, int windowHeight){
+        this.windowWidth=windowWidth;
+        this.windowHeight=windowHeight;
     }
 
 
@@ -39,7 +38,7 @@ public class GameMap{
                 obj.updatePosition();
             }
         }
-        //adjustCamera();
+        adjustCamera();
     }
 
     public void draw() {  //draws the new updated positions for all objects
@@ -52,12 +51,13 @@ public class GameMap{
 
     private void adjustCamera(){
         // Calculate target camera position to center player
-        int targetCameraX = player.xpos + player.width / 2 - panelWidth / 2;
-        int targetCameraY = player.ypos + player.height / 2 - panelHeight / 2;
+        int targetCameraX = player.xpos + player.width / 2 - windowWidth / 2;
+        int targetCameraY = player.ypos + player.height / 2 - windowHeight / 2;
 
         // Clamp to map boundaries
-        targetCameraX = Math.max(0, Math.min(targetCameraX, width - panelWidth));
-        targetCameraY = Math.max(0, Math.min(targetCameraY, height - panelHeight));
+        targetCameraX = Math.clamp(targetCameraX, 0, width - windowWidth);
+        targetCameraY = Math.clamp(targetCameraY, 0, height - windowHeight);
+
 
         // Smoothly move camera toward target instead of jumping
         if (cameraOffsetX < targetCameraX) {
@@ -75,9 +75,9 @@ public class GameMap{
 
 
     public GameObject addGameObject(GameObject obj, int layer) {
-        layers.putIfAbsent(layer, new ArrayList<>());   //creates new layer if it doesnt already exist
+        layers.putIfAbsent(layer, new ArrayList<>());   //creates new layer if it doesn't already exist
         layers.get(layer).add(obj);
-        obj.setLayerObjects(layers.get(layer));  //creates a copy of the array whith all the objects in the same layer
+        obj.setLayerObjects(layers.get(layer));  //creates a copy of the array with all the objects in the same layer
         return obj;
     }
 
