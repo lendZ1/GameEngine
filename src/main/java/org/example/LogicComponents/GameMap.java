@@ -10,28 +10,22 @@ public class GameMap{
     private int windowWidth, windowHeight;
     private TreeMap<Integer, ArrayList<GameObject>> layers;    // TreeMap to hold GameObjects by layer, 1 being lowest
 
-    public GameMap(int width, int height) {
+    public GameMap(int width, int height, int windowWidth, int windowHeight) {
         this.width = width;
         this.height = height;
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
         layers = new TreeMap<>();
         GameObject.gameMap=this;    //sets a reference to itself from all gameobjects
     }
 
-    public void setWindowSize(int windowWidth, int windowHeight){
-        this.windowWidth=windowWidth;
-        this.windowHeight=windowHeight;
-    }
+
+    public int height(){ return height;}
+
+    public int width(){ return width;}
 
 
-    public int height(){
-        return height;
-    }
-
-    public int width(){
-        return width;
-    }
-
-
+    //updates position of all objects
     public void update() {  //updates position of all objects
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
@@ -41,6 +35,7 @@ public class GameMap{
         adjustCamera();
     }
 
+    //draws all the objects with updated positions
     public void draw() {  //draws the new updated positions for all objects
         for (ArrayList<GameObject> objects : layers.values()) {
             for (GameObject obj : objects) {
@@ -49,6 +44,8 @@ public class GameMap{
         }
     }
 
+
+    //method to adjust the camera so that the player is always in the middle
     private void adjustCamera(){
         // Calculate target camera position to center player
         int targetCameraX = player.xpos + player.width / 2 - windowWidth / 2;
@@ -74,6 +71,7 @@ public class GameMap{
     }
 
 
+    //add a gameobject to the wanted layer
     public GameObject addGameObject(GameObject obj, int layer) {
         layers.putIfAbsent(layer, new ArrayList<>());   //creates new layer if it doesn't already exist
         layers.get(layer).add(obj);
@@ -81,6 +79,7 @@ public class GameMap{
         return obj;
     }
 
+    //add a player to the wanted layer
     public GameObject addPlayer(Player player, int layer){  //keeps track of the player object when added
         this.player=player;
         return addGameObject(player, layer);
