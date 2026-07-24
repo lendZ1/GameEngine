@@ -154,4 +154,9 @@ public class GameObject {
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
         this.layerObjects = layerObjects;
     }
+
+    public void addImage(String name, String loc){
+         Tools.loadTexture(Tools.loadImage(loc));
+
+    }
 }

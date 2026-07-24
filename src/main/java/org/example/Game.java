@@ -36,10 +36,13 @@ public class Game {
         gameMap = new GameMap(1500, 1500, windowWidth, windowHeight);
         gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
         gameMap.addPlayer(player,0);
+
     }
 
     public void run(){
         gameLoop.run();
+        player.addImage("Player","/var/home/erlend/Documents/projects/GameEngine/src/resources/images/sprites/knight.png");
+
     }
 
     public void update(){
