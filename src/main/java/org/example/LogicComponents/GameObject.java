@@ -1,7 +1,9 @@
 package org.example.LogicComponents;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -15,7 +17,7 @@ public class GameObject {
     private State state;
     private static java.util.ArrayList<GameObject> layerObjects;    //list of all objects on the same layer, used for collision detection
 
-    //public static GameMap gameMap;
+    private HashMap<String, BufferedImage> images;
 
     //distance to the closest obstacle
     protected int collisionDistanceX, collisionDistanceY;
