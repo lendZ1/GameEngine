@@ -28,7 +28,7 @@ public class Game {
         GameWindow gameWindow = new GameWindow(windowWidth, windowHeight);
         window = gameWindow.provideWindow();
 
-        gameLoop = new GameLoop(window, this);
+        gameLoop = new GameLoop(window, this, player);
 
         eventHandler = new EventHandler(player, gameLoop);
         gameWindow.setEventHandler(eventHandler);
@@ -41,8 +41,6 @@ public class Game {
 
     public void run(){
         gameLoop.run();
-        player.addImage("Player","/var/home/erlend/Documents/projects/GameEngine/src/resources/images/sprites/knight.png");
-
     }
 
     public void update(){

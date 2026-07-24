@@ -17,7 +17,8 @@ public class GameObject {
     private State state;
     private static java.util.ArrayList<GameObject> layerObjects;    //list of all objects on the same layer, used for collision detection
 
-    private HashMap<String, BufferedImage> images;
+    private HashMap<String, Integer> images;
+    private String currentImage = null;
 
     //distance to the closest obstacle
     protected int collisionDistanceX, collisionDistanceY;
@@ -32,16 +33,37 @@ public class GameObject {
         this.height= height;
         this.width=width;
         this.color = color;
-      }
+       this.images = new HashMap<>();
+     }
 
      public void draw(int cameraOffsetX, int cameraOffsetY){
-         glColor3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f);
-         glBegin(GL_QUADS);
-         glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
-         glVertex2f(xpos + width - cameraOffsetX, ypos - cameraOffsetY);
-         glVertex2f(xpos + width - cameraOffsetX, ypos + height - cameraOffsetY);
-         glVertex2f(xpos - cameraOffsetX,     ypos + height - cameraOffsetY);
-         glEnd();
+         if (currentImage != null && images.containsKey(currentImage)) {
+             // Draw with texture
+             int textureID = images.get(currentImage);
+             glEnable(GL_TEXTURE_2D);
+             glBindTexture(GL_TEXTURE_2D, textureID);
+             glBegin(GL_QUADS);
+             // Draw quad with texture coordinates (0,0) to (1,1)
+             glTexCoord2f(0, 0);
+             glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
+             glTexCoord2f(1, 0);
+             glVertex2f(xpos + width - cameraOffsetX, ypos - cameraOffsetY);
+             glTexCoord2f(1, 1);
+             glVertex2f(xpos + width - cameraOffsetX, ypos + height - cameraOffsetY);
+             glTexCoord2f(0, 1);
+             glVertex2f(xpos - cameraOffsetX, ypos + height - cameraOffsetY);
+             glEnd();
+             glDisable(GL_TEXTURE_2D);
+         } else {
+             // Draw with color fallback
+             glColor3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f);
+             glBegin(GL_QUADS);
+             glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
+             glVertex2f(xpos + width - cameraOffsetX, ypos - cameraOffsetY);
+             glVertex2f(xpos + width - cameraOffsetX, ypos + height - cameraOffsetY);
+             glVertex2f(xpos - cameraOffsetX, ypos + height - cameraOffsetY);
+             glEnd();
+         }
      }
 
 
@@ -156,7 +178,7 @@ public class GameObject {
     }
 
     public void addImage(String name, String loc){
-         Tools.loadTexture(Tools.loadImage(loc));
-
+         images.put(name, Tools.loadTexture(Tools.loadImage(loc)));
+         currentImage = name;
     }
 }

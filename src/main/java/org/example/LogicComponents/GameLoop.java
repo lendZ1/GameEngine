@@ -17,10 +17,12 @@ public class GameLoop implements Runnable {
     private long window;
     private volatile boolean paused = false;
     private Game game;
+    private Player player;
 
-    public GameLoop(long window, Game game) {
+    public GameLoop(long window, Game game, Player player) {
         this.window=window;
         this.game=game;
+        this.player=player;
     }
 
     public void pause(){
@@ -35,6 +37,7 @@ public class GameLoop implements Runnable {
 
     @Override
     public void run() {
+
         long lastTime = System.nanoTime();
         long now;
         double delta = 0;
@@ -53,6 +56,9 @@ public class GameLoop implements Runnable {
         glOrtho(0.0, 1000.0, 1000.0, 0.0, -1.0, 1.0);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+
+        player.addImage("Player","/var/home/erlend/Documents/projects/GameEngine/src/resources/images/sprites/knight.png");
+
 
         while (!glfwWindowShouldClose(window)) {
 
