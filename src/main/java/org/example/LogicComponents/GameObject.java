@@ -1,7 +1,8 @@
 package org.example.LogicComponents;
 
+import org.example.Enums.State;
+
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
