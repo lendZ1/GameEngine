@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -17,8 +18,10 @@ public class GameObject {
     private State state;
     private static java.util.ArrayList<GameObject> layerObjects;    //list of all objects on the same layer, used for collision detection
 
-    private HashMap<String, Integer> images;
-    private String currentImage = null;
+    private int sprite; //image containing all the sprites
+    private HashMap<State, ArrayList<List<Integer>>> images;    //list of list, where the inner list is the 4 corners of the sprite in the image, and the outer list is a list of all the sprites for a given state
+    private int spriteIndex=0;
+
 
     //distance to the closest obstacle
     protected int collisionDistanceX, collisionDistanceY;
@@ -37,9 +40,10 @@ public class GameObject {
      }
 
      public void draw(int cameraOffsetX, int cameraOffsetY){
-         if (currentImage != null && images.containsKey(currentImage)) {
+         if (sprite != 0 && images.containsKey(state)) {
              // Draw with texture
-             int textureID = images.get(currentImage);
+             List<Integer> imageCoords = images.get(state).get((int) spriteIndex % images.get(state).size());
+             int textureID = imageCoords.get(0);
              glEnable(GL_TEXTURE_2D);
              glBindTexture(GL_TEXTURE_2D, textureID);
              glBegin(GL_QUADS);
@@ -177,8 +181,11 @@ public class GameObject {
         this.layerObjects = layerObjects;
     }
 
-    public void addImage(String name, String loc){
-         images.put(name, Tools.loadTexture(Tools.loadImage(loc)));
-         currentImage = name;
+    public void addSprite(String loc){
+         sprite=Tools.loadTexture(Tools.loadImage(loc));
+    }
+
+    public void defineSpriteImages(State state, ArrayList<List<Integer>> spriteImages) {
+        images.put(state, spriteImages);
     }
 }
