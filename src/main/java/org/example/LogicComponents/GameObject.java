@@ -21,7 +21,7 @@ public class GameObject {
     private static java.util.ArrayList<GameObject> layerObjects;    //list of all objects on the same layer, used for collision detection
 
     private BufferedImage sprite; //image containing all the sprites
-    private HashMap<State, ArrayList<List<Integer>>> images;    //list of list, where the inner list is the 4 corners of the sprite in the image, and the outer list is a list of all the sprites for a given state
+    private HashMap<State, ArrayList<Integer>> images;    //list of list, where the inner list is the 4 corners of the sprite in the image, and the outer list is a list of all the sprites for a given state
     private int spriteIndex=0;
 
 
@@ -44,8 +44,7 @@ public class GameObject {
      public void draw(int cameraOffsetX, int cameraOffsetY){
          if (sprite != null && images.containsKey(state)) {
              // Draw with texture
-             List<Integer> imageCoords = images.get(state).get((int) spriteIndex % images.get(state).size());
-             int textureID = imageCoords.get(0);
+             int textureID = images.get(state).get((int) spriteIndex % images.get(state).size());
              glEnable(GL_TEXTURE_2D);
              glBindTexture(GL_TEXTURE_2D, textureID);
              glBegin(GL_QUADS);
@@ -188,10 +187,42 @@ public class GameObject {
     }
 
     public void defineSpriteImages(State state, ArrayList<List<Integer>> spriteImages) {
-        images.put(state, spriteImages);
+        if (sprite == null) {
+            throw new IllegalStateException("Load a sprite sheet before defining sprite images.");
+        }
+
+        ArrayList<Integer> textureIds = new ArrayList<>();
+
+        for (List<Integer> spriteImage : spriteImages) {
+            if (spriteImage == null || spriteImage.size() != 4) {
+                throw new IllegalArgumentException("Each sprite image must contain exactly 4 coordinates.");
+            }
+
+            int x1 = spriteImage.get(0);
+            int y1 = spriteImage.get(1);
+            int x2 = spriteImage.get(2);
+            int y2 = spriteImage.get(3);
+
+            int minX = Math.min(x1, x2);
+            int minY = Math.min(y1, y2);
+            int maxX = Math.max(x1, x2);
+            int maxY = Math.max(y1, y2);
+
+            if (minX < 0 || minY < 0 || maxX > sprite.getWidth() || maxY > sprite.getHeight() || minX >= maxX || minY >= maxY) {
+                throw new IllegalArgumentException("Sprite coordinates are out of bounds or invalid.");
+            }
+
+            textureIds.add(Tools.loadTexture(cropSprite(spriteImage)));
+        }
+
+        images.put(state, textureIds);
     }
 
-    private void cropSprite(){
-
+    private BufferedImage cropSprite(List<Integer> spriteImage) {
+        int minX = Math.min(spriteImage.get(0), spriteImage.get(2));
+        int minY = Math.min(spriteImage.get(1), spriteImage.get(3));
+        int maxX = Math.max(spriteImage.get(0), spriteImage.get(2));
+        int maxY = Math.max(spriteImage.get(1), spriteImage.get(3));
+        return sprite.getSubimage(minX, minY, maxX - minX, maxY - minY);
     }
 }
