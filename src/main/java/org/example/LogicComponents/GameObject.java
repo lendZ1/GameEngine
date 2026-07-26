@@ -3,6 +3,7 @@ package org.example.LogicComponents;
 import org.example.Enums.State;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class GameObject {
     private State state;
     private static java.util.ArrayList<GameObject> layerObjects;    //list of all objects on the same layer, used for collision detection
 
-    private int sprite; //image containing all the sprites
+    private BufferedImage sprite; //image containing all the sprites
     private HashMap<State, ArrayList<List<Integer>>> images;    //list of list, where the inner list is the 4 corners of the sprite in the image, and the outer list is a list of all the sprites for a given state
     private int spriteIndex=0;
 
@@ -41,7 +42,7 @@ public class GameObject {
      }
 
      public void draw(int cameraOffsetX, int cameraOffsetY){
-         if (sprite != 0 && images.containsKey(state)) {
+         if (sprite != null && images.containsKey(state)) {
              // Draw with texture
              List<Integer> imageCoords = images.get(state).get((int) spriteIndex % images.get(state).size());
              int textureID = imageCoords.get(0);
@@ -183,10 +184,14 @@ public class GameObject {
     }
 
     public void addSprite(String loc){
-         sprite=Tools.loadTexture(Tools.loadImage(loc));
+         sprite=Tools.loadImage(loc);
     }
 
     public void defineSpriteImages(State state, ArrayList<List<Integer>> spriteImages) {
         images.put(state, spriteImages);
+    }
+
+    private void cropSprite(){
+
     }
 }
