@@ -1,4 +1,4 @@
-package main.java.org.example;// Simple LWJGL GLFW window test
+package org.example;// Simple LWJGL GLFW window test
 // Requires LWJGL (lwjgl, lwjgl-glfw, lwjgl-opengl) on the classpath and native libraries available.
 
 import org.lwjgl.glfw.GLFW;

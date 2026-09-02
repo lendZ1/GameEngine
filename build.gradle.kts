@@ -8,7 +8,7 @@ repositories {
 }
 
 val lwjglVersion = "3.3.6"
-val lwjglNatives = "natives-linux"
+val lwjglNatives = "natives-windows"
 
 dependencies {
     implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
@@ -23,6 +23,6 @@ dependencies {
 }
 
 application {
-    mainClass.set("org.example.WindowTest")
+    mainClass.set("org.example.Main")
 }
 
