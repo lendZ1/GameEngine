@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import static org.lwjgl.opengl.GL11C.*;
@@ -78,6 +79,22 @@ class SpriteSheet {
         }
         return spriteSheet.getSubimage(x, y, width, height);
     }
+
+    //Takes a list of list of coordinates and returns a list of texture IDs for each sprite defined by those coordinates
+    public ArrayList<Integer> defineImage(ArrayList<ArrayList<Integer>> coordinates) {
+        ArrayList<Integer> textureIDs = new ArrayList<>();
+        for (ArrayList<Integer> coord : coordinates) {
+            int x = coord.get(0);
+            int y = coord.get(1);
+            int width = coord.get(2);
+            int height = coord.get(3);
+            BufferedImage sprite = getSprite(x, y, width, height);
+            int textureID = ImageLoader.loadTexture(sprite);
+            textureIDs.add(textureID);
+        }
+        return textureIDs;
+    }
+
 }
 
 

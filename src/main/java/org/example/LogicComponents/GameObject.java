@@ -22,8 +22,8 @@ public class GameObject {
 
     private SpriteSheet spriteSheet;
 
-    //key is the state, value is a list of all the coordinates of the sprite images in the sprite sheet for that state
-    private HashMap<State, ArrayList<ArrayList<Integer>>> images;
+    //key is the state, value is a list of texture IDs for the images corresponding to that state
+    private HashMap<State, ArrayList<Integer>> images;
     private int spriteIndex=0;
 
 
@@ -191,6 +191,6 @@ public class GameObject {
 
     //Takes a state and a list of coordinates for the sprite images in the sprite sheet for that state
     public void defineSpriteImages(State state, ArrayList<ArrayList<Integer>> coordinates) {
-        images.put(state, coordinates);
+        images.put(state, spriteSheet.defineImage(coordinates));
     }
 }
