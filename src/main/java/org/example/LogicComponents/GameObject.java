@@ -36,6 +36,7 @@ public class GameObject {
         this.height= height;
         this.width=width;
         this.color = color;
+        this.state = State.IDLE;
      }
 
      public void draw(int cameraOffsetX, int cameraOffsetY){

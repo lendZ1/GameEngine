@@ -37,7 +37,10 @@ public class Game {
         gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
 
         player.addSprite("src/resources/images/sprites/knight.png");
-
+        player.defineSpriteImages(State.IDLE, new ArrayList<>(Arrays.asList(
+                new ArrayList<>(Arrays.asList(0, 0, 50, 50)),
+                new ArrayList<>(Arrays.asList(50, 50, 50, 50))  )));
+        gameMap.addPlayer(player,0);
 
     }
 

@@ -79,6 +79,9 @@ class SpriteSheet {
     public SpriteSheet(String path) {
         this.spriteSheet = ImageLoader.loadImage(path);
         images = new HashMap<>();
+        for (State state : State.values()) {
+            images.put(state, new ArrayList<>());
+        }
     }
 
     public BufferedImage getSprite(int x, int y, int width, int height) {
@@ -113,7 +116,9 @@ class SpriteSheet {
     }
 
     public boolean notEmpty(State state){
-        return images.get(state)!=null && !images.get(state).isEmpty();
+        Boolean notEmpty = images.containsKey(state) && !images.get(state).isEmpty();
+        //System.out.println(notEmpty + " " + images.get(state)+ "state: " + state);
+        return notEmpty;
     }
 
 }
