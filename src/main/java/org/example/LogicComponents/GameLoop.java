@@ -47,7 +47,7 @@ public class GameLoop implements Runnable {
         // LWJGL detects the context that is current in the current thread,
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
-        GL.createCapabilities();
+        //GL.createCapabilities();
 
         // Set the clear color
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);

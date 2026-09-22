@@ -3,6 +3,7 @@ package org.example.LogicComponents;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
 
 import java.nio.IntBuffer;
@@ -78,6 +79,7 @@ public class GameWindow {
 
         // Make the OpenGL context current
         glfwMakeContextCurrent(window);
+        GL.createCapabilities();
         // Enable v-sync
         glfwSwapInterval(1);
 

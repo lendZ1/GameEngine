@@ -1,13 +1,13 @@
 package org.example;
 
 import org.example.LogicComponents.*;
-import org.lwjgl.opengl.GL;
+import org.example.Enums.State;
+
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
 
 public class Game {
     GameObject gameObject;
@@ -24,7 +24,6 @@ public class Game {
         windowHeight=1000;
 
         player = new Player(200, 200, 50, 50, Color.BLUE, 5);
-        player.addSprite("src/resources/images/sprites/knight.png");
 
         GameWindow gameWindow = new GameWindow(windowWidth, windowHeight);
         window = gameWindow.provideWindow();
@@ -36,7 +35,9 @@ public class Game {
 
         gameMap = new GameMap(1500, 1500, windowWidth, windowHeight);
         gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
-        gameMap.addPlayer(player,0);
+
+        player.addSprite("src/resources/images/sprites/knight.png");
+
 
     }
 
