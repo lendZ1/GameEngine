@@ -183,7 +183,7 @@ public class GameObject {
     }
 
     public void addSprite(String loc){
-         sprite=Tools.loadImage(loc);
+         sprite=ImageLoader.loadImage(loc);
     }
 
     public void defineSpriteImages(State state, ArrayList<List<Integer>> spriteImages) {
@@ -212,7 +212,7 @@ public class GameObject {
                 throw new IllegalArgumentException("Sprite coordinates are out of bounds or invalid.");
             }
 
-            textureIds.add(Tools.loadTexture(cropSprite(spriteImage)));
+            textureIds.add(ImageLoader.loadTexture(cropSprite(spriteImage)));
         }
 
         images.put(state, textureIds);

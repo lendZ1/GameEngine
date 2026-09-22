@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 import static org.lwjgl.opengl.GL11C.*;
 
-public class Tools {
+class ImageLoader {
     private static final int BYTES_PER_PIXEL = 4;//3 for RGB, 4 for RGBA
     public static int loadTexture(BufferedImage image){
 
@@ -64,3 +64,5 @@ public class Tools {
         return null;
     }
 }
+
+
