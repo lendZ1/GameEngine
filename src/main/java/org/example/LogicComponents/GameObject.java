@@ -22,10 +22,6 @@ public class GameObject {
 
     private SpriteSheet spriteSheet;
 
-    //key is the state, value is a list of texture IDs for the images corresponding to that state
-    private HashMap<State, ArrayList<Integer>> images;
-    private int spriteIndex=0;
-
 
     //distance to the closest obstacle
     protected int collisionDistanceX, collisionDistanceY;
@@ -40,16 +36,17 @@ public class GameObject {
         this.height= height;
         this.width=width;
         this.color = color;
-       this.images = new HashMap<>();
      }
 
      public void draw(int cameraOffsetX, int cameraOffsetY){
-         if (spriteSheet != null && images.containsKey(state)) {
+         if (spriteSheet != null && spriteSheet.notEmpty(state)) {
              // Draw with texture
-             //int textureID = images.get(state).get((ArrayList<Integer>) images.get(state).size());
+             int textureID = spriteSheet.getCurrentImage(state);
+
              glEnable(GL_TEXTURE_2D);
-             //glBindTexture(GL_TEXTURE_2D, textureID);
+             glBindTexture(GL_TEXTURE_2D, textureID);
              glBegin(GL_QUADS);
+
              // Draw quad with texture coordinates (0,0) to (1,1)
              glTexCoord2f(0, 0);
              glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
@@ -191,6 +188,6 @@ public class GameObject {
 
     //Takes a state and a list of coordinates for the sprite images in the sprite sheet for that state
     public void defineSpriteImages(State state, ArrayList<ArrayList<Integer>> coordinates) {
-        images.put(state, spriteSheet.defineImage(coordinates));
+        spriteSheet.defineImage(state, coordinates);
     }
 }

@@ -1,5 +1,6 @@
 package org.example.LogicComponents;
 
+import org.example.Enums.State;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL12;
 
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import static org.lwjgl.opengl.GL11C.*;
@@ -69,8 +71,14 @@ class ImageLoader {
 class SpriteSheet {
     private BufferedImage spriteSheet;
 
+    //key is the state, value is a list of texture IDs for the images corresponding to that state
+    private HashMap<State, ArrayList<Integer>> images;
+
+    int currentImageIndex=0;
+
     public SpriteSheet(String path) {
         this.spriteSheet = ImageLoader.loadImage(path);
+        images = new HashMap<>();
     }
 
     public BufferedImage getSprite(int x, int y, int width, int height) {
@@ -81,7 +89,7 @@ class SpriteSheet {
     }
 
     //Takes a list of list of coordinates and returns a list of texture IDs for each sprite defined by those coordinates
-    public ArrayList<Integer> defineImage(ArrayList<ArrayList<Integer>> coordinates) {
+    public void defineImage(State state, ArrayList<ArrayList<Integer>> coordinates) {
         ArrayList<Integer> textureIDs = new ArrayList<>();
         for (ArrayList<Integer> coord : coordinates) {
             int x = coord.get(0);
@@ -92,7 +100,20 @@ class SpriteSheet {
             int textureID = ImageLoader.loadTexture(sprite);
             textureIDs.add(textureID);
         }
-        return textureIDs;
+        images.put(state, textureIDs);
+    }
+
+    public Integer getCurrentImage(State state){
+        if (currentImageIndex==images.get(state).size()-1){
+            currentImageIndex=0;
+        } else {
+            currentImageIndex++;
+        }
+        return images.get(state).get(currentImageIndex);
+    }
+
+    public boolean notEmpty(State state){
+        return images.get(state)!=null && !images.get(state).isEmpty();
     }
 
 }
