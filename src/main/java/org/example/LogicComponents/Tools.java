@@ -109,10 +109,10 @@ class SpriteSheet {
     public Integer getCurrentImage(State state){
         if (currentImageIndex==images.get(state).size()-1){
             currentImageIndex=0;
-        } else {
-            currentImageIndex++;
         }
-        return images.get(state).get(currentImageIndex);
+        int image=images.get(state).get(currentImageIndex);
+        currentImageIndex++;
+        return image;
     }
 
     public boolean notEmpty(State state){

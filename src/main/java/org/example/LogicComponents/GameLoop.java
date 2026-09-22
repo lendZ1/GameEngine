@@ -57,8 +57,6 @@ public class GameLoop implements Runnable {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 
-        player.addSprite("/var/home/erlend/Documents/projects/GameEngine/src/resources/images/sprites/knight.png");
-
 
         while (!glfwWindowShouldClose(window)) {
 
