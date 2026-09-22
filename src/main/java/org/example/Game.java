@@ -24,6 +24,7 @@ public class Game {
         windowHeight=1000;
 
         player = new Player(200, 200, 50, 50, Color.BLUE, 5);
+        player.addSprite("src/resources/images/sprites/knight.png");
 
         GameWindow gameWindow = new GameWindow(windowWidth, windowHeight);
         window = gameWindow.provideWindow();

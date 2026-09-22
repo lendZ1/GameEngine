@@ -65,4 +65,19 @@ class ImageLoader {
     }
 }
 
+class SpriteSheet {
+    private BufferedImage spriteSheet;
+
+    public SpriteSheet(String path) {
+        this.spriteSheet = ImageLoader.loadImage(path);
+    }
+
+    public BufferedImage getSprite(int x, int y, int width, int height) {
+        if (spriteSheet == null) {
+            throw new IllegalStateException("Sprite sheet not loaded.");
+        }
+        return spriteSheet.getSubimage(x, y, width, height);
+    }
+}
+
 
