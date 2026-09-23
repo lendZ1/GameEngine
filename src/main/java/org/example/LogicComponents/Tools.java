@@ -71,6 +71,9 @@ class ImageLoader {
 class SpriteSheet {
     private BufferedImage spriteSheet;
 
+    //used to check if the state cahnges and imageindex need to be reset
+    private State currentState;
+
     //key is the state, value is a list of texture IDs for the images corresponding to that state
     private HashMap<State, ArrayList<Integer>> images;
 
@@ -106,9 +109,11 @@ class SpriteSheet {
         images.put(state, textureIDs);
     }
 
+    //returns the textureID of the image that is to be drawn for each update
     public Integer getCurrentImage(State state){
-        if (currentImageIndex==images.get(state).size()-1){
+        if ((currentImageIndex==images.get(state).size()-1) || !(state==currentState)){
             currentImageIndex=0;
+            currentState=state;
         }
         int image=images.get(state).get(currentImageIndex);
         currentImageIndex++;
