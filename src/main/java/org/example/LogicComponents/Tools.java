@@ -111,11 +111,13 @@ class SpriteSheet {
 
     //returns the textureID of the image that is to be drawn for each update
     public Integer getCurrentImage(State state){
-        if ((currentImageIndex==images.get(state).size()-1) || !(state==currentState)){
+        if ((currentImageIndex>images.get(state).size()-1) || !(state==currentState)){
             currentImageIndex=0;
             currentState=state;
+
         }
         int image=images.get(state).get(currentImageIndex);
+        System.out.println("currentImageIndex: " + currentImageIndex + " state: " + state + " image: " + image);
         currentImageIndex++;
         return image;
     }
