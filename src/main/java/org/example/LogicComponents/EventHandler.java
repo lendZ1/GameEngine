@@ -1,5 +1,7 @@
 package org.example.LogicComponents;
 
+import org.example.Enums.Direction;
+
 import static org.lwjgl.glfw.GLFW.*;
 
 public class EventHandler {

@@ -6,4 +6,8 @@ The engine handles user input, movement, collision, rendering sprites as well as
 
 ### On linux
 
-Input method in settings might make input in the engine work incorrectly
+Input method in settings might make input in the engine work incorrectly, as holding down keys might register as a trying to type special characters.
+This is tested on KDE Plasma.
+
+On Wayland, running will give an error that a restricted method was called, because wayland does not allow GL to set the windows position. This is fine
+

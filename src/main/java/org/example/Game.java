@@ -1,13 +1,13 @@
 package org.example;
 
 import org.example.LogicComponents.*;
-import org.lwjgl.opengl.GL;
+import org.example.Enums.State;
+
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
 
 public class Game {
     GameObject gameObject;
@@ -16,16 +16,37 @@ public class Game {
     GameMap gameMap;
     EventHandler eventHandler;
     Player player;
+    int windowHeight, windowWidth;
 
     public Game(){
+
+        windowWidth=1000;
+        windowHeight=1000;
+
         player = new Player(200, 200, 50, 50, Color.BLUE, 5);
-        GameWindow gameWindow = new GameWindow(1000,1000);
+
+        GameWindow gameWindow = new GameWindow(windowWidth, windowHeight);
         window = gameWindow.provideWindow();
-        gameLoop = new GameLoop(window, this);
+
+        gameLoop = new GameLoop(window, this, player);
+
         eventHandler = new EventHandler(player, gameLoop);
         gameWindow.setEventHandler(eventHandler);
-        gameMap = new GameMap(1000, 1000);
+
+        gameMap = new GameMap(1500, 1500, windowWidth, windowHeight);
         gameMap.addGameObject(new GameObject(100, 100, 50, 50, Color.RED), 0);
+
+        player.addSprite("src/resources/images/sprites/knight.png");
+        player.defineSpriteImages(State.IDLE, new ArrayList<>(Arrays.asList(
+                new ArrayList<>(Arrays.asList(0, 0, 64, 64)),
+                new ArrayList<>(Arrays.asList(64, 0, 64, 64)),
+                new ArrayList<>(Arrays.asList(128, 0, 64, 64)),
+                new ArrayList<>(Arrays.asList(0, 64, 64, 64)),
+                new ArrayList<>(Arrays.asList(64, 64, 64, 64)),
+                new ArrayList<>(Arrays.asList(128, 64, 64, 64)),
+                new ArrayList<>(Arrays.asList(0, 128, 64, 64)),
+                new ArrayList<>(Arrays.asList(64, 128, 64, 64))
+        )));
         gameMap.addPlayer(player,0);
 
     }

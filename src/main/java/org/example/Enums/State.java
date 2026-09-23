@@ -1,6 +1,6 @@
-package org.example.LogicComponents;
+package org.example.Enums;
 
-enum State{
+public enum State{
     IDLE,
     MOVING_UP,
     MOVING_DOWN,

@@ -12,6 +12,7 @@ val lwjglVersion = "3.3.6"
 
 //fetches correct natives for the current platform (windows, macos, linux)
 val lwjglNatives = when {
+    org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentArchitecture().isArm64 -> "natives-windows-arm64"
     org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem().isWindows -> "natives-windows"
     org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem().isMacOsX -> "natives-macos"
     org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.getCurrentOperatingSystem().isLinux -> "natives-linux"

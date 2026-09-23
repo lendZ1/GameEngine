@@ -1,5 +1,8 @@
 package org.example.LogicComponents;
 
+import org.example.Enums.Direction;
+import org.example.Enums.State;
+
 import java.awt.*;
 
 
@@ -94,9 +97,5 @@ public class Player extends GameObject{
         }
     }
 
-}
-
-enum Direction {
-    UP, DOWN, LEFT, RIGHT
 }
 

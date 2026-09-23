@@ -1,7 +1,12 @@
 package org.example.LogicComponents;
 
+import org.example.Enums.State;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -15,7 +20,8 @@ public class GameObject {
     private State state;
     private static java.util.ArrayList<GameObject> layerObjects;    //list of all objects on the same layer, used for collision detection
 
-    //public static GameMap gameMap;
+    private SpriteSheet spriteSheet;
+
 
     //distance to the closest obstacle
     protected int collisionDistanceX, collisionDistanceY;
@@ -30,16 +36,40 @@ public class GameObject {
         this.height= height;
         this.width=width;
         this.color = color;
-      }
+        this.state = State.IDLE;
+     }
 
      public void draw(int cameraOffsetX, int cameraOffsetY){
-         glColor3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f);
-         glBegin(GL_QUADS);
-         glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
-         glVertex2f(xpos + width - cameraOffsetX, ypos - cameraOffsetY);
-         glVertex2f(xpos + width - cameraOffsetX, ypos + height - cameraOffsetY);
-         glVertex2f(xpos - cameraOffsetX,     ypos + height - cameraOffsetY);
-         glEnd();
+         if (spriteSheet != null && spriteSheet.notEmpty(state)) {
+             // Draw with texture
+             int textureID = spriteSheet.getCurrentImage(state);
+
+             glEnable(GL_TEXTURE_2D);
+             glBindTexture(GL_TEXTURE_2D, textureID);
+             glBegin(GL_QUADS);
+
+             // Draw quad with texture coordinates (0,0) to (1,1)
+             glTexCoord2f(0, 0);
+             glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
+             glTexCoord2f(1, 0);
+             glVertex2f(xpos + width - cameraOffsetX, ypos - cameraOffsetY);
+             glTexCoord2f(1, 1);
+             glVertex2f(xpos + width - cameraOffsetX, ypos + height - cameraOffsetY);
+             glTexCoord2f(0, 1);
+             glVertex2f(xpos - cameraOffsetX, ypos + height - cameraOffsetY);
+             glEnd();
+             glDisable(GL_TEXTURE_2D);
+
+         } else {
+             // Draw with color fallback
+             glColor3f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f);
+             glBegin(GL_QUADS);
+             glVertex2f(xpos - cameraOffsetX, ypos - cameraOffsetY);
+             glVertex2f(xpos + width - cameraOffsetX, ypos - cameraOffsetY);
+             glVertex2f(xpos + width - cameraOffsetX, ypos + height - cameraOffsetY);
+             glVertex2f(xpos - cameraOffsetX, ypos + height - cameraOffsetY);
+             glEnd();
+         }
      }
 
 
@@ -151,5 +181,14 @@ public class GameObject {
 
     public void setLayerObjects(ArrayList<GameObject> layerObjects) {
         this.layerObjects = layerObjects;
+    }
+
+    public void addSprite(String loc){
+         spriteSheet=new SpriteSheet(loc);
+    }
+
+    //Takes a state and a list of coordinates for the sprite images in the sprite sheet for that state
+    public void defineSpriteImages(State state, ArrayList<ArrayList<Integer>> coordinates) {
+        spriteSheet.defineImage(state, coordinates);
     }
 }

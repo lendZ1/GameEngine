@@ -41,6 +41,17 @@ bin/
 *.class
 *.jar
 
+
 # OS
 .DS_Store
 Thumbs.db
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### IntelliJ IDEA ###
+.idea/
+
