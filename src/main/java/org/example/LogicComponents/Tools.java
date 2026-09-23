@@ -79,6 +79,10 @@ class SpriteSheet {
 
     int currentImageIndex=0;
 
+    //number of ticks between each sprite change, can be adjusted to make the animation faster or slower
+    int ticksBetweenSpriteChange=15;
+    int tickCounter=0;
+
     public SpriteSheet(String path) {
         this.spriteSheet = ImageLoader.loadImage(path);
         images = new HashMap<>();
@@ -111,14 +115,21 @@ class SpriteSheet {
 
     //returns the textureID of the image that is to be drawn for each update
     public Integer getCurrentImage(State state){
-        if ((currentImageIndex>images.get(state).size()-1) || !(state==currentState)){
+        if (tickCounter>=ticksBetweenSpriteChange){
+            tickCounter=0;
+            currentImageIndex++;
+        } else {
+            tickCounter++;
+        }
+        if (currentState != state){
+            currentState = state;
             currentImageIndex=0;
-            currentState=state;
-
+        }
+        if (currentImageIndex>=images.get(state).size()){
+            currentImageIndex=0;
         }
         int image=images.get(state).get(currentImageIndex);
-        System.out.println("currentImageIndex: " + currentImageIndex + " state: " + state + " image: " + image);
-        currentImageIndex++;
+        System.out.println("TickCounter" + tickCounter + "currentImageIndex: " + currentImageIndex + " state: " + state + " image: " + image);
         return image;
     }
 

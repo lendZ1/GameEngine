@@ -38,8 +38,15 @@ public class Game {
 
         player.addSprite("src/resources/images/sprites/knight.png");
         player.defineSpriteImages(State.IDLE, new ArrayList<>(Arrays.asList(
-                new ArrayList<>(Arrays.asList(0, 0, 50, 50)),
-                new ArrayList<>(Arrays.asList(50, 50, 50, 50))  )));
+                new ArrayList<>(Arrays.asList(0, 0, 64, 64)),
+                new ArrayList<>(Arrays.asList(64, 0, 64, 64)),
+                new ArrayList<>(Arrays.asList(128, 0, 64, 64)),
+                new ArrayList<>(Arrays.asList(0, 64, 64, 64)),
+                new ArrayList<>(Arrays.asList(64, 64, 64, 64)),
+                new ArrayList<>(Arrays.asList(128, 64, 64, 64)),
+                new ArrayList<>(Arrays.asList(0, 128, 64, 64)),
+                new ArrayList<>(Arrays.asList(64, 128, 64, 64))
+        )));
         gameMap.addPlayer(player,0);
 
     }
