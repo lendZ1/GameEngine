@@ -1,12 +1,10 @@
 package org.example.LogicComponents;
 
 import org.example.Enums.State;
+import org.example.LogicComponents.Tools.SpriteSheet;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 
